@@ -1,0 +1,16 @@
+﻿1. Magic functions in python are the methods that start and end with double underscores. 
+For example - 
+__new__ : to get called in an object’s instantiation
+__del__ : destructor
+__abs__ : implements behaviour for the built-in abs()
+__neg__ : Implements behaviour for the built-in abs()
+
+
+2. If we don't override the __str__ function , the output will be the name of the class and where it’s defined , and the memory address of the object. If a class doesn’t have a .__str__() method defined, then str() will also default to the object’s .__repr__() method. This method will provide an output that’s easier for the user to understand.
+
+
+3. The __eq__ function defines behaviour for the equality operator, ==. If we wouldn’t override the function , we wouldn’t be able to compare between 2 objects, because when you try to object1 == object2, it compares the memory addresses of the objects and not by their value.
+
+
+4. two methods cannot have the same name in Python, so overloading is a feature that allows for two or more functions to do different functionalities with the same name but with different numbers of parameters. 
+Operator overloading is just like overloading , just with operators and not functions, means you are giving extended meaning to the operator beyond their predefined meaning.
