@@ -1,0 +1,56 @@
+﻿DECORATORS:
+
+
+1. Decorators are a comfortable syntax to make wrapper functions. Sometimes we would want to “wrap” methods before/after other functions will happen, in order to extend the behaviour of the wrapped function. 
+
+
+2. According to the decorator goal , you use them as a wrapper function to your functions . So let's say there is a function and  you want to make a wrapper before and after that function, then you would write a wrapper function and then use the “@” before that function with the name of the wrapper function, and in the wrapper function you would do the function you want to do before and after the function. Behind the scenes the decorator is basiclly adding extra functionality to a function without actually modifying that function.
+
+
+3. Function pointers are variables that contain a function. With function pointers we can pass as a variable function and do as we wish with them.
+
+
+4. We need to use *args and **kwargs because we want to be able to use the wrapper for more than one function, and we don't want to limit the wrapper about the amount / type of variables that it can get (it can be a function , a couple of variables and more). In addition , the function doesn't know to pass variables to the wrapper function ( because of the way we call her ) , and if we want to get variables to the wrapper function we have to somehow get them ,and that’s why we use *args and **kwargs.
+
+
+5. @property is used to get the value of a private attribute without using any getter methods. For example: 
+
+
+    @property
+    def abc(self):
+        return self.__abc
+
+
+6. class decorators allow you to add functionality to classes or alter their attributes and methods, for example, it lets you create an instance of a class. You use it as you use a function decorator and put it above the class declaration. 
+
+
+ITERATORS:
+
+
+7. Iterators are all the objects that you can  pass thru them using a for loop
+8. List, tuple, dictionary
+9. The del function is used to delete objects, and in python everything is an object , so del can also delete variables, lists or part of the list.
+10. To make an object as an iterator, we have to implement the methods __iter__() and __next__() to the object itself.
+
+
+
+
+
+
+
+
+
+
+GENERATORS:
+
+
+11. Generators are functions that don't return a value at the end of the function, only using yield, unlike regular functions that return a value using “return” and in the end of the function.
+
+
+12. Yield can return a couple of values in different places in the function, and you can run on those values, which is great for storage and memory saving and to return values.
+
+
+13. Saving the value of the generator in a variable is useful to run different parts of the function in different places in the code, for example if the function holds a reference for the variable that we use and want to keep doing action on that value only after some actions, we could do it using the generator.
+
+
+14. Yield is a statement that produces a generator object that can return multiple values to the code who called the function, without terminating the program.
