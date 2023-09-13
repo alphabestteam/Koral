@@ -1,0 +1,29 @@
+﻿1. There is a need for an unlimited amount of parameters / that can change because let's say i want a function that sums up the average salary of all the workers in the company , firstly, the amount of workers are dynamic and changes, so you don’t want to change the function variable every time a worker gets paired or a new worker gets into the company ,second, if there is a company ith 1000 workers, if won’t be comfortable and efficient to make 1000 variables. 
+For example:
+
+
+def manyArgs(*arg):
+  print(f"I have {len(arg)} arguments, they are: {arg}”)
+
+
+2. The syntax *args is used to pass a variable of a number of arguments to a function. The argos* variable is sorted with all the arguments in a tuple. So if i will print the args* , it will print like this : (arg1, arg2, arg3…) 
+
+
+3. The **kwargs variable is used to pass a keyword argument list. A keyword argument is where you provide a name to the variable as you pass it into the function, just like a dictionary. So if i will print the **kwargs, it will print the variable like a dictionary, like this: {'y': 2, 'x': 1, 'z': 3}
+
+
+4. The difference between args and kwargs is that *args is a non-keyword argument and **kwargs is a keyword argument.We can use both *args and **kwargs in a function, but *args must be put before **kwargs.
+
+
+5. Packing is a technique that allows us to put several values in a single variable. For example , putting variables into a tuple , a list or a dictionary. You make a variable with the dict object that contains a lot of variables in one variable. For example: 
+
+
+a , b, c = 10, 20, 30
+List_of_a_b_c = [a, b, c]
+
+
+Unpacking is the opposite technique , which means you split the packed values into individual elements. For example:
+
+
+a , b, c = [10, 20, 30]
+print(f”a = {a} , b = {b} , c = {c}”)
