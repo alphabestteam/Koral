@@ -8,6 +8,7 @@ class Bank:
     os.makedirs(os.path.join("./costumers"), exist_ok=True)
 
     def __init__(self) -> None:
+        self.costumers_list = []
 
         if self.check_how_many_costumers_files() >= 1: # if there is a costumer
             for i in range(self.check_how_many_costumers_files()):
@@ -26,7 +27,7 @@ class Bank:
         return(len([name for name in os.listdir('./costumers') if os.path.isfile(name)]))
 
 
-    def generate_account_number() -> int:
+    def generate_account_number(self) -> int:
         return random.randint(111111111, 999999999)
     
 
@@ -103,7 +104,7 @@ class Bank:
     def start_listen(self):
         HOST = '127.0.0.1'
         PORT = 12347
-        MEMORY = 1024
+        MEMORY = 2048
 
         my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         my_socket.bind((HOST, PORT))
@@ -111,17 +112,15 @@ class Bank:
         while True:
 
             conn, addr = my_socket.accept()
-            conn.sendall(bytes("Please Enter The Number Of Your Desired Action : \n 1 - Create Account \n 2 - Withdraw / Deposit money \n 3 - Send Money To Other Accounts".encode()))
+            conn.sendall(bytes("Please Enter The Number Of Your Desired Action : \n 1 - Create Account \n 2 - Withdraw / Deposit money \n 3 - Send Money To Other Accounts\n 'stop' to exit the menu".encode('utf-8')))
             data = conn.recv(MEMORY).decode('utf-8')
-            print(data)
-            print(type(data))
 
 
             if data == '1':
 
-                conn.sendall("Please Enter Your Name:\n")
+                conn.sendall(bytes("Please Enter Your Name:".encode('utf-8')))
                 data_name = conn.recv(MEMORY).decode('utf-8')
-                conn.sendall("Please Enter The Starting Balance:\n")
+                conn.sendall(bytes("Please Enter The Starting Balance:\n".encode('utf-8')))
                 data_balance = conn.recv(MEMORY).decode('utf-8')
                 account_number = self.generate_account_number()
 
@@ -138,13 +137,13 @@ class Bank:
 
 
             elif data == '2':
-                conn.sendall("Please Enter The Action:\n Withdraw / Deposit:\n")
+                conn.sendall(bytes("Please Enter The Action:\n Withdraw / Deposit:\n".encode('utf-8')))
                 data_action = conn.recv(MEMORY).decode('utf-8')
-                conn.sendall("Please Enter The Name Of The Account: ")
+                conn.sendall(bytes("Please Enter The Name Of The Account: ".encode('utf-8')))
                 data_name_account = conn.recv(MEMORY).decode('utf-8')
-                conn.sendall("Please Enter The Account Number: ")
+                conn.sendall(bytes("Please Enter The Account Number: ".encode('utf-8')))
                 data_account_number = conn.recv(MEMORY).decode('utf-8')
-                conn.sendall(f"Please Enter The Amount Of Money That You Want To {data_action}: ")
+                conn.sendall(bytes(f"Please Enter The Amount Of Money That You Want To {data_action}: ".encode('utf-8')))
                 data_amount_money = conn.recv(MEMORY).decode('utf-8')
 
                 self.withdraw_or_deposit(data_name_account, account_number, data_amount_money, data_action)                                       
@@ -153,15 +152,15 @@ class Bank:
             elif data == '3':
 
                 while True:
-                    conn.sendall("Please Enter The Name Of Your Account: ")
+                    conn.sendall(bytes("Please Enter The Name Of Your Account: ".encode('utf-8')))
                     data_name_account = conn.recv(MEMORY).decode('utf-8')
-                    conn.sendall("Please Enter Tour Account Number: ")
+                    conn.sendall(bytes("Please Enter Tour Account Number: ".encode('utf-8')))
                     data_account_number = conn.recv(MEMORY).decode('utf-8')
-                    conn.sendall(f"Please Enter The Amount Of Money That You Want To {data_action}: ")
+                    conn.sendall(bytes(f"Please Enter The Amount Of Money That You Want To {data_action}: ".encode('utf-8')))
                     data_amount_money = conn.recv(MEMORY).decode('utf-8')
-                    conn.sendall("Please Enter The Name Of The Account You Want To Transfer Money To: ")
+                    conn.sendall(bytes("Please Enter The Name Of The Account You Want To Transfer Money To: ".encode('utf-8')))
                     data_name_other_account = conn.recv(MEMORY).decode('utf-8')
-                    conn.sendall("Please Enter The Account Number Of The Account You Want To Transfer Money To: ")
+                    conn.sendall(bytes("Please Enter The Account Number Of The Account You Want To Transfer Money To: ".encode('utf-8')))
                     data_account_other_number = conn.recv(MEMORY).decode('utf-8')
 
                     self.withdraw_or_deposit(data_name_account, data_account_number, data_amount_money, "send money", data_name_other_account, data_account_other_number)
@@ -172,12 +171,6 @@ class Bank:
 
             if(data == "Stop"):
                 break
-
-            if(data):
-                print(f"received {str(data)}")
-                conn.sendall(bytes(data.upper().encode('utf-8')))
-                my_socket.listen()
-
 
         my_socket.close()
 
