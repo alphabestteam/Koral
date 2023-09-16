@@ -15,6 +15,7 @@ class Api:
             my_socket.sendall(bytes(account_name.encode()))
             my_socket.recv(MEMORY)
             my_socket.sendall(bytes(account_balance.encode()))
+            my_socket.detach()
 
 
     def deposit_money(self, account_name, account_number, amount_of_money_to_deposit):
@@ -30,6 +31,7 @@ class Api:
         my_socket.sendall(bytes(account_number.encode()))
         my_socket.recv(MEMORY)
         my_socket.sendall(bytes(amount_of_money_to_deposit.encode()))
+        my_socket.detach()
 
     
     def withdraw_money(self, account_name, account_number, amount_of_money_to_deposit):
@@ -45,6 +47,8 @@ class Api:
         my_socket.sendall(bytes(account_number.encode()))
         my_socket.recv(MEMORY)
         my_socket.sendall(bytes(amount_of_money_to_deposit.encode()))
+        my_socket.detach()
+
 
 
     def transfer_money(self, account_name, account_number, amount_of_money_to_deposit, other_account_name, other_account_number):
@@ -62,3 +66,4 @@ class Api:
         my_socket.sendall(bytes(other_account_name.encode()))
         my_socket.recv(MEMORY)
         my_socket.sendall(bytes(other_account_number.encode()))
+        my_socket.detach()
