@@ -62,12 +62,3 @@ class Api:
         my_socket.sendall(bytes(other_account_name.encode()))
         my_socket.recv(MEMORY)
         my_socket.sendall(bytes(other_account_number.encode()))
-
-def main():
-    x = Api()
-    # x.create_account("nami", "100")
-    # x.create_account("koral", "200")
-
-    x.transfer_money("koral", "728452831", "100", "nami", "793716593")
-if __name__ == "__main__":
-    main()

@@ -72,42 +72,43 @@ class Bank:
                 with open(f"./costumers/costumer{i + 1}.json", "r") as fd3:
                     json_open = json.load(fd3)
                 with open(f"./costumers/costumer{i + 1}.json", "a") as fd4:
-
                     if json_open["name"] == name_account and json_open["account number"] == account_number:
-
                         if json_open["balance"] > amount_money:
-
+                            print("here")
                             enough_money = True
                             main_account_path = f"./costumers/costumer{i + 1}.json"
                             main_index = i + 1
-
-                    if json_open["name"] == other_account_name and json_open["account number"] == other_account_number and enough_money:
-                            
+                    
+                    if json_open["name"] == other_account_name and json_open["account number"] == other_account_number:
+                            print("here2")
                             account_exists = True
                             other_account_path = f"./costumers/costumer{i + 1}.json"
                             other_index = i + 1
             
-            else:
+            if not (account_exists and enough_money):
                 print("Wrong Input! Name Or Account Number Is Wrong!")
                 
 
 
             if account_exists and enough_money:
+                print(main_index)
+                print(other_index)
+
                 with open(main_account_path, "r") as fdd1:
                     json_open = json.load(fdd1)
 
                 with open(main_account_path, "w") as fd3:
                     json_open["balance"] -= amount_money
-                    self.costumers_list[main_index].balance -= amount_money
-                    json.dump(json_open, fd3)
+                    self.costumers_list[main_index - 1].balance -= amount_money
+                    json.dump(json_open, fd3,indent=4)
 
-                with open(main_account_path, "r") as fdd2:
+                with open(other_account_path, "r") as fdd2:
                     json_open = json.load(fdd2)
 
-                with open(other_account_path, "a") as fd4:
-                    json_open["balance"] -= amount_money
-                    self.costumers_list[other_index].balance += amount_money
-                    json.dump(json_open, fd4)
+                with open(other_account_path, "w") as fd4:
+                    json_open["balance"] += amount_money
+                    self.costumers_list[other_index - 1].balance += amount_money
+                    json.dump(json_open, fd4,indent=4)
 
 
         else:
@@ -164,19 +165,18 @@ class Bank:
                 
             elif data == '3':
 
-                while True:
-                    conn.sendall(bytes("Please Enter The Name Of Your Account: ".encode('utf-8')))
-                    data_name_account = conn.recv(MEMORY).decode('utf-8')
-                    conn.sendall(bytes("Please Enter Tour Account Number: ".encode('utf-8')))
-                    data_account_number = conn.recv(MEMORY).decode('utf-8')
-                    conn.sendall(bytes(f"Please Enter The Amount Of Money".encode('utf-8')))
-                    data_amount_money = conn.recv(MEMORY).decode('utf-8')
-                    conn.sendall(bytes("Please Enter The Name Of The Account You Want To Transfer Money To: ".encode('utf-8')))
-                    data_name_other_account = conn.recv(MEMORY).decode('utf-8')
-                    conn.sendall(bytes("Please Enter The Account Number Of The Account You Want To Transfer Money To: ".encode('utf-8')))
-                    data_account_other_number = conn.recv(MEMORY).decode('utf-8')
+                conn.sendall(bytes("Please Enter The Name Of Your Account: ".encode('utf-8')))
+                data_name_account = conn.recv(MEMORY).decode('utf-8')
+                conn.sendall(bytes("Please Enter Your Account Number: ".encode('utf-8')))
+                data_account_number = conn.recv(MEMORY).decode('utf-8')
+                conn.sendall(bytes(f"Please Enter The Amount Of Money".encode('utf-8')))
+                data_amount_money = conn.recv(MEMORY).decode('utf-8')
+                conn.sendall(bytes("Please Enter The Name Of The Account You Want To Transfer Money To: ".encode('utf-8')))
+                data_name_other_account = conn.recv(MEMORY).decode('utf-8')
+                conn.sendall(bytes("Please Enter The Account Number Of The Account You Want To Transfer Money To: ".encode('utf-8')))
+                data_account_other_number = conn.recv(MEMORY).decode('utf-8')
 
-                    self.withdraw_or_deposit(data_name_account, int(data_account_number), int(data_amount_money), "send money", data_name_other_account, int(data_account_other_number))
+                self.withdraw_or_deposit(data_name_account, int(data_account_number), int(data_amount_money), "send money", data_name_other_account, int(data_account_other_number))
 
             else: 
                 print("Wrong Input! Try Again!")
@@ -193,15 +193,8 @@ class Costumer:
         self.path = path
 
         with open(path, "r") as fd5:
+
             json_open = json.load(fd5)
             self.name = json_open["name"]
-            self.account_number = json_open["account number"]
             self.balance = json_open["balance"]
-
-
-def main():
-    banka_de_espania = Bank()
-    banka_de_espania.start_listen()
-
-if __name__ == "__main__":
-    main()
+            self.account_number = json_open["account number"]
