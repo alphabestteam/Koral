@@ -1,6 +1,6 @@
-from Costumer1 import Costumer
-from Product1 import Product
-from Register1 import Register
+from costumer1 import Costumer
+from product1 import Product
+from register1 import Register
 
 def main():
     juice = Product("Juice", 3, 4)
@@ -25,11 +25,11 @@ def main():
 
     print(f"\n*After adding a product:* \n Janices shopping list: \n {Janice.get_shopping_list()}\n Janices overall price {Janice.get_overall_price()}")
 
-    Janice.remove_product(milk, 3)
+    Janice.remove_product("milk", 3)
 
     print(f"\n*After removing a product:* \n Janices shopping list: \n {Janice.get_shopping_list()}\n Janices overall price {Janice.get_overall_price()}")
 
-    Janice.remove_product(milk, 3)
+    Janice.remove_product("milk", 3)
 
     print(f"\n*After removing a product:* \n Janices shopping list: \n {Janice.get_shopping_list()}\n")
 

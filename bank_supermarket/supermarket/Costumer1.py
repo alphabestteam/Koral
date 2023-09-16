@@ -1,9 +1,15 @@
+from bank.api import Api
+
 class Costumer:
-    def __init__(self, costumer_name: str, overall_price: int, objects_list: list, shopping_list = {}):
+    def __init__(self, costumer_name: str, overall_price: float, objects_list: list, shopping_list = None, bank_account_number = "0", balance = "0"):
         self.costumer_name = costumer_name
         self.shopping_list = shopping_list
         self.overall_price = overall_price
         self.objects_list = objects_list
+        self.bank_account_number = bank_account_number
+
+        if bank_account_number == "0":
+            Api.create_account(self.costumer_name, balance)
 
     def get_costumer_name(self):
         return self.costumer_name
@@ -32,12 +38,15 @@ class Costumer:
     def add_product(self, product) -> None:
         # The function will get a product object, and would add a product to the costumer shopping list. if the product already exists , the function will sum the amount of units of that product. 
         # Also, the function will update the overall price of that costumer according to the product price and amount.
-
+        
+        if self.shopping_list == None:
+            self.shopping_list = {}
+            
         is_in_shopping_list = False
         for i in range(len(self.get_shopping_list())):
             for j in range(i):
                 if self.shopping_list[i - 1] == self.objects_list[i - 1][0]: # If already exists in the shopping list
-                    self.shopping_list[] += self.objects_list[i - 1][2]
+                    self.shopping_list[i - 1] += self.objects_list[i - 1][2]
                     is_in_shopping_list = True
                     break
 
@@ -51,6 +60,9 @@ class Costumer:
     def remove_product(self, product_name: str, amount_to_delete: int) -> None:
         # The function will get the name and amount of units to remove from that product.
         is_wrong_name = True
+
+        if self.shopping_list == None:
+            self.shopping_list = {}
 
         for i in range(len(self.get_shopping_list())):
             for j in range(i):
