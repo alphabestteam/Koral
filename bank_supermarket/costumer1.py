@@ -1,4 +1,4 @@
-from bank.api import Api
+from api import Api
 
 class Costumer:
     def __init__(self, costumer_name: str, overall_price: float, objects_list: list, shopping_list = None, bank_account_number = "0", balance = "0"):
@@ -7,9 +7,10 @@ class Costumer:
         self.overall_price = overall_price
         self.objects_list = objects_list
         self.bank_account_number = bank_account_number
+        self.balance = balance
 
         if bank_account_number == "0":
-            Api.create_account(self.costumer_name, balance)
+            Api.create_account(self.costumer_name, self.balance)
 
     def get_costumer_name(self):
         return self.costumer_name
@@ -41,7 +42,7 @@ class Costumer:
         
         if self.shopping_list == None:
             self.shopping_list = {}
-            
+
         is_in_shopping_list = False
         for i in range(len(self.get_shopping_list())):
             for j in range(i):

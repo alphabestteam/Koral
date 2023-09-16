@@ -1,4 +1,4 @@
-from bank.api import Api
+from api import Api
 
 class Register:
     def __init__(self, overall_shopping_list: list, account_name: str, bank_account_number = "0", profit_amount = 0.0 ):

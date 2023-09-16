@@ -17,7 +17,7 @@ def main():
     )
 
     Janice = Costumer(
-        "Janice", overall_price_for_janice,  [[juice, juice.get_amount_of_product()], [chocolate, chocolate.get_amount_of_product()], [milk, milk.get_amount_of_product()], [eggs, eggs.get_amount_of_product()]] , [juice , chocolate, milk, eggs]
+        "Janice", overall_price_for_janice,  [[juice, juice.get_amount_of_product()], [chocolate, chocolate.get_amount_of_product()], [milk, milk.get_amount_of_product()], [eggs, eggs.get_amount_of_product()]] , [juice , chocolate, milk, eggs], "0", 200
     )
     print(f"\n*Before adding a product:* \n Janices shopping list: \n {Janice.get_shopping_list()}\n Janices overall price {Janice.get_overall_price()}")
     
