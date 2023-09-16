@@ -10,7 +10,7 @@ class Costumer:
         self.balance = balance
 
         if bank_account_number == "0":
-            Api.create_account(self.costumer_name, self.balance)
+            Api.create_account(self, self.costumer_name, self.balance)
 
     def get_costumer_name(self):
         return self.costumer_name

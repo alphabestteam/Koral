@@ -1,14 +1,14 @@
 from api import Api
 
 class Register:
-    def __init__(self, overall_shopping_list: list, account_name: str, bank_account_number = "0", profit_amount = 0.0 ):
+    def __init__(self, overall_shopping_list: list, bank_name: str, bank_account_number = "0", profit_amount = 0.0 ):
         self.overall_shopping_list = overall_shopping_list
         self.profit_amount = profit_amount
         self.bank_account_number = bank_account_number
-        self.bank_name = account_name
+        self.bank_name = bank_name
 
         if bank_account_number == "0":
-            Api.create_account(self.bank_name, self.profit_amount)
+            Api.create_account(self, self.bank_name, self.profit_amount)
 
     def __repr__(self) -> str:
         return self.overall_shopping_list

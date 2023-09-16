@@ -34,12 +34,10 @@ def main():
     print(f"\n*After removing a product:* \n Janices shopping list: \n {Janice.get_shopping_list()}\n")
 
 
-    register1 = Register(Janice.get_shopping_list(), Janice.get_overall_price())
+    register1 = Register(Janice.get_shopping_list(),"bank name", "0", Janice.get_overall_price())
     register1.checkout_costumer(Janice)
     register1.print_summery()
-    """
-    need to check why the profit when adding a costumer is doubled and since when it saves the costumer sum while print_summery() is running. 
-    """
+    
 
 if __name__ == "__main__":
     main()
