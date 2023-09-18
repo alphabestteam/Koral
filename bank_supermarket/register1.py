@@ -1,4 +1,6 @@
 from api import Api
+from ip_and_port import IP, PORT
+
 
 class Register:
     def __init__(self, overall_shopping_list: list, bank_name: str, bank_account_number = "0", profit_amount = 0.0 ):
@@ -8,7 +10,8 @@ class Register:
         self.bank_name = bank_name
 
         if bank_account_number == "0":
-            Api.create_account(self, self.bank_name, self.profit_amount)
+            Api.connect_to_server(self, IP, PORT, "create_account", self.bank_name, self.profit_amount)
+
 
     def __repr__(self) -> str:
         return self.overall_shopping_list

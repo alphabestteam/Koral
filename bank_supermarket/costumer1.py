@@ -1,4 +1,5 @@
 from api import Api
+from ip_and_port import IP, PORT
 
 class Costumer:
     def __init__(self, costumer_name: str, overall_price: float, objects_list: list, shopping_list = None, bank_account_number = "0", balance = "0"):
@@ -10,7 +11,7 @@ class Costumer:
         self.balance = balance
 
         if bank_account_number == "0":
-            Api.create_account(self, self.costumer_name, self.balance)
+            Api.connect_to_server(self, IP, PORT, "create_account", self.costumer_name, self.balance)
 
     def get_costumer_name(self):
         return self.costumer_name
