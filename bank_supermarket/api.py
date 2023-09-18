@@ -1,6 +1,7 @@
 import socket
 
 MEMORY = 2048
+
 class Api:
 
     def connect_to_server(self, ip: int, port: int, action: str, account_name, account_balance = "0", account_number = "0" , amount_of_money_to_deposit = "0", other_account_name = "0", other_account_number = "0"):
@@ -18,6 +19,7 @@ class Api:
             
         elif action == "transfer_money":
             self.transfer_money(my_socket, account_name, account_number, amount_of_money_to_deposit, other_account_name, other_account_number)
+
 
     def create_account(self, my_socket, account_name, account_balance):
 

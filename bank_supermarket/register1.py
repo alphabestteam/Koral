@@ -37,7 +37,7 @@ class Register:
         check if its possible to add 2 lists like that:
         """
         self.overall_shopping_list += costumer.get_shopping_list() 
-        Api.transfer_money(costumer.get_costumer_name(), self.bank_account_number, costumer.get_overall_price(), self.bank_name, self.bank_account_number)
+        Api.transfer_money(costumer.get_costumer_name(), costumer.bank_account_number, costumer.get_overall_price(), self.bank_name, self.bank_account_number)
         
 
     def print_summery(self) -> None:
