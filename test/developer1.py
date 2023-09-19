@@ -1,5 +1,5 @@
-from project import Project
-from exercise import Exercise
+from project1 import Project
+from exercise1 import Exercise
 
 import datetime
 
@@ -56,15 +56,15 @@ class Developer:
         days = 0
         
         for exercise in self.list_exercises_done:
-            days += exercise.days_of_work
+            days += exercise.get_days_of_work()
 
         for exercise in self.exercises_to_be_done:
 
             if self.exercises_to_be_done == None or len(self.exercises_to_be_done) == 0:
                 return days
             
-            elif datetime.date.now() > exercise.start_date:
-                days += datetime.date.now() - exercise.start_date
+            elif datetime.date.now() > exercise.get_start_date():
+                days += datetime.date.now() - exercise.get_start_date()
 
         return days
 
@@ -76,8 +76,8 @@ class Developer:
         seniority = 0
 
         for exercise in self.list_exercises_done:
-            seniority += exercise.complexity
-            self.reward += exercise.reward
+            seniority += exercise.get_complexity()
+            self.reward += exercise.get_reward()
 
         return seniority
 

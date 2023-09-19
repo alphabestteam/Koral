@@ -1,11 +1,10 @@
-from exercise import Exercise
-from developer import Developer
+from exercise1 import Exercise
 
 import datetime
 
 class Project: 
 
-    def __init__(self, description: str, start_date: datetime, list_of_exercises: list, list_of_developers: list, exercises_not_finished: list , exercises_finished: list) -> None:
+    def __init__(self, description: str, start_date: datetime, exercises_not_finished = [] , exercises_finished = [], list_of_exercises = [], list_of_developers = []) -> None:
         self.description = description
         self.start_time = start_date
         self.list_of_exercises = list_of_exercises
@@ -146,7 +145,7 @@ class Project:
         cost = 0
 
         for exercise in self.exercises_finished:
-            cost += exercise.reward
+            cost += exercise.get_reward()
 
         return cost
 
@@ -164,11 +163,13 @@ class Project:
         self.list_of_exercises.insert(exercise)
         self.exercises_not_finished.insert(exercise)
 
+        if exercise.get_which_dev() not in self.list_of_developers:
+            self.list_of_developers.insert(exercise.get_which_dev())
+
         for devs in self.list_of_developers:
-            devs.exercises_to_be_done.insert(exercise)
+            devs.get_exercises_to_be_done().insert(exercise)
 
-
-
+        
     
     def remove_exercise(self, exercise: Exercise) -> None:
         # The function will remove an exercise if its not finished
@@ -180,7 +181,7 @@ class Project:
         self.list_of_exercises.remove(exercise)
 
         for devs in self.list_of_developers:
-            devs.exercises_to_be_done.remove(exercise)
+            devs.get_exercises_to_be_done().remove(exercise)
 
 
     
@@ -188,7 +189,7 @@ class Project:
         # The function will return the exercises by their description
 
         for exercise in self.list_of_exercises:
-            if exercise.description == description:
+            if exercise.get_description() == description:
                 return(exercise)
         return None
         

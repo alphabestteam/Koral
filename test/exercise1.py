@@ -1,5 +1,5 @@
-from project import Project
-from developer import Developer
+from project1 import Project
+from developer1 import Developer
 
 import datetime
 
@@ -14,8 +14,6 @@ class Exercise:
         if complexity < 1 or complexity > 5 :
             raise Exception("The Complexity Need To Be Between 1 And 5 !")
         self.complexity = complexity
-
-        self.complexity = self.complexity_is_validate()
         self.which_dev = which_dev
         self.finished = self.exercise_finished()
         self.reward = self._generate_reward()
@@ -151,6 +149,7 @@ class Exercise:
         # The function updates the current exercise with a developer 
         
         self.which_dev = dev
+        dev.get_exercises_to_be_done.insert(self)
 
 
 
