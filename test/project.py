@@ -11,14 +11,68 @@ class Project:
         self.list_of_exercises = list_of_exercises
         self.list_of_developers = list_of_developers
         self.exercises_not_finished = exercises_not_finished
-        self.end_time = self.generate_end_time()
+        self.end_time = self._generate_end_time()
         self.exercises_finished = exercises_finished
-        self.cost = self.cost_of_project()
-        self.finished = self.project_finished()
+        self._cost = self._cost_of_project()
+        self._finished = self._project_finished()
 
 
+    def get_description(self):
+        return self.description
+      
+    def set_description(self, value):
+        self.description = value
 
-    def generate_end_time(self) -> datetime:
+    def get_start_date(self):
+        return self.start_date
+      
+    def set_start_date(self, value):
+        self.start_date = value
+
+    def get_list_of_exercises(self):
+        return self.list_of_exercises
+      
+    def set_list_of_exercises(self, value):
+        self.list_of_exercises = value
+
+    def get_list_of_developers(self):
+        return self.list_of_developers
+      
+    def set_list_of_developers(self, value):
+        self.list_of_developers = value
+
+    def get_exercises_not_finished(self):
+        return self.description
+      
+    def set_exercises_not_finished(self, value):
+        self.exercises_not_finished = value
+
+    def get_end_time(self):
+        return self.end_time
+      
+    def set_end_time(self, value):
+        self.end_time = value
+
+    def get_exercises_finished(self):
+        return self.exercises_finished
+      
+    def set_exercises_finished(self, value):
+        self.exercises_finished = value
+
+    def get_cost(self):
+        return self._cost
+      
+    def set_cost(self, value):
+        self._cost = value
+
+    def get_finished(self):
+        return self._finished
+      
+    def set(self, value):
+        self._finished = value
+
+
+    def _generate_end_time(self) -> datetime:
         # The function will return the end date for the project
 
         year = self.start_time.year
@@ -78,7 +132,7 @@ class Project:
 
 
 
-    def project_finished(self) -> bool:
+    def _project_finished(self) -> bool:
         # The function will return True is there isn't any exercises left to get done, otherwise, False
         if self.exercises_not_finished == None or len(self.exercises_not_finished) == 0:
             return True
@@ -86,7 +140,7 @@ class Project:
 
     
 
-    def cost_of_project(self) -> float:
+    def _cost_of_project(self) -> float:
         # The function will calculate the cost of the overall project by the rewards of each exercise
 
         cost = 0
@@ -95,6 +149,7 @@ class Project:
             cost += exercise.reward
 
         return cost
+
 
 
     def add_exercise(self, exercise: Exercise) -> None:
@@ -109,6 +164,10 @@ class Project:
         self.list_of_exercises.insert(exercise)
         self.exercises_not_finished.insert(exercise)
 
+        for devs in self.list_of_developers:
+            devs.exercises_to_be_done.insert(exercise)
+
+
 
     
     def remove_exercise(self, exercise: Exercise) -> None:
@@ -120,12 +179,16 @@ class Project:
         self.exercises_not_finished.remove(exercise)
         self.list_of_exercises.remove(exercise)
 
+        for devs in self.list_of_developers:
+            devs.exercises_to_be_done.remove(exercise)
+
 
     
-    def find_project_by_description(self, description: str):
+    def find_project_by_description(self, description: str) -> Exercise or None:
         # The function will return the exercises by their description
 
         for exercise in self.list_of_exercises:
             if exercise.description == description:
                 return(exercise)
+        return None
         
