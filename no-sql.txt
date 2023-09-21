@@ -1,0 +1,46 @@
+﻿1. noSQL database is a non-tabular db that stores data differently than SQL databases. NoSQL db comes in a lot of types, but the main types are documents, key-value and graphs. noSQL provides schemas and scales easily with large amounts of data.
+In short, noSQL databases are databases that store data in a format other than relational tables.
+
+
+2. Advantages: 
+* Scalability: NoSQL databases can easily handle large amounts of data and traffic as your application grows.
+
+
+* Flexibility: They can store different types of data without needing a rigid structure, making them adaptable to changing requirements.
+
+
+* High Performance: NoSQL databases are often faster for specific tasks, like reading and writing lots of data quickly.
+
+
+Disadvantages:
+* Limited Transactions: They may not guarantee data consistency and integrity as well as traditional databases for complex transactions.
+
+
+* Limited Querying: NoSQL databases are less capable of handling complex queries that involve multiple criteria or aggregations.
+
+
+* Learning Curve: They require a different approach to data modelling, which can be challenging for developers used to traditional databases.
+
+
+3.       -    Cluster: A group of servers that store your data.
+
+
+* Database: A logical container for data within a cluster. Databases are created to isolate data for different applications or purposes. You can have multiple databases, each acting as a separate logical container for data. 
+
+
+* Collection: A group of related data documents within a database. Collections are the equivalent of tables in a relational database but are schema-less, meaning documents in a collection can have different structures. Collections are where you store and manage your data.
+
+
+* Document: The basic unit of data in MongoDB, represented as a JSON-like object and can contain nested subdocuments and arrays. Documents within a collection can have different structures, allowing flexibility in how data is stored.
+
+
+* Field: Key-value pairs within a document holding specific data.
+
+
+
+
+
+
+
+
+4. Id to each document acts like a document’s address, making it easy to find and managing it and helps with data replication and consistency. Also, it ensures that each document is unique. When you make a document in MongoDB without specifying an _id, MongoDB will create one for you automatically.
