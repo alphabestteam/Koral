@@ -1,0 +1,99 @@
+html{
+    font-size: 18px;
+    word-spacing: 1px;
+    line-height: 26px;
+    font-family: freightsans_regular,helvetica neue,helvetica,arial,sans-serif;
+    font-weight: 300;
+    text-transform: none;
+    letter-spacing: 0;
+    color: #6b6b6b;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    background-color: #fff;
+
+}
+.row{
+    flex: 33.333%;
+    padding: 5px;
+    width:100%
+}
+.column{
+    display:grid;
+}
+
+#buffalo{
+    width :min-content;
+    height :min-content;
+
+}
+
+/* Reset some default styles */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(217, 210, 210);
+}
+
+header {
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.work {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.work-item {
+    width: 30%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.work-item img {
+    max-width: 100%;
+}
+
+.about, .contact {
+    background-color: #f5f5f5;
+    padding: 40px;
+}
+
+.about h2, .contact h2 {
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
