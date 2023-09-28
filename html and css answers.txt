@@ -1,0 +1,152 @@
+﻿1. Bootstrap is an open-source front-end framework for web development. It provides pre-designed, responsive, and customizable templates, along with a collection of CSS and JavaScript components. Bootstrap simplifies web design by offering a consistent and mobile-friendly layout, typography, forms, buttons, and more. It's widely used to create visually appealing and functional websites quickly, making it a popular choice for developers and designers.
+
+
+2. - Block-level elements create a "block" or a new line in the layout, typically taking up the full available width of their parent container.
+They stack on top of each other vertically.
+<p>: Represents a paragraph of text.
+<p>Hello!</p>
+
+
+- Inline-block elements are displayed inline, like text, but they retain their block-level characteristics, allowing them to have width and height properties.
+They can appear horizontally next to each other within the same line.
+<img>: Displays images and allows other content to flow around them.(which is also an inline block)
+<img src=”http://koral_the_queen.com” alt="A great image">
+
+
+- Inline elements are displayed within the flow of text and don't create new lines or blocks.
+<a>: Defines a hyperlink.
+<a href="https://koral_the_queen.com">
+
+
+3. DOCTYPE stands for "Document Type Declaration," and it is an important declaration at the beginning of an HTML document that defines the version of HTML being used. The DOCTYPE declaration helps the web browser understand how to render the page's content and which rules to follow for proper parsing and rendering. It essentially specifies the document type definition (DTD) for the document.
+
+
+4. The CSS box model is a fundamental concept in web design and layout that defines how elements on a web page are structured and how they interact with each other. It defines each HTML element as a rectangular box with four essential properties: content, padding, border, and margin. These properties determine the element's size, spacing, and positioning within the layout.
+Margin is like the space around the box. It separates this box from other elements on the page. It's the empty area outside the box. You can increase or decrease that area.
+Padding is the space inside the box but just around the content. It's like adding some “breathing room” for the content inside the box. Padding is part of the box, and any background colour or image extends into it. You can increase or decrease this area.
+Both margin and padding help with spacing and positioning elements on a webpage.
+
+
+
+
+
+
+
+
+
+
+5. Responsive web design is an approach to designing and building websites that ensures they look and function well on a variety of devices and screen sizes, which include:
+* Fluid Grids: Design layouts using relative units to allow for flexible resizing.
+* Flexible Images: Use CSS to ensure images adjust with the layout.
+* Media Queries: Apply different styles based on screen characteristics.
+* Responsive Typography: Use relative units for font sizes.
+* Mobile-First Approach: Begin with mobile optimization and enhance for larger screens.
+* Viewport Meta Tag: Include it to control mobile display.
+* Testing: Thoroughly test on various devices and browsers.
+* Performance Optimization: Optimise assets for faster loading.
+
+
+6. There are two types of units, each contains different types of units.
+ Absolute units, which are fixed and don't adjust to different screens, have 4 types of units:
+* pixels(px) - provide a fixed, consistent size on all devices and screens.1 pixel is equal to one dot on the computer screen. Pixels are suitable for specifying exact measurements when precise control is needed.
+* points(pt) -  primarily used for print design but can also be used in web design.
+1 point is approximately equal to 1/72nd of an inch.
+Points are not responsive to screen size changes .
+* inches(in) - rarely used in web design because they don't adapt well to different screen sizes.
+1 inch is equivalent to 2.54 centimetres.
+* centimetres(cm) - Similar to inches, centimetres are not commonly used in web design.
+1 centimetre is equal to 10 millimetres.
+On the other hand, relative units, which are units that will change based on the context or screen size. They also have 4 types of units: 
+* percent(%) - Size relative to the parent element.
+Great for responsive designs.
+* em (em) - Size relative to the font size of the parent element. Often used for fonts, responsive.
+* rem(rem) - Size relative to the root element's font size (usually the whole page). Great for consistency.
+* Viewport units(vw, vh, vmin and vmax) - Size relative to the size of the browser window (viewport).
+
+
+7. Position property determines how an element is placed. It’s options are: 
+* Static - default option, normal flow
+* Relative - positioned relative to its normal position
+* Absolute - positioned relative to its parent position
+* Fixed - positioned relative to the viewport (stays in place when scrolling).
+* Sticky -  initially relative, becomes fixed when scrolled to a certain point.
+
+
+Display property determines how an element is shown. It’s options are:
+* Block - elements start on a new line, take full width.
+* Inline - elements flow in a line, like text.
+* Inline-block - like inline but can have width and height.
+* None -  element is not displayed (hidden).
+* Flex - : allows flexible layout of child elements.
+* Grid - creates grid layout for child elements.
+* Table - renders like a table element.
+
+
+These properties help you control where elements are placed and how they're shown on your webpage.
+
+
+
+
+
+
+8. Flexible Box Layout, is a CSS layout model designed to make it easier to create complex layouts with a predictable and efficient way to distribute space and align content. It is especially useful when working with dynamic or unknown sizes of elements within a container. 
+* Justify-content : controls how items are spaced horizontally and includes the options :  left, right, center, and space distribution.
+* Align-items: Determines how items are spaced vertically and includes the options :  top, bottom, center, and stretch (fill the height).
+* Align-self : Determines the alignment of individual flex items within the container. It overrides the align-items property for the specific item. Values are the same as for align-items.
+* Align-content : Determines when there is extra space vertically of the flex container. 
+* Flex-grow : Determines how much a flex item can grow relative to other flex items. Takes  a numeric value that represents the relative growth factor.
+* Flex-wrap : Determines whether items should wrap to the next line if they don't fit horizontally and includes the options wrap (yes) and nowrap (no).
+        
+.container {
+      display: flex;
+      flex-wrap: wrap; #allows items to wrap to the next line if they can't fit horizontally.
+      width: 300px;
+      height: 200px;
+      border: 2px solid #333;
+      justify-content: space-between; #evenly spaces the items along the main axis.
+      align-items: center; #vertically centers the items within the container.
+    }
+
+
+9. Class used to group and style more than one element, and it can be applied to more than one element on the same html. 
+Ids are used to uniquely identify and style a single element, and can’t be repetitive.
+
+
+10. Div is a block-level element used for grouping and structuring content which creates a new block.
+Span is an inline-level element used for applying styles or targeting specific parts of text within a block-level element without changing the layout or starting a new line.
+
+
+11. - <nav> is used for navigation menus, which usually contains links to different parts of the website. 
+<nav>
+<ul>
+<li>
+<a href="#">Home</a>
+</li>
+<li>
+<a href="#">About</a>
+</li>
+</ul>
+</nav>
+* <header> is representing the introductory content at the top of the page which usually contains logos, menus and more. 
+<header>
+<h1>Welcome to My Website</h1>
+</header>
+* <article> is representing a self-contained composition, such as blog post, news article or forum.
+<article>
+<h3>Blog Post Title</h3>
+</article>
+
+
+12. ::before and ::after are pseudo-elements in CSS that allow you to insert content before or after the content of an element, without the need to add additional HTML elements. They are styled using CSS properties like content, position, display, and background.
+
+
+13. CSS (Cascading Style Sheets):
+	SCSS (Sassy CSS):
+	Standard stylesheet language for styling web documents.
+	A superset of CSS, offering additional features.
+	Uses a simple syntax with selectors and declarations.
+	Uses a more concise and readable syntax with variables, nesting, and mixins.
+	Doesn't support variables or nesting.
+	Enhances maintainability and reusability of styles.
+	Requires repetition and can become lengthy for complex styles.
+	Requires compilation into standard CSS for browser compatibility.
