@@ -1,0 +1,58 @@
+﻿1. koral@AlphaOmega
+
+
+2. alias home="cd ~"
+
+
+3. mkdir World
+
+
+4. touch /home/koral/World/Plan1
+
+
+5. Cd World
+
+
+6. ls -la /usr/bin
+
+
+7. echo koral
+
+
+8. less /etc/passwd
+
+
+9. cp Plan1 ~/.plan
+
+
+10. Home (using the alias from before) / cd /home/koral / cd ~
+
+
+11. mkdir ~/World/MyStyle
+
+
+12. cd ~/World/MyStyle 
+touch file File FilE
+
+
+13. cp -r ~/World/* ~/DirTree/
+
+
+14. rm -r -f ~/MyStyle
+
+
+15. mv World OriginalName
+
+
+16.  man wc
+print newline, word, and byte counts for each file
+
+
+17. wc -l -w ~/World/Plan1
+
+
+18.  The command is used to change a user's password or manage password-related settings
+Section 1 of the manual
+
+
+19. The "passwd" file is a text file that contains essential user account information in a structured format with colon-separated fields.
