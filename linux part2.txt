@@ -7,4 +7,10 @@
 3. Root is the superuser account in Unix and Linux. It is a user account for administrative purposes, and typically has the highest access rights on the system
 
 
-4. In linux you can make all of those files, but in windows you can't, like explained in 1.
+4. In linux you can make all of those files, but in windows you can't, like explained in 1. 
+
+
+5. In windows, in “My Documents/ohad” and in linux in  '/home/ohad'.
+
+
+6. In linux ”/tmp” and in windows in %TEMP% or %TMP%
