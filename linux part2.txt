@@ -1,0 +1,16 @@
+﻿1. Linux files are ordered in a tree structure starting with the root directory whereas in Windows, files are stored in folders on different data drives like C: D: E: In Linux you can have 2 files with the same name in the same directory while in Windows, you cannot have 2 files with the same name in the same folder. In windows, administrator user has all administrative privileges of computers and in linux, root user is the super user and has all administrative privileges. In Windows, 'My Documents' is default home directory and for linux, For every user,  '/home/username' directory is created which is called his home directory
+
+
+2. In linux there are 3 types of files: regular files (‘-’) , directory files (‘d’) and special files (Block file('b') Character device file('c') Named pipe file or just a pipe file('p') Symbolic link file('l') Socket file('s')). 
+
+
+3. Root is the superuser account in Unix and Linux. It is a user account for administrative purposes, and typically has the highest access rights on the system
+
+
+4. In linux you can make all of those files, but in windows you can't, like explained in 1. 
+
+
+5. In windows, in “My Documents/ohad” and in linux in  '/home/ohad'.
+
+
+6. In linux ”/tmp” and in windows in %TEMP% or %TMP%

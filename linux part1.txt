@@ -1,0 +1,19 @@
+﻿1. Operating system(OS) is a program that is loading the computer by a boot program. Also, it manages all the other application programs in the computer.
+
+
+2. Kernel is the primary interface between the hardware and the processes of the computer. So basically the kernel is contained in the operating system. The kernel connects these two in order to adjust resources as effectively as possible. Therefor the kernel is the most important part of the os.
+
+
+3. As it is open-source, its source code is easily available. Anyone having programming knowledge can customise the operating system. One can contribute, modify, distribute, and enhance the code for any purpose , also, linux is  less vulnerable than other operating systems, therefore it is the most favourable option for developers. Also, linux is free to use and lightweight,  the requirements for running Linux are much less than other operating systems.
+
+
+4. To add to what I wrote in 3, linux is also very flexible. It can be used for desktop applications, embedded systems, and server applications too. It also provides various restriction options for specific computers. Also, linux systems provide high performance over different networks. It is capable of handling a large number of users simultaneously.
+
+
+5. Linux refers to the kernel of the GNU/Linux operating system. More generally, it refers to the family of derived distributions.        Unix refers to the original operating system developed by AT&T. More generally, it refers to a family of derived operating systems.
+
+
+6. A Linux distribution, often shortened to Linux distro, is an operating system compiled from components developed by various open source projects and programmers. Each distribution includes the Linux kernel (the foundation of the operating system), the GNU shell utilities (the terminal interface and commands), the X server (for a graphical desktop) and more. Linux distributions consist of what are called software packages. These packages contain specific files, applications or services. For example, a package could be a collection of fonts, web browsers or development environments or may contain thousands of software packages, utilities and applications.
+
+
+7. Fedora (Red Hat), openSUSE (SUSE) and Ubuntu (Canonical Ltd.), and entirely community-driven distributions, such as Debian, Slackware, Gentoo and Arch Linux.
