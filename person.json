@@ -1,0 +1,34 @@
+{
+    "koral" : {
+        "age" : 12 , 
+        "cars" : [{
+            "price" : 5000000,
+            "year of release" : 2023,
+            "horse power" : 30,
+            "max speed" : 280,
+            "number of cylinders" : 4 
+        },
+        {
+            "price" : 2000000,
+            "year of release" : 2021,
+            "horse power" : 30,
+            "max speed" : 260,
+            "number of cylinders" : 3
+        }
+        ]
+    },
+
+    "cities" : [{
+        "name" : "jerusalem",
+        "time zone" : "+2hours",
+        "zip code" : 556832,
+        "population" : 50362,
+        "year established" : 2004, 
+        "major of the city" : {
+            "age" : 250,
+            "year elected" : 2004,
+            "yearly salary" : 800000
+        }
+    }
+    ]
+}
