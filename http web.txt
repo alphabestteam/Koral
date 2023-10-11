@@ -1,0 +1,53 @@
+﻿1. The IETF is the internet engineering task force, which is the body that defines standard operating internet protocols, like the TCP/IP.  The IETF is an open standards organisation supervised by the Internet Society's Internet Architecture Board (IAB). There is no membership in the IETF. Anyone can participate by signing up to a working group mailing list (more on that below), or registering for an IETF meeting. All IETF participants are considered volunteers and expected to participate as individuals, including those paid to participate.
+
+
+2. A communication protocol is like a set of rules that devices follow when they talk to each other. It helps them send and receive data in an organised and understandable way. It's like a language that computers and other gadgets use to communicate. Different situations or tasks might require different languages or protocols to make sure everything works smoothly.
+
+
+3. An RFC, or "Request for Comments," is a document that describes standards and protocols for the internet and computer networks. It's like a guidebook that helps engineers and developers create software and hardware that can work together on the internet.
+
+
+4. HTTP, or Hypertext Transfer Protocol, is used for transferring web pages, images, and other resources on the world wide web. It's the foundation of data communication on the internet and allows you to access websites and retrieve information from web servers.
+
+
+5. HTTP (Hypertext Transfer Protocol) is not secure and transmits data as plain text, which can be intercepted by others. In contrast, HTTPS (Hypertext Transfer Protocol Secure) encrypts data, making it secure, and verifies the identity of the website, providing a safer and more private browsing experience. The difference lies in security and encryption, with HTTPS being the safer option. It uses technologies like TLS/SSL to achieve this.
+
+
+6. The general model of the HTTP protocol is a client-server model. A client, typically a web browser, requests resources from a web server. The server processes the request and sends back the requested resources, such as web pages, images, or data. It follows a request-response pattern, where the client initiates the request, and the server responds with the requested content.
+
+
+7. User-Agent: A user-agent is a software application or program that acts on behalf of a user. In the context of the web, it often refers to the web browser that a person uses to access websites. User-agents send requests to web servers and receive web content.
+
+
+Web Server: A web server is a computer program or hardware device that stores and serves web content to users. It listens for incoming requests, processes them, and sends back the requested web pages, files, or data to the user's browser.
+
+
+Proxies: Proxies are intermediaries between a user's device and the web server. They can be used for various purposes, such as improving security, privacy, or network performance. Proxies can intercept and forward requests and responses between the user's device and the web server, acting as an additional layer of control or protection.
+
+
+8. Proxies serve multiple purposes: Enhancing privacy by masking IP addresses , Improving security through content filtering, Optimising performance by caching data and enabling anonymous web access.
+Proxies work as intermediaries, intercepting and managing network traffic between users and web servers.
+
+
+9. For protocols to have a state means they can remember and track the progress of a communication session. This memory allows protocols to maintain context, remember previous interactions, and make decisions based on the history of communication. Having a state is important for complex, multi-step processes in network communication, where the order and history of messages matter.
+
+
+10. HTTP is a stateless protocol, meaning it doesn't inherently remember previous requests.
+
+
+11. A client (e.g., web browser) sends an HTTP request to a web server. The web server processes the request and retrieves the requested resource. The server sends an HTTP response with the resource back to the client. The client displays or uses the resource, and the connection is typically closed.
+
+
+12. Request headers are part of an HTTP request and contain information about the request, such as the type of browser and the desired content format.
+
+
+13. Cookies are small pieces of data stored on a user's device by websites. They are used to remember user preferences, login sessions, and track user activity on the internet. Cookies enable websites to provide personalised experiences and remember user information between visits.
+
+
+14. an HTTP request includes: Request Method (e.g., GET, POST), Uniform Resource Identifier (URI), Headers (additional request information) and message body (optional, for data).
+
+
+15. An HTTP response consists of a status line with HTTP version, status code, and reason phrase, headers providing additional response information, and a message body containing the response data sent from the server to the client in reply to a request.
+
+
+16. HTTP/3 is the latest version of the HTTP protocol, and it uses the QUIC transport protocol for faster and more efficient web communication compared to HTTP/2, which uses TCP.
