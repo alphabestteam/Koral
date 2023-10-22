@@ -4,8 +4,8 @@
         "pk": 1,
         "fields": {
             "name": "Shira",
-            "birthDate": "2001-01-23",
-            "homeTown": "Rishon LeZion"
+            "date_of_birth": "2001-01-23",
+            "city": "Rishon LeZion"
         }
     },
     {
@@ -13,8 +13,8 @@
         "pk": 2,
         "fields": {
             "name": "Maayan",
-            "birthDate": "2001-08-09",
-            "homeTown": "Rishon LeZion"
+            "date_of_birth": "2001-08-09",
+            "city": "Rishon LeZion"
         }
     },
     {
@@ -22,8 +22,8 @@
         "pk": 3,
         "fields": {
             "name": "Alex",
-            "birthDate": "1969-10-27",
-            "homeTown": "Ashkelon"
+            "date_of_birth": "1969-10-27",
+            "city": "Ashkelon"
         }
     },
     {
@@ -31,8 +31,8 @@
         "pk": 4,
         "fields": {
             "name": "Shira",
-            "birthDate": "2001-08-09",
-            "homeTown": "Rishon LeZion"
+            "date_of_birth": "2001-08-09",
+            "city": "Rishon LeZion"
         }
     },
     {
@@ -40,8 +40,8 @@
         "pk": 5,
         "fields": {
             "name": "Daniel",
-            "birthDate": "2006-07-10",
-            "homeTown": "Rishon LeZion"
+            "date_of_birth": "2006-07-10",
+            "city": "Rishon LeZion"
         }
     },
     {
@@ -49,8 +49,8 @@
         "pk": 6,
         "fields": {
             "name": "Roni",
-            "birthDate": "2006-01-23",
-            "homeTown": "Holon"
+            "date_of_birth": "2006-01-23",
+            "city": "Holon"
         }
     },
     {
@@ -58,8 +58,8 @@
         "pk": 7,
         "fields": {
             "name": "Maya",
-            "birthDate": "2001-05-09",
-            "homeTown": "Cesaria"
+            "date_of_birth": "2001-05-09",
+            "city": "Cesaria"
         }
     },
     {
@@ -67,8 +67,8 @@
         "pk": 8,
         "fields": {
             "name": "Orly",
-            "birthDate": "1970-10-27",
-            "homeTown": "Ashkelon"
+            "date_of_birth": "1970-10-27",
+            "city": "Ashkelon"
         }
     },
     {
@@ -76,8 +76,8 @@
         "pk": 9,
         "fields": {
             "name": "Danit",
-            "birthDate": "1980-12-2",
-            "homeTown": "Bat Yam"
+            "date_of_birth": "1980-12-2",
+            "city": "Bat Yam"
         }
     },
     {
@@ -85,8 +85,8 @@
         "pk": 10,
         "fields": {
             "name": "Amit",
-            "birthDate": "2010-02-20",
-            "homeTown": "Ashkelon"
+            "date_of_birth": "2010-02-20",
+            "city": "Ashkelon"
         }
     },
     {
@@ -94,8 +94,8 @@
         "pk": 11,
         "fields": {
             "name": "Yuval",
-            "birthDate": "1999-02-18",
-            "homeTown": "Kibbutz Beeri"
+            "date_of_birth": "1999-02-18",
+            "city": "Kibbutz Beeri"
         }
     },
     {
@@ -103,8 +103,8 @@
         "pk": 12,
         "fields": {
             "name": "Itay",
-            "birthDate": "2003-06-18",
-            "homeTown": "Raanana"
+            "date_of_birth": "2003-06-18",
+            "city": "Raanana"
         }
     },
     {
@@ -112,8 +112,8 @@
         "pk": 13,
         "fields": {
             "name": "Eden",
-            "birthDate": "2001-02-19",
-            "homeTown": "Raanana"
+            "date_of_birth": "2001-02-19",
+            "city": "Raanana"
         }
     },
     {
@@ -121,8 +121,8 @@
         "pk": 14,
         "fields": {
             "name": "Roee",
-            "birthDate": "1990-09-21",
-            "homeTown": "Raanana"
+            "date_of_birth": "1990-09-21",
+            "city": "Raanana"
         }
     },
     {
@@ -130,8 +130,8 @@
         "pk": 15,
         "fields": {
             "name": "Inbal",
-            "birthDate": "2002-05-20",
-            "homeTown": "Gan Yavne"
+            "date_of_birth": "2002-05-20",
+            "city": "Gan Yavne"
         }
     },
     {
@@ -139,8 +139,8 @@
         "pk": 16,
         "fields": {
             "name": "Ron",
-            "birthDate": "1950-07-10",
-            "homeTown": "Raanana"
+            "date_of_birth": "1950-07-10",
+            "city": "Raanana"
         }
     },
     {
@@ -148,8 +148,8 @@
         "pk": 17,
         "fields": {
             "name": "Noa",
-            "birthDate": "1987-03-09",
-            "homeTown": "Ashdod"
+            "date_of_birth": "1987-03-09",
+            "city": "Ashdod"
         }
     },
     {
@@ -157,8 +157,8 @@
         "pk": 18,
         "fields": {
             "name": "Shahar",
-            "birthDate": "2000-09-21",
-            "homeTown": "Jerusalem"
+            "date_of_birth": "2000-09-21",
+            "city": "Jerusalem"
         }
     },
     {
@@ -166,8 +166,8 @@
         "pk": 19,
         "fields": {
             "name": "Yoav",
-            "birthDate": "1989-08-21",
-            "homeTown": "Herzliya"
+            "date_of_birth": "1989-08-21",
+            "city": "Herzliya"
         }
     },
     {
@@ -175,8 +175,8 @@
         "pk": 20,
         "fields": {
             "name": "Shir",
-            "birthDate": "2001-07-10",
-            "homeTown": "Rehovot"
+            "date_of_birth": "2001-07-10",
+            "city": "Rehovot"
         }
     },
     {
@@ -184,8 +184,8 @@
         "pk": 21,
         "fields": {
             "name": "Aviv",
-            "birthDate": "1950-09-21",
-            "homeTown": "Eilat"
+            "date_of_birth": "1950-09-21",
+            "city": "Eilat"
         }
     },
     {
@@ -193,8 +193,8 @@
         "pk": 22,
         "fields": {
             "name": "Dor",
-            "birthDate": "1952-06-01",
-            "homeTown": "Haifa"
+            "date_of_birth": "1952-06-01",
+            "city": "Haifa"
         }
     },
     {
@@ -202,8 +202,8 @@
         "pk": 23,
         "fields": {
             "name": "May",
-            "birthDate": "2010-06-01",
-            "homeTown": "Raanana"
+            "date_of_birth": "2010-06-01",
+            "city": "Raanana"
         }
     },
     {
@@ -211,16 +211,16 @@
         "pk": 24,
         "fields": {
             "name": "Bar",
-            "birthDate": "2012-07-11",
-            "homeTown": "Raanana"
+            "date_of_birth": "2012-07-11",
+            "city": "Raanana"
         }
     },
     {
         "model": "people.parent",
         "pk": 3,
         "fields": {
-            "work": "Bank",
-            "baseSalary": 10121,
+            "work_place": "Bank",
+            "base_salary": 10121,
             "children": [
                 1,
                 10
@@ -231,8 +231,8 @@
         "model": "people.parent",
         "pk": 8,
         "fields": {
-            "work": "intel",
-            "baseSalary": 60000,
+            "work_place": "intel",
+            "base_salary": 60000,
             "children": [
                 10
             ]
@@ -242,8 +242,8 @@
         "model": "people.parent",
         "pk": 9,
         "fields": {
-            "work": "Google",
-            "baseSalary": 25500,
+            "work_place": "Google",
+            "base_salary": 25500,
             "children": [
                 6
             ]
@@ -253,8 +253,8 @@
         "model": "people.parent",
         "pk": 11,
         "fields": {
-            "work": "Bank",
-            "baseSalary": 10121,
+            "work_place": "Bank",
+            "base_salary": 10121,
             "children": [
                 3
             ]
@@ -264,8 +264,8 @@
         "model": "people.parent",
         "pk": 14,
         "fields": {
-            "work": "Amdocs",
-            "baseSalary": 30125,
+            "work_place": "Amdocs",
+            "base_salary": 30125,
             "children": [
                 23,
                 24
@@ -276,8 +276,8 @@
         "model": "people.parent",
         "pk": 17,
         "fields": {
-            "work": "Google",
-            "baseSalary": 25000,
+            "work_place": "Google",
+            "base_salary": 25000,
             "children": [
                 23,
                 24
@@ -288,8 +288,8 @@
         "model": "people.parent",
         "pk": 22,
         "fields": {
-            "work": "Google",
-            "baseSalary": 41000,
+            "work_place": "Google",
+            "base_salary": 41000,
             "children": [
                 17
             ]

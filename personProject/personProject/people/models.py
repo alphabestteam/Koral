@@ -4,7 +4,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Person(models.Model):
     name = models.CharField(max_length=100)
-    id_number = models.IntegerField(primary_key=True, validators=(MinValueValidator(111111111),MaxValueValidator(999999999)))
+    id_number = models.IntegerField(primary_key=True)
     date_of_birth = models.DateField()
     city = models.CharField(max_length=100)
 
@@ -18,4 +18,4 @@ class Parent(Person):
     children = models.ManyToManyField(Person, related_name='parents', blank = True)
 
     def __str__(self) -> str:
-        return f'The parent name is: {self.name}\n The id is: {self.id_number}\n The date of birth is: {self.date_of_birth}\n The city is: {self.city}\n The place of work is: {self.place_of_work}\n The base salary is: {self.salary}\n The children are: {self.children.all().values()}'
+        return f'The parent name is: {self.name}\n The id is: {self.id_number}\n The date of birth is: {self.date_of_birth}\n The city is: {self.city}\n The place of work is: {self.work_place}\n The base salary is: {self.base_salary}'
