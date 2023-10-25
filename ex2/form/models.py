@@ -31,7 +31,6 @@ class FileSharingForm(Form):
 
 
 class MessagesForm(Form):
-    chat_id = models.ManyToManyField(Chat,related_name="messages_forms",)
-
+    chat_id = models.ForeignKey(Chat, on_delete=models.SET_NULL, null=True)
     
 
