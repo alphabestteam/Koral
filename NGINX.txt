@@ -1,0 +1,6 @@
+﻿1. Nginx is an open-source web server and reverse proxy server. It provides HTTPS server capabilities and is mainly designed for maximum performance and stability.
+Advantages:
+* Nginx offers high-speed performance due to its efficient, non-blocking architecture.
+*  It can evenly distribute traffic to multiple servers, improving reliability.
+* Nginx acts as an intermediary, enhancing security and performance.
+2.     3.
