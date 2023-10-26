@@ -1,0 +1,4 @@
+﻿Way 1: 
+Insert the war file to the webapps 
+Way 2:
+WAR file to deploy thru application manager
