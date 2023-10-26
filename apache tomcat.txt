@@ -1,0 +1,29 @@
+﻿1. A web application is a software program or service that users access through a web browser over the internet. It runs on a web server and allows users to perform various tasks, such as shopping, social networking, or productivity, without needing to install anything on their devices.
+
+
+2. A web server is a hardware or software that stores and delivers web pages and other content to users' web browsers when they request it using HTTP and other protocols. It acts as a central hub for hosting websites and handling incoming requests from users, ensuring the right web pages or resources are sent to their browsers.
+
+
+3. Some usages of web servers in the market : 
+Apache HTTP Server. A free and open-source web server used for many operating systems, including Windows, Linux, and macOS.
+NGINX. Initially designed only for HTTP web serving, this open-source software now also serves as a reverse proxy, HTTP load balancer, and email proxy. NGINX is known for its speed and ability to handle multiple connections, making it suitable for high-traffic websites.
+Some advantages of a web server:
+* Accessibility: Web applications hosted on a web server are accessible from anywhere with an internet connection, enabling a global audience to use them.
+* Scalability: Web servers can handle a large number of concurrent users and requests, making it easy to scale your web application as it grows.
+* Load Balancing: Web servers can distribute incoming traffic across multiple servers, ensuring even resource utilisation and preventing overload.
+
+
+4. java servlet is a java program that allows a way to generate dynamic web pages. They are used to handle the request obtained from the web server, process the request, produce the response, then send a response back to the web server.  Servlets work on the server-side and are capable of handling complex requests obtained from the web server.
+
+
+5. Apache Tomcat is an open-source imp;ementation of the Java Servlet and more technologies. It provides a "pure Java" HTTP web server environment in which Java code can also run. It plays a crucial role in the execution of dynamic and interactive web applications, allowing developers to build and deploy web services that can handle user requests and deliver content to web browsers. 
+
+
+6. Advantages :
+* Opensource so anyone can use it without cost
+* Supported by most of the latest frameworks like Spring, therefore it now comes bundled as dependency as embedded server in SpringBoot framework to create Microservices.
+* Easy to use and maintain as web server
+        Disadvantages : 
+* Not very user-friendly
+* Slow under heavy load
+* Limited technical support
