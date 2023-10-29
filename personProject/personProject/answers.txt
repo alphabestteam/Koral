@@ -1,0 +1,12 @@
+1. 
+the needed field is : 
+
+    base_salary = models.IntegerField(null=False)
+
+2. to achieve the new field, we need to make a new migration file, like i did in the migration file : 
+
+0005_alter_person_id_number_parent.py
+
+we made a function "change_field_type" that changes the field of base_salary to an int field 
+
+
