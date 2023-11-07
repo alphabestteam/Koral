@@ -47,7 +47,6 @@ getRandomColor = () => {return (colors[Math.floor(Math.random() * colors.length)
 randomWordsElement = document.getElementById("random-words");
 
 
-
 for (const word of loremIpsumWordArr){
     var span = document.createElement("span");
     const style = "background-color: " + getRandomColor();
@@ -57,7 +56,26 @@ for (const word of loremIpsumWordArr){
     randomWordsElement.appendChild(span);
 }
 
+RandomColorsFromJs = () => {return Math.floor(Math.random() * 256)};
 
+buttonChangeColor = document.createElement("button");
+buttonChangeColor.setAttribute("type", "button");
+buttonChangeColor.textContent = "Change background Color";
+
+document.body.appendChild(buttonChangeColor);
+
+classElement = document.getElementsByClassName("random-word");
+
+
+
+const changeColor = () => {
+    for (const word of classElement) {
+        const style = `background-color: rgb(${RandomColorsFromJs()},${RandomColorsFromJs()},${RandomColorsFromJs()})`;
+        word.setAttribute("style", style);
+    }
+};
+
+buttonChangeColor.addEventListener("click", changeColor);
 
 
 
