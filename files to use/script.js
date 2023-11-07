@@ -12,12 +12,12 @@ let isClicked = true
 const toggleBob = function(){
 if (isClicked == true){
     console.log("iujesdf")
-    bobGif.hidden = true
+    bobGif.setAttribute("src", " ")
     button.textContent = "Show Me bob;)"
     isClicked = false
     }
 else{
-        bobGif.hidden = false
+        bobGif.setAttribute("src", "./assets/sbdance.gif")
         button.textContent = "Hide Bob ;)"
         isClicked = true
 
