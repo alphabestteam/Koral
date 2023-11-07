@@ -1,0 +1,17 @@
+.bg-lightcyan {
+    background-color: lightcyan;
+}
+.border {
+    border: 1px solid red;
+}
+.random-word {
+    padding: 5px;
+    display: inline-block;
+}
+.text-large {
+    font-size:larger;
+    text-transform: uppercase;
+}
+.here {
+    border: 1px solid blueviolet;
+}
