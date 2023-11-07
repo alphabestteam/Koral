@@ -1,0 +1,33 @@
+body {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #444;
+  }
+  
+  #counter-display {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 24px;
+  }
+
+.conteiner{
+    margin-top: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
