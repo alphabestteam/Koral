@@ -1,0 +1,36 @@
+
+body{
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+}
+.hide{
+    display: none;
+}
+.light-dark{
+    background-color: rgb(72, 72, 72);
+}
+.dark{
+    background-color: #21211f;
+}
+main{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    background-color: rgb(43, 72, 201);
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    font-size: large;
+    border: none;
+    border-radius: 15%;
+    outline: none;
+    box-shadow: 5px 5px 20px rgb(44, 44, 44);
+}
+button:active{
+    box-shadow: 0px 0px 10px rgb(44, 44, 44);
+}

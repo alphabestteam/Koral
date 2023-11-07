@@ -1,4 +1,13 @@
-function addEvent() {
+button = document.getElementById("my-button");
+counter = document.getElementById("counter-display");
 
-}
-addEvent();
+button.setAttribute("type", "button")
+var count = 0
+
+
+function addEvent() {
+    count++
+    counter.innerHTML = count
+};
+
+button.addEventListener("click", addEvent);
