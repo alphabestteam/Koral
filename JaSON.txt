@@ -1,0 +1,95 @@
+﻿1. JSON is a lightweight format for storing and transporting data
+
+
+2. JSON object literals contains key/value pairs, and surrounded by curly braces {}
+
+
+3. In terms of C programming, an object is implemented as a set of data members packed in a struct , and a set of related operations. In JS , an object is a collection of properties, and a property is an association between a name (or key) and a value, and in java, an object is an instance of a Java class, meaning it is a copy of a specific class.
+
+
+4. In python a similar concept is referred to as a list. Lists are ordered collections of items. In Java, this structure is referred to as an "ArrayList" when using the ArrayList class or simply as an "array" when using arrays. Java arrays have a fixed size, while ArrayLists are dynamically resizable lists. In Go, it's referred to as a "slice." Slices are dynamically sized and are often used for working with ordered collections of elements.
+
+
+5. JSON supports strings, numbers, booleans, null, arrays, and objects as its value data types.
+
+
+6. In JavaScript, values that can be used in JSON include strings, numbers, booleans, null, arrays, and objects.
+
+
+7. In JSON, numbers, booleans, and null values do not need quotes, while strings, object keys, and other data types require quotes.
+
+
+8. There is no minimum size requirement for a string in JSON, it can be empty or contain zero characters.
+
+
+9. Keys in JSON are strings that label values within objects.They are used to identify and access values associated with them.
+
+
+10. JSON supports a value of type String, Number and Boolean. It does not support octal and hexdecimal values.
+
+
+11. Yes, also nested arrays
+
+
+12. Yes, you can assign an object as the value
+
+
+13. Yes, you can assign an object as the value of a property of another object
+
+
+14. a standard text-based format for representing structured data based on JavaScript object syntax.
+
+
+15. JavaScript Object Notation
+
+
+16.  .json
+
+
+17. The data begins with { and ends with } with a colon ( : ) and separated from oher data with a comma ( , )
+
+
+18.  []
+
+
+19. [] - list , {} - dictionary , () - tuple
+
+
+20. Yes 
+
+
+21. json.parse() is used in JavaScript to parse a JSON string into a JavaScript object, while json.loads() is used in Python to parse a JSON string into a Python dictionary or object. Both functions facilitate working with JSON data in their respective languages.
+
+
+22. XML (Extensible Markup Language) is a versatile markup language for structuring and storing data. It is "bad" due to its verbosity, complex syntax, and difficulty in human readability, which can make it less user-friendly compared to more concise data interchange formats like JSON.
+
+
+23. JSON is a lightweight, easy-to-read data interchange format that uses a simple key-value pair structure. It's more concise and efficient for data exchange, often used with web services.
+
+
+XML is a text-based format that uses tags to define data structures, which can be more verbose and complex. It's versatile but can be cumbersome for simple data exchange and less human-readable compared to JSON.
+
+
+24. Web API Data: When interacting with web APIs, you'd use JSON to send or receive data due to its lightweight, structured format.
+
+
+Configuration Files: JSON is used for configuration settings in applications or systems because of its simplicity and easy readability.
+
+
+Data Serialization: For data storage or transmission between systems, JSON is useful because it can represent structured data in a compact, human-readable format.
+
+
+25. Attached vs code 
+
+
+
+
+26. Json_object = json.parse(papuchasJason)
+First_codename = json_object.codenames[0]
+
+
+
+
+
+
+Red hood
