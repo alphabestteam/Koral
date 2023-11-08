@@ -45,11 +45,21 @@ nav ul li a {
   margin: 2rem;
   gap: 2rem;
   margin-bottom: 2rem;
+  border-radius: 15px;
+  justify-content: center;
+}
+
+#menu > div{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 2rem;
+  margin-bottom: 2rem;
   background-color:  #434242;
   border-radius: 15px;
   justify-content: center;
-
 }
+
 #name_price{
   font-weight: bold;
 }

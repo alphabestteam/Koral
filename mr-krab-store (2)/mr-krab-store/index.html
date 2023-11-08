@@ -17,25 +17,60 @@
 
     <div class="container">
         <div id="menu">
-            <p id="name_price"></p>
-            <p id="description"></p>
-            <p id="quantity"></p>
+            <div>
+                <p id="name_price0"></p>
+                <p id="description0"></p>
+                <div class="wrapper0">Quantity:<select class="form-control0" onfocus='this.size=1;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select></div>
+            </div>
+            <div>
+                <p id="name_price1"></p>
+                <p id="description1"></p>
+                <div class="wrapper1">Quantity:<select class="form-control1" onfocus='this.size=1;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select></div>
+            </div>
+            <div>
+                <p id="name_price2"></p>
+                <p id="description2"></p>
+                <div class="wrapper2">Quantity:<select class="form-control2" onfocus='this.size=1;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select></div>
 
-            <p id="name_price1"></p>
-            <p id="description1"></p>
-            <p id="quantity1"></p>
+            </div>
+            <div>
+                <p id="name_price3"></p>
+                <p id="description3"></p>
+                <div class="wrapper3">Quantity:<select class="form-control3" onfocus='this.size=1;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select></div>
+            </div>
 
-            <p id="name_price2"></p>
-            <p id="description2"></p>
-            <p id="quantity2"></p>
-
-            <p id="name_price3"></p>
-            <p id="description3"></p>
-            <p id="quantity3"></p>
         </div>
         <div id="order-summary">
             <h3>Current Order Summary:</h3>
-            <p>Empty Order</p>
+            <p id="orderSumUp">Empty Order</p>
         </div>
         <form id="order-form">
             <button type="button" id="get-last-order-button">Get Last Order</button>

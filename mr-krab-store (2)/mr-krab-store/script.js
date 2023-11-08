@@ -8,15 +8,11 @@ List of endpoints:
 */
 
 menu = document.getElementById("menu");
-productName = document.getElementById("name_price");
-productDescription = document.createElement("description")
-productQuantity = document.createElement("quantity")
 
 menu.style.display = 'none';
 
-
-
-
+submitOrderButton = document.getElementById("submit-button");
+submitOrderButton.getAttribute("type", "button")
 
 function fetchMenu() {
   document.getElementById("loader").style.display = "block";
@@ -34,17 +30,35 @@ function fetchMenu() {
           menu.style.display = 'block';
           const dataJson = JSON.parse(data);
 
+          i = 0;
           for (const key in dataJson.items) {
             if (dataJson.items.hasOwnProperty(key)) {
               const item = dataJson.items[key];
               const name = item.name;
               const price = item.price;
               const description = item.description;
+              document.getElementById("name_price" + i).innerHTML = name + " (" + new Intl.NumberFormat('en-DE', {
+                style: 'currency',
+                currency: 'USD'}).format(price).replace(/US/g, '') + ")";
+              document.getElementById("description" + i).innerHTML = description;
+              i += 1;
+            }
+          }
+      }).then(data => {
+        let arrayOfChoices = [];
+        for (let i = 0; i < 4; i++){
+          arrayOfChoices.push(document.getElementsByClassName("form-control" + i));
+        }
+        ('.form-control0').change(function(){
+          ('#orderSumUp').val((".form-control0 option:selected").text());
+        });
+        console.log(arrayOfChoices[0])
 
-              document.getElementById("name_price").innerHTML = name + " ($" + price + ")";
-              document.getElementById("description").innerHTML = description;
-              document.getElementById("quantity").innerHTML = "Quantity:"
-            }}
+        submitOrderButton.addEventListener("click", myFunction);
+
+        function myFunction() {
+          document.getElementById("orderSumUp").innerHTML = "Hello World";
+}
       })
       .catch(error => {
           console.error("Fetch error:", error);
