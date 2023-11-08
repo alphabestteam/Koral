@@ -29,7 +29,7 @@ const quotes = [
   
 
 function getRandomQuote() {
-    //implement getting a random quote from the array.
+    return quotes[Math.floor(Math.random * quotes.length)]
 }
 
 function startGame() {
@@ -44,8 +44,8 @@ function checkInput() {
     //implement checking input, ending the game by calling the endGame() function when needed. 
     //add the relevant css class to each letter
 }
-
-function countMatchingChars(strA, strB) {
+    
+    function countMatchingChars(strA, strB) {
     //helper function used to calculate hits, used for percentage.
 }
 
