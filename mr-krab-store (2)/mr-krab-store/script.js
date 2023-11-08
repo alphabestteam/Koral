@@ -51,30 +51,28 @@ function fetchMenu() {
           orderSumUp = document.getElementById("orderSumUp")
           if (i ==0){
             quantity.addEventListener("input", (e) =>{
-              document.getElementById("orderSumUp").innerHTML = `Chum Burger (${quantity.value} X` ;})
+              document.getElementById("orderSumUp").innerHTML += `\nChum Burger (${quantity.value} X\n` ;})
           }
 
           else if (i == 1){
             quantity.addEventListener("input", (e) =>{
-              document.getElementById("orderSumUp").innerHTML = `Kelp Fries (${quantity.value} X` ;})
+              document.getElementById("orderSumUp").innerHTML += `\nKelp Fries (${quantity.value} X\n` ;})
           }
 
           else if (i == 2){
             quantity.addEventListener("input", (e) =>{
-              document.getElementById("orderSumUp").innerHTML = `Krabby Patty (${quantity.value} X` ;})
+              document.getElementById("orderSumUp").innerHTML += `\nKrabby Patty (${quantity.value} X\n` ;})
           }
 
           else if (i == 3){
             quantity.addEventListener("input", (e) =>{
-              document.getElementById("orderSumUp").innerHTML = `Krusty Krab Pizza (${quantity.value} X` ;})
+              document.getElementById("orderSumUp").innerHTML +=`\nKrusty Krab Pizza (${quantity.value} X\n` ;})
           }
         }
+        
 
         submitOrderButton.addEventListener("click", myFunction);
 
-        function myFunction() {
-          document.getElementById("orderSumUp").innerHTML = "Hello World";
-}
       })
       .catch(error => {
           console.error("Fetch error:", error);
