@@ -14,6 +14,11 @@ menu.style.display = 'none';
 submitOrderButton = document.getElementById("submit-button");
 submitOrderButton.getAttribute("type", "button")
 
+formatNumber = (numInput) => { return new Intl.NumberFormat('en-DE', {
+  style: 'currency',
+  currency: 'USD'}).format(numInput).replace(/US/g, '')}
+
+
 function fetchMenu() {
   document.getElementById("loader").style.display = "block";
 
@@ -29,49 +34,57 @@ function fetchMenu() {
 
           menu.style.display = 'block';
           const dataJson = JSON.parse(data);
-
+          
           i = 0;
+          listOfProducts = [];
           for (const key in dataJson.items) {
             if (dataJson.items.hasOwnProperty(key)) {
               const item = dataJson.items[key];
               const name = item.name;
               const price = item.price;
               const description = item.description;
-              document.getElementById("name_price" + i).innerHTML = name + " (" + new Intl.NumberFormat('en-DE', {
-                style: 'currency',
-                currency: 'USD'}).format(price).replace(/US/g, '') + ")";
+              listOfProducts.push(item)
+              document.getElementById("name_price" + i).innerHTML = name + " (" + formatNumber(price) + ")";
               document.getElementById("description" + i).innerHTML = description;
               i ++;
             }
           }
+          console.log(listOfProducts)
+          stringForOrderSumUp = ""
+          if(orderSumUp.innerHTML = "Empty Order"){
+            orderSumUp.innerHTML = "";
+          }
+          for (let i = 0; i < 4; i++)
+          {
+            quantity = document.getElementById("Quantity" + i);
+            orderSumUp = document.getElementById("orderSumUp")
+            if (i == 0){
+              quantity.addEventListener("input", (e) =>{
+                document.getElementById("orderSumUp").innerHTML += `\nChum Burger (${quantity.value} X ${formatNumber(listOfProducts[0].price)} = ${listOfProducts[0].price * quantity.value})\n` ;})
+            }
+  
+            else if (i == 1){
+              quantity.addEventListener("input", (e) =>{
+                document.getElementById("orderSumUp").innerHTML += `\nKelp Fries (${quantity.value} X ${formatNumber(listOfProducts[1].price)} = ${listOfProducts[1].price * quantity.value})\n` ;})
+            }
+  
+            else if (i == 2){
+              quantity.addEventListener("input", (e) =>{
+                document.getElementById("orderSumUp").innerHTML += `\nKrabby Patty (${quantity.value} X\n ${formatNumber(listOfProducts[2].price)} = ${listOfProducts[2].price * quantity.value})\n` ;})
+            }
+  
+            else if (i == 3){
+              console.log(quantity.value)
+              quantity.addEventListener("input", (e) =>{
+                document.getElementById("orderSumUp").innerHTML +=`\nKrusty Krab Pizza (${quantity.value} X ${formatNumber(listOfProducts[3].price)} = ${listOfProducts[3].price * quantity.value})\n` ;})
+            }
+          }
+          
+  
+          // submitOrderButton.addEventListener("click", myFunction);
+
       }).then(data => {
-        for (let i = 0; i < 4; i++)
-        {
-          quantity = document.getElementById("Quantity" + i);
-          orderSumUp = document.getElementById("orderSumUp")
-          if (i ==0){
-            quantity.addEventListener("input", (e) =>{
-              document.getElementById("orderSumUp").innerHTML += `\nChum Burger (${quantity.value} X\n` ;})
-          }
 
-          else if (i == 1){
-            quantity.addEventListener("input", (e) =>{
-              document.getElementById("orderSumUp").innerHTML += `\nKelp Fries (${quantity.value} X\n` ;})
-          }
-
-          else if (i == 2){
-            quantity.addEventListener("input", (e) =>{
-              document.getElementById("orderSumUp").innerHTML += `\nKrabby Patty (${quantity.value} X\n` ;})
-          }
-
-          else if (i == 3){
-            quantity.addEventListener("input", (e) =>{
-              document.getElementById("orderSumUp").innerHTML +=`\nKrusty Krab Pizza (${quantity.value} X\n` ;})
-          }
-        }
-        
-
-        submitOrderButton.addEventListener("click", myFunction);
 
       })
       .catch(error => {
