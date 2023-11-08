@@ -41,10 +41,17 @@ nav ul li a {
 #menu {
   display: flex;
   flex-direction: column;
-  padding: 2px;
+  padding: 10px;
   margin: 2rem;
   gap: 2rem;
   margin-bottom: 2rem;
+  background-color:  #434242;
+  border-radius: 15px;
+  justify-content: center;
+
+}
+#name_price{
+  font-weight: bold;
 }
 
 .item {

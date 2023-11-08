@@ -8,13 +8,11 @@ List of endpoints:
 */
 
 menu = document.getElementById("menu");
-productName = document.createElement("p")
-// productName = 
-//to show the gif : 
+productName = document.getElementById("name_price");
+productDescription = document.createElement("description")
+productQuantity = document.createElement("quantity")
 
-
-
-
+menu.style.display = 'none';
 
 
 
@@ -33,14 +31,28 @@ function fetchMenu() {
       .then(data => {
           document.getElementById("loader").style.display = "none";
 
-          document.getElementById("menu").innerHTML = data;
+          menu.style.display = 'block';
+          const dataJson = JSON.parse(data);
+
+          for (const key in dataJson.items) {
+            if (dataJson.items.hasOwnProperty(key)) {
+              const item = dataJson.items[key];
+              const name = item.name;
+              const price = item.price;
+              const description = item.description;
+
+              document.getElementById("name_price").innerHTML = name + " ($" + price + ")";
+              document.getElementById("description").innerHTML = description;
+              document.getElementById("quantity").innerHTML = "Quantity:"
+            }}
       })
       .catch(error => {
           console.error("Fetch error:", error);
       });
 }
 
-setTimeout(fetchMenu, 5000);
+setTimeout(fetchMenu, 1000); //////// CHANGE TO 5000
+
 
 
 
