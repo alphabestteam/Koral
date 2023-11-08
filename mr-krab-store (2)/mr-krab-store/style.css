@@ -49,6 +49,17 @@ nav ul li a {
   justify-content: center;
 }
 
+input[type='number']{
+  width: 40px;
+} 
+
+.WrapperForText{
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+}
+
+
 #menu > div{
   display: flex;
   flex-direction: column;

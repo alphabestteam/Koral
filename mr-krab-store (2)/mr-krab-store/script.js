@@ -41,18 +41,34 @@ function fetchMenu() {
                 style: 'currency',
                 currency: 'USD'}).format(price).replace(/US/g, '') + ")";
               document.getElementById("description" + i).innerHTML = description;
-              i += 1;
+              i ++;
             }
           }
       }).then(data => {
-        let arrayOfChoices = [];
-        for (let i = 0; i < 4; i++){
-          arrayOfChoices.push(document.getElementsByClassName("form-control" + i));
+        for (let i = 0; i < 4; i++)
+        {
+          quantity = document.getElementById("Quantity" + i);
+          orderSumUp = document.getElementById("orderSumUp")
+          if (i ==0){
+            quantity.addEventListener("input", (e) =>{
+              document.getElementById("orderSumUp").innerHTML = `Chum Burger (${quantity.value} X` ;})
+          }
+
+          else if (i == 1){
+            quantity.addEventListener("input", (e) =>{
+              document.getElementById("orderSumUp").innerHTML = `Kelp Fries (${quantity.value} X` ;})
+          }
+
+          else if (i == 2){
+            quantity.addEventListener("input", (e) =>{
+              document.getElementById("orderSumUp").innerHTML = `Krabby Patty (${quantity.value} X` ;})
+          }
+
+          else if (i == 3){
+            quantity.addEventListener("input", (e) =>{
+              document.getElementById("orderSumUp").innerHTML = `Krusty Krab Pizza (${quantity.value} X` ;})
+          }
         }
-        ('.form-control0').change(function(){
-          ('#orderSumUp').val((".form-control0 option:selected").text());
-        });
-        console.log(arrayOfChoices[0])
 
         submitOrderButton.addEventListener("click", myFunction);
 
@@ -65,7 +81,7 @@ function fetchMenu() {
       });
 }
 
-setTimeout(fetchMenu, 1000); //////// CHANGE TO 5000
+setTimeout(fetchMenu, 5000); 
 
 
 
