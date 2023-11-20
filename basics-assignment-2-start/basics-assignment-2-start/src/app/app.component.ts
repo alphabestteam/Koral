@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  text = document.getElementById("updatePara")
+  updatePara(event: Event){
+
+  }
 }
