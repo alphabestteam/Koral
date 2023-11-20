@@ -6,13 +6,13 @@
 </ol> -->
 
 
-<h6>username</h6>
+<h1>username</h1>
 
-<input type="text" [(ngModel)]="textInput">
+<input class="form-control" type="text" [(ngModel)]="textInput">
 
 <p>{{ textInput }}</p>
 
 
 <!-- making the button disabled and making the cursor not-allowed when the length of the text is 0 -->
-<button (click)="restartPara()" [disabled]="textInput.length === 0" [ngClass]="{ 'not-allowed-cursor': textInput.length === 0 }">Reset User</button>
+<button class="btn btn-primary" (click)="restartPara()" [disabled]="textInput.length === 0" [ngClass]="{ 'not-allowed-cursor': textInput.length === 0 }">Reset User</button>
 
