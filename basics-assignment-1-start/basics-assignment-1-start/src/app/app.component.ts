@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showSuccess : boolean = false;
+  showSuccess : boolean = true;
 
   // responsible for changing the value of the showComponentA boolean variable,flips the value of showSuccess when clicking on a button
   toggleComponent() {
