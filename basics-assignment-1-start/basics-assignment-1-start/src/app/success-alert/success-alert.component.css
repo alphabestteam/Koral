@@ -1,0 +1,8 @@
+p{
+    color: green;
+    size: 40px;
+}
+
+p:hover{
+    color: darkcyan;
+}

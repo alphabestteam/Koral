@@ -1,15 +1,31 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <ol>
-        <li>Create two new Components (manually or with CLI): WarningAlert and SuccessAlert</li>
-        <li>Output them beneath each other in the AppComponent</li>
-        <li>Output a warning or success message in the Components</li>
-        <li>Style the Components appropriately (maybe some red/ green text?)</li>
-      </ol>
-      <p>Use external or internal templates and styles!</p>
-      <p>Feel free to create more components, nest them into each other or play around with different types of selectors!</p>
-    </div>
-  </div>
+
+<!-- shows the user the desired component while he is pressing the wanted button -->
+
+<div>
+    <button (click)="toggleComponent()">show success!</button>
+    <button (click)="toggleComponent()">show warning!</button>
 </div>
+
+<div *ngIf="showSuccess">
+    <app-success-alert></app-success-alert>
+</div>
+  <div *ngIf="!showSuccess">
+    <app-warning-alert></app-warning-alert>
+</div>
+
+
+<!-- giving the user an 1 - 5 options to display the component X times as he chose -->
+<select [(ngModel)]="selectedTimes">
+    <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+  </select>
+  
+  <div *ngFor="let _ of getTimes(selectedTimes)">
+    <app-success-alert></app-success-alert>
+  </div>
+  
+  <div *ngFor="let _ of getTimes(selectedTimes)">
+    <app-warning-alert></app-warning-alert>
+  </div>
+  
+
 
