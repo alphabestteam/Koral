@@ -6,10 +6,12 @@ describe('WarningAlertComponent', () => {
   let component: WarningAlertComponent;
   let fixture: ComponentFixture<WarningAlertComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [WarningAlertComponent]
-    });
+    })
+    .compileComponents();
+    
     fixture = TestBed.createComponent(WarningAlertComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

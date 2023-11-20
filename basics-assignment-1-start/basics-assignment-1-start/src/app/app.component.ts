@@ -14,10 +14,16 @@ export class AppComponent {
     this.showSuccess = !this.showSuccess;
   }
 
-  selectedTimes: number = 1;
-  options: number[] = [1, 2, 3, 4, 5]; // Example options
+  selectedTimes: number ;
+
+  updateSelectedTimes(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    this.selectedTimes = parseInt(target.value, 10);
+}
+
+  options: number[] = [1, 2, 3, 4, 5]; 
 
   getTimes(times: number): any[] {
-    return Array(times).fill(0);
+    return new Array(times);
   }
 }

@@ -1,8 +1,8 @@
-p{
+h1{
     color: red;
     size: 40px;
 }
 
-p:hover{
+h1:hover{
     color: darkred;
 }

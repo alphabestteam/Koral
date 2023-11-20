@@ -1,4 +1,3 @@
-
 <!-- shows the user the desired component while he is pressing the wanted button -->
 
 <div>
@@ -14,18 +13,19 @@
 </div>
 
 
-<!-- giving the user an 1 - 5 options to display the component X times as he chose -->
-<select [(ngModel)]="selectedTimes">
-    <option *ngFor="let option of options" [value]="option">{{ option }}</option>
-  </select>
-  
-  <div *ngFor="let _ of getTimes(selectedTimes)">
-    <app-success-alert></app-success-alert>
-  </div>
-  
-  <div *ngFor="let _ of getTimes(selectedTimes)">
-    <app-warning-alert></app-warning-alert>
-  </div>
-  
 
+<!-- giving the user an 1 - 5 options to display the component X times as he chose -->
+<select (change)="updateSelectedTimes($event)">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+</select>
+
+
+<ng-container *ngFor="let _ of getTimes(selectedTimes)">
+  <p *ngIf="showSuccess"><app-success-alert></app-success-alert></p>
+  <p *ngIf="!showSuccess"><app-warning-alert></app-warning-alert></p>
+</ng-container>
 
