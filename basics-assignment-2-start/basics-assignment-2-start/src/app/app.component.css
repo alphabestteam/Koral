@@ -1,4 +1,22 @@
 h6{
     font-weight: bold;
-    size: 40px;
+    font-size: 40px;
 }
+
+input, button{
+    display: block;
+    margin-bottom: 20px;
+    border: solid 2px grey;
+    font-size: 20px;
+}
+
+input:focus{
+    box-shadow: none;
+    outline: none;
+    border: solid 2px lightblue;
+}
+
+.not-allowed-cursor {
+    cursor: not-allowed;
+}
+  
