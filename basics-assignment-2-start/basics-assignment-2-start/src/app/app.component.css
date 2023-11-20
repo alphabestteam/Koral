@@ -10,12 +10,6 @@ input, button{
     font-size: 20px;
 }
 
-input:focus{
-    box-shadow: none;
-    outline: none;
-    border: solid 2px lightblue;
-}
-
 .not-allowed-cursor {
     cursor: not-allowed;
 }
