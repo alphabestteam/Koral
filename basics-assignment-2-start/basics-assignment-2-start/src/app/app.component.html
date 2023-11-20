@@ -1,0 +1,18 @@
+<!-- <ol>
+  <li>Add a Input field which updates a property ('username') via Two-Way-Binding</li>
+  <li>Output the username property via String Interpolation (in a paragraph below the input)</li>
+  <li>Add a button which may only be clicked if the username is NOT an empty string</li>
+  <li>Upon clicking the button, the username should be reset to an empty string</li>
+</ol> -->
+
+
+<h1>username</h1>
+
+<input class="form-control" type="text" [(ngModel)]="textInput">
+
+<p>{{ textInput }}</p>
+
+
+<!-- making the button disabled and making the cursor not-allowed when the length of the text is 0 -->
+<button class="btn btn-primary" (click)="restartPara()" [disabled]="textInput.length === 0" [ngClass]="{ 'not-allowed-cursor': textInput.length === 0 }">Reset User</button>
+
