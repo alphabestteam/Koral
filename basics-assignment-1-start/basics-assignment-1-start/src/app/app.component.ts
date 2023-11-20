@@ -10,8 +10,12 @@ export class AppComponent {
   showSuccess : boolean = true;
 
   // responsible for changing the value of the showComponentA boolean variable,flips the value of showSuccess when clicking on a button
-  toggleComponent() {
-    this.showSuccess = !this.showSuccess;
+  toggleComponentWarning() {
+    this.showSuccess = false;
+  }
+
+  toggleComponentSuccess(){
+    this.showSuccess = true;
   }
 
   selectedTimes: number ;
