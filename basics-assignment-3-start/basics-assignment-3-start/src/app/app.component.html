@@ -1,0 +1,6 @@
+<button class="btn btn-primary" type="button" (click)="displayDetails()">Display Details</button>
+
+<p id="details" [ngStyle]="{'visibility': getHidden()}">Secret Password = SpongeBob is Missing!</p>
+<div>
+    <p *ngFor="let counter of counterArray" [ngClass]="{ 'change-blue': counter >= 5 }">{{ counter }}</p>
+</div>
