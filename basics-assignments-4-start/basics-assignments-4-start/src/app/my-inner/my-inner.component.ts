@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./my-inner.component.css']
 })
 export class MyInnerComponent {
-
+  innerTotal : number = 5;
 }
