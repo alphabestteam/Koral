@@ -1,8 +1,8 @@
 <!-- shows the user the desired component while he is pressing the wanted button -->
 
 <div>
-    <button (click)="toggleComponentSuccess()">show success!</button>
-    <button (click)="toggleComponentWarning()">show warning!</button>
+    <button mat-raised-button color="accent" (click)="toggleComponentSuccess()">show success!</button>
+    <button mat-raised-button color="accent" (click)="toggleComponentWarning()">show warning!</button>
 </div>
 
 <div *ngIf="showSuccess">
