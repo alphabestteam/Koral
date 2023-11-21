@@ -1,4 +1,6 @@
-export const FILMS: any = [
+import { StarWarsMovie } from "../starWarsMovie";
+
+export const FILMS: StarWarsMovie[] = [
   {
     title: 'The Phantom Menace',
     episode_id: 1,
