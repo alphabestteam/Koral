@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./my-outer.component.css']
 })
 export class MyOuterComponent {
- total : number = 0;
+  outerTotal: number = 0;
+
+  OuterTotal(value: number) {
+    this.outerTotal += value;
+  }
 }
