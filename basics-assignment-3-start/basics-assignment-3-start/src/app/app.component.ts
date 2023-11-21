@@ -10,29 +10,19 @@ import { count } from 'rxjs';
 })
 export class AppComponent {
 
-
-  // for bootstrap : 
-  constructor(private modalService: NgbModal) {
-  }
-
-  public open(modal: any): void {
-    this.modalService.open(modal);
-  }
-
-
   counter: number = 0;
-    details: boolean = true;
-    counterArray: number[] = [];
+  details: boolean = true;
+  counterArray: number[] = [];
 
-    displayDetails() {
+  displayDetails() : void {
       this.counter++;
       this.counterArray.push(this.counter);
       this.details = !this.details;
-    };
+  };
 
-    getHidden() {
+  getHidden() {
       return this.details ? 'visible' : 'hidden';
-    }
   }
+}
 
 

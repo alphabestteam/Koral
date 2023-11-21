@@ -1,9 +1,4 @@
-*{
-    max-width: 500px;
-    margin: auto;
-}
-
-.changeBlue{
+.change-blue{
     background-color: blue;
     color: white;
     margin: 0;
