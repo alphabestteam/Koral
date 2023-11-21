@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class MyOuterComponent {
   outerTotal: number = 0;
 
-  OuterTotal(value: number) {
+  OuterTotal(value: number): void {
     this.outerTotal += value;
   }
 }

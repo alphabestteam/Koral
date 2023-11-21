@@ -7,23 +7,22 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class MyInnerComponent {
 
-  @Input() innerTotal: number = 5;
+  innerTotal: number = 5;
   @Output() incrementOuter = new EventEmitter<number>();
 
-  upByOne(){
+  upByOne(): void{
     this.innerTotal += 1;
-    if(this.innerTotal > 10){
+    if(this.innerTotal >= 9){
       this.innerTotal = 0;
       this.incrementOuter.emit(10)
-
     }
   }
 
-  downByOne(){
+  downByOne(): void{
     this.innerTotal -= 1;
-    if (this.innerTotal < -10) {
+    if (this.innerTotal <= -9) {
       this.innerTotal = 0;
       this.incrementOuter.emit(-10);
+    }
   }
-}
 }
