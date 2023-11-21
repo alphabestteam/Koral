@@ -1,20 +1,30 @@
-<h1>Form Builder, Form Group, Form Control, Validators and ngsubmit</h1>
+<form  [formGroup]="profileForm" class="form" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label class="label">Username:</label>
+      <input type="text" class="input" formControlName="username" [class.invalid]="profileForm.get('username')?.invalid && profileForm.get('username')?.touched">
+      <div *ngIf="profileForm.get('username')?.invalid && profileForm.get('username')?.touched" class="error-message">
+        Username is required.
+      </div>
+    </div>
+    
+        <div class="field">
+          <label class="label">Password:</label>
+          <input type="password" class="input" formControlName="password" [class.invalid]="profileForm.get('password')?.invalid && profileForm.get('password')?.touched">
+          <div *ngIf="profileForm.get('password')?.invalid && profileForm.get('password')?.touched" class="error-message">
+            Password is required.
+          </div>
+        </div>
 
-<form class="form">
-  <div class="field">
-    <label class="label">username</label>
-    <input type="text" class="input"/>
-  </div>
-  <div class="field">
-    <label class="label">email</label>
-    <input type="text" class="input"/>
-  </div>
-  <div class="field">
-    <label class="label">password</label>
-    <input type="text" class="input"/>
-  </div>
+    <div class="field">
+      <label class="label">Email:</label>
+      <input type="text" class="input" formControlName="email" [class.invalid]="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
+      <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="error-message">
+        Email is required to be valid!.
+      </div>
 
-  <div>
-    <button type="submit" class="button">Register</button>
-  </div>
+    </div>
+  
+    <div>
+      <button type="submit" class="button">Register</button>
+    </div>
 </form>
