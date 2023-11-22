@@ -1,0 +1,22 @@
+<!-- 
+• modal-title: The dialog title that displays the current issue number.
+• modal-body: The main content of the dialog.
+• modal-footer: The footer of the dialog that is commonly used to add actions for that dialog.
+We currently add two HTML <button> elements and bind their click event to
+the agree and disagree component methods, respectively. 
+-->
+
+
+<clr-modal [clrModalOpen]="issueNo !== null" [clrModalClosable]="false">
+    <h3 class="modal-title">
+    Resolve Issue #
+    {{issueNo}}
+    </h3>
+    <div class="modal-body">
+    <p>Are you sure you want to close the issue?</p>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-outline"(click)="disagree()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="agree()">Yes, continue</button>
+    </div>
+</clr-modal>

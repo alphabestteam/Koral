@@ -1,0 +1,43 @@
+<!-- 
+    *  <clr-datagrid> : defines a table.
+    *  <clr-dg-column : Defines a column of a table. Each column uses the clrDgField directive
+        to bind to the property name of the issue represented by that column. The clrDgField
+        directive provides sorting and filtering capabilities without writing a single line of code
+        in the TypeScript class file. Sorting works automatically only with string-based content. 
+    *  <clr-dg-row : Defines a row of a table. It uses the *clrDgItems directive to iterate over
+        the issues and create one row for each issue.
+    *  <clr-dg-cell> : Each row contains a collection of <clr-dg-cell> components to display
+        the value of each column using interpolation. In the last cell, we add the label-danger
+        class when an issue has a high priority to indicate its importance.
+    *  <clr-dg-footer> :  Defines the footer of a table. In this case, it displays the total number
+        of issues.
+-->
+
+
+<ng-container *ngIf="showReportIssue === false">
+    <button class="btn btn-primary" (click)="showReportIssue = true">Add new issue</button>
+    <clr-datagrid> 
+        <clr-dg-column [clrDgField]="'issueNo'"
+    [clrDgColType]="'number'">Issue No</clr-dg-column>
+        <clr-dg-column [clrDgField]="'type'">Type</clr-dg-column>
+        <clr-dg-column [clrDgField]="'title'">Title</clr-dg-column>
+        <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
+        <clr-dg-column [clrDgField]="'priority'">Priority</clr-dg-column>
+        <clr-dg-row *clrDgItems="let issue of issues">
+            <clr-dg-action-overflow>
+                <button class="action-item" (click)="selectedIssue = issue">Resolve</button>
+                </clr-dg-action-overflow> 
+        <clr-dg-cell>{{issue.issueNo}}</clr-dg-cell>
+        <clr-dg-cell>{{issue.type}}</clr-dg-cell>
+        <clr-dg-cell>{{issue.title}}</clr-dg-cell>
+        <clr-dg-cell>{{issue.description}}</clr-dg-cell>
+        <clr-dg-cell>
+        <span class="label" [class.label-danger]="issue.priority ===
+    'high'">{{issue.priority}}</span>
+        </clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-footer>{{issues.length}} issues</clr-dg-footer>
+    </clr-datagrid>
+</ng-container>
+<app-issue-report *ngIf="showReportIssue === true" (formClose)="onCloseReport()"></app-issue-report>
+<app-confirm-dialog *ngIf="selectedIssue" [issueNo]="selectedIssue.issueNo" (confirm)="onConfirm($event)"></app-confirm-dialog>
