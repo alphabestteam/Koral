@@ -1,0 +1,10 @@
+1.  Containerization's layering mechanism expedites development by allowing incremental changes within specific layers, 
+enhancing efficiency by reusing cached layers, reducing build times, and facilitating swift iterations, 
+fostering seamless collaboration and resource optimization among teams.
+
+2. i think that the first method is better, because it makes me write less and not repeating code. 
+
+3. docker history mysql
+
+
+
