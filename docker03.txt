@@ -1,0 +1,4 @@
+docker load -i .\mysql.tar
+docker run --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -e MYSQL_DATABASE=koral -p 3306:3306  mysql:latest
+docker rm /mysql
+docker run --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -e MYSQL_DATABASE=koral -p 3306:3306  mysql:latest
