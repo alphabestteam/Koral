@@ -1,0 +1,37 @@
+1. docker is a software platform that allows to develop, ship, build, deploy applications quickly and test. 
+Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.
+With Docker, you can manage your infrastructure in the same ways you manage your applications.
+
+2. docker image is a read-only template with instructions for creating a Docker container. 
+an image is usually based on another image, with some additional customization.
+To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it.
+each instruction in a Dockerfile creates a layer in the image. 
+another way, if you don't want to build the image manually, you can run this commend in the docker CLI : 
+docker build -t <app_name> : <tag> 
+if the tag is not written, in default the tag will be "latest".
+
+3. docker container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. 
+a container is defined by its image as well as any configuration options you provide to it when you create or start it. When a container is removed, any changes to its state that aren't stored in persistent storage disappear.
+each time Docker launches a container from an image, it adds a thin writable layer, known as the container layer, which stores all changes to the container throughout its runtime.
+in short, a container is a runnable instance of an image, that we csn create, start, stop ot delete in the docker CLI .
+to run a docker container in the docker CLI :
+docker run --name <name_you_want_to_give_to_the_container> -p <number_of_port> <name_of_image>:<tag_of_image>
+
+4. docker container is a self-contained, runnable software application or service. On the other hand, a Docker image is the template loaded onto the container to run it, like a set of instructions.
+we store images for sharing and reuse, but you create and destroy containers over an application’s lifecycle
+ for more differences: 
+ - you can create a docker file manually, which contains all the instructions to build the image. 
+ the Docker file is a human-readable text file similar to a configuration file.
+ on the other hand, you can create containers directly from the Docker image file , so the container is based on the image.
+ - the docker images are immutable, which we can't modify once created, so if i want to make changes in the image, you need to create a new image with the new modifications.
+ on the other hand, containers are mutable and allow modifications during runtime, because changes made within a container are isolated to that particular container and don’t affect its associated image.
+
+5. environment variables are a way of externalizing a containerized app configuration.
+when included in a Docker image, environment variables become available to app containers created based on the image.
+there are 2 types of environment variables : 
+    - ARG : variables usually store important high-level configuration parameters, such as the version of the OS or a library. 
+            they are build-time variables. their only purpose is to assist in building a Docker image.
+    - ENV : variables store values such as secrets, API keys, and database URLs. Unlike ARGs, they persist inside the image and the containers created from that template.
+
+6. docker volume is an independent file system entirely managed by Docker and exists as a normal file or directory on the host, where data is persisted.
+
