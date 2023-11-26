@@ -1,0 +1,3 @@
+docker load -i .\hello-world.tar
+docker run --name hello-world -p 5000:5000 hello-world:latest
+docker start hello-world
