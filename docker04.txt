@@ -1,0 +1,6 @@
+docker run -d --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -e MYSQL_DATABASE=koral -p 3306:3306 -v C:/User/:/var/lib/mysql mysql:latest
+docker rm /mysql
+
+error message : " Error response from daemon: Conflict. The container name "/mysql" is already in use by container "25c0bf17be85f540c89c04498672fdae4159e2f96244cd4bff7591b003062ca3". You have to remove (or rename) that container to be able to reuse that name."
+
+the volume made a folder in  C:/User/ for the logs of mysql container. there is an error because i'm asking docker to make another volume in the path that i already have a volume folder there. 
