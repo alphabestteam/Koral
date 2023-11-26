@@ -1,0 +1,14 @@
+1. docker run --name tomcat -p 8080:8080 tomcat:latest 
+the 8080 port is the default port for tomcat
+
+2. to fix the 404 : 
+docker exec -it tomcat /bin/bash 
+mv webapps webapps2
+mv webapps.dist/ webapps
+exit
+
+3. docker rm /tomcat
+docker build -t tomcat:1 .
+docker run --name tomcat -p 8080:8080 tomcat:1 
+
+the site ran successfully without the 404 error, attached the Dockerfile

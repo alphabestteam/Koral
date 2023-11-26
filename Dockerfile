@@ -1,11 +1,8 @@
-FROM python
+FROM tomcat
 
-RUN pip install flask
+EXPOSE 8080
 
-COPY ./app1.py /app/app.py
+RUN mv webapps webapps2
+RUN mv webapps.dist/ webapps
 
-EXPOSE 5000
-
-WORKDIR /app
-
-CMD python app.py
+CMD ["catalina.sh", "run"]
