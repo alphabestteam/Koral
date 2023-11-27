@@ -1,0 +1,33 @@
+/* Define a grid layout for all products */
+.all-products-section {
+    display: block;
+  }
+  
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .product-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .product-card img {
+    max-width: 100%;
+  }
+  
+  .product-card button {
+    margin-top: 10px;
+    display: block;
+  }
+  
+  #shopping_bag{
+    font-size: 40px;
+}
+

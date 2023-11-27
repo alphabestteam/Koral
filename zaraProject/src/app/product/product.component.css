@@ -1,0 +1,24 @@
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .product-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    display: flex; /* Use flexbox for better alignment */
+    flex-direction: column; /* Arrange items in a column */
+    justify-content: center; /* Center items vertically */
+  }
+  
+  .product-card img {
+    max-width: 100%; /* Ensure images don't exceed their container */
+  }
+  
+  .product-card button {
+    margin-top: 10px; /* Add space between image and button */
+    display: block; /* Display the button as a block element */
+  }
+  

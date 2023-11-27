@@ -1,0 +1,10 @@
+<div class="product-grid">
+    <div *ngFor="let product of products_list" class="product-card">
+      <h2>{{ product.name }}</h2>
+      <p>Price: ${{ product.price }}</p>
+      <p>{{ product.description }}</p>
+      <img [src]="product.image" [alt]="product.name">
+      <button (click)="addToBag(product)">Add to Bag</button>
+    </div>
+  </div>
+  

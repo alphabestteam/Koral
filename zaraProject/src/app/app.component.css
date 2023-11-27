@@ -1,0 +1,22 @@
+* { 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1{
+    font-size: 80px;
+    text-align: center;
+}
+
+nav{
+    text-align: center;
+}
+
+a{
+    color: coral;
+    font-size: 20px
+}
+
+a:hover{
+    color: red;
+    text-shadow: 2px 2px 8px darkred;
+}

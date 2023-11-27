@@ -1,0 +1,22 @@
+<!-- Add a button to toggle the display of all products -->
+<button (click)="toggleProductList()">Show All Products</button>
+
+
+<!-- Display the shopping bag items -->
+<h1 id="shopping_bag">Shopping Bag</h1>
+
+<!-- Add a section to display all products -->
+<section *ngIf="showAllProducts" class="all-products-section">
+  <h2>All Products:</h2>
+  <div class="product-grid">
+    <div *ngFor="let product of allProducts" class="product-card">
+      <!-- Display product details -->
+      <h3>{{ product.name }}</h3>
+      <p>Price: ${{ product.price }}</p>
+      <p>Description: {{ product.description }}</p>
+      <img [src]="product.image" alt="{{ product.name }} Image">
+      <!-- Add to cart button -->
+      <button *ngIf="!isProductInCart(product)" (click)="addProductToCart(product)">Add to Cart</button>
+    </div>
+  </div>
+</section>
