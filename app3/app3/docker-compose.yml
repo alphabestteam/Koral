@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+
+  app:
+    image: app:1
+    container_name: app
+    environment:
+      - SUPPRESS_NO_CONFIG_WARNING=true
+    ports:
+      - "3000:3000"
+
+  db:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - type: volume
+        source: mongo-data
+        target: /data/db
+
+volumes:
+  mongo-data:
+    name: mongo-data
