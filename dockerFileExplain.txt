@@ -1,0 +1,40 @@
+version : the version of the docker file
+
+services : # the names of the containers 
+
+
+image : the name of the image to pull / that is in the same folder with the docker file that need to be build 
+
+
+container_name : the name of the container, needs to be the same name as the name of that service
+
+
+environment : the environment variables , you can define them in a list and define their values
+
+
+ports : a list of the ports you want to run that component on
+
+
+volumes : you can define a volume, but the volumes has some criterions , such as :
+    - type : the type of the volume.
+    - source : Specifies the name of the volume or the source of the volume data. In this case, MONGO_DATA is the name of the volume. Docker will create or use an existing named volume named MONGO_DATA.
+    - target :  Specifies the mount point inside the container where the volume will be mounted.
+
+
+name: to specify the actual name Docker will give to these volumes when created.
+
+
+2. we needed to add the ports for mongo-express , i added the default port for mongo-express , which is 8081
+
+3. to run the docker compose in the background : 
+docker-compose up -d
+to stop and delete the environment : 
+docker-compose down
+
+
+****** part B : ******
+
+1. to make it more comfortable and efficient , we would like to make a .env file that has all the wanted variables with their values
+
+
+3. docker-compose up
