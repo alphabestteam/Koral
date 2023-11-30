@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: app
+    restart: always
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mysql
+    command: ["dockerize", "-wait", "tcp://mysql:3306", "-timeout", "60s", "python", "/app/app.py"] # make the app wait for the mysql db to run 
+    networks:
+      - api
+
+      
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_USER: ${MYSQL_USER}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB}
+      MYSQL_HOST: ${MYSQL_HOST}
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - api
+
+
+networks:
+  api:
+    driver: bridge
