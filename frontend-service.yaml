@@ -9,3 +9,5 @@ spec:
   ports:
     - protocol: TCP
       port: 8000
+
+# kubectl apply -f frontend-service.yaml
