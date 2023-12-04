@@ -22,4 +22,4 @@ spec:
                 - name: PORT
                   value: "8000" 
                 - name: URLFORBACK
-                  value: "http://backend-deployment.my-namespace.svc.cluster.local:8080"
+                  value: "http://backend-deployment.my-namespace.svc.cluster.local:8000"
