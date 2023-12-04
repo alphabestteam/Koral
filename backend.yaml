@@ -18,3 +18,6 @@ spec:
           image: backend:latest
           ports:
             - containerPort: 8000
+          env:
+            - name: PORT
+              value: "8000"

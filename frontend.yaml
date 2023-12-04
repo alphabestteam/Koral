@@ -17,4 +17,9 @@ spec:
         - name: frontend
           image: frontend:latest
           ports:
-            - containerPort: 80  # Assuming the frontend is served on port 80
+            - containerPort: 8000
+          env:
+                - name: PORT
+                  value: "8000" 
+                - name: URLFORBACK
+                  value: "http://backend-deployment.my-namespace.svc.cluster.local:8080"
