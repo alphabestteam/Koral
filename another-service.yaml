@@ -14,3 +14,7 @@ spec:
 
 
 # kubectl apply -f another-service.yaml
+# minikube addons enable ingress
+# kubectl apply -f ingress-frontend.yaml  
+# echo "$(minikube ip) frontend.com" | tee -a C:\Users\AlphOmeg\Desktop\New folder\Koral\ingress-frontend.yaml  
+# output : 192.168.49.2 frontend.com
