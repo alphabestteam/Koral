@@ -14,8 +14,8 @@ spec:
         app: frontend-app
     spec:
       containers:
-        - name: frontend
-          image: frontend:latest
+        - name: frontend-app
+          image: ghcr.io/expruc/kubernetes-gradutaion-drill/k8s-final-drill:frontend
           ports:
             - containerPort: 8000
           env:
