@@ -17,7 +17,7 @@ spec:
         - name: backend-app
           image: ghcr.io/expruc/kubernetes-gradutaion-drill/k8s-final-drill:backend
           ports:
-            - containerPort: 8000
+            - containerPort: 8080
           env:
             - name: PORT
-              value: "8000"
+              value: "8080"
