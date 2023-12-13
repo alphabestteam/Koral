@@ -1,11 +1,14 @@
 from django.db import models
-from user.models import User
-from product.models import Product
 
+from django.core.validators import MinValueValidator
+from django.db import models
+from django.db.models.signals import m2m_changed
+from django.dispatch import receiver
 
-class Category(models.Model):
-    user_id = models.ForeignKey(User, null = True, on_delete=models.CASCADE)
+class Basket(models.Model):
+    user_id = models.ForeignKey(to="user.User", null = True, on_delete = models.CASCADE)
     basket_id = models.AutoField(primary_key = True)
-    number_of_products = models.IntegerField()
-    products = models.ManyToManyField(Product)
-    total_price = models.DecimalField(max_digits = 1000, decimal_places = 2 )
+    number_of_products = models.IntegerField(validators = [MinValueValidator(1)])
+    product = models.ManyToManyField(to = "product.Product", related_name="productsList")
+
+

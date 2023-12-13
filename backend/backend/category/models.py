@@ -31,8 +31,10 @@ COLLECTIONS_CHOICES = (
 
 class Category(models.Model):
     id = models.AutoField(primary_key = True)
-    type = models.CharField(choices = TYPE_CHOICES)
-    gender = models.CharField(choices = GENDER_CHOICES, default="OTHER")
-    season = models.CharField(choices = SEASON_CHOICES)
-    collection = models.CharField(choices = COLLECTIONS_CHOICES, default = "CASUAL")
+    type = models.CharField(choices = TYPE_CHOICES, max_length = 50)
+    gender = models.CharField(choices = GENDER_CHOICES, default = "OTHER", max_length = 50)
+    season = models.CharField(choices = SEASON_CHOICES, max_length = 50)
+    collection = models.CharField(choices = COLLECTIONS_CHOICES, default = "CASUAL", max_length = 50)
     
+    def __str__(self):
+        return f"{self.get_collection_display()} - {self.get_type_display()} - {self.get_gender_display()} - {self.get_season_display()}"
