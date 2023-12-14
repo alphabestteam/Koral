@@ -1,0 +1,190 @@
+@font-face { /* zara font */
+    font-family: 'ZaraFont';
+    src: url('src/assets/fonts/Zara-Font/zara-font.otf') format('opentype');
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'ZaraFont', sans-serif;
+}
+
+
+/* loader */
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff; 
+    z-index: 9999; /* loader stays on top */
+    opacity: 1; 
+    transition: opacity 2s ease-in-out; 
+}
+
+
+.loader.hidden {
+    opacity: 0; /* hidden after fade-out */
+    pointer-events: none; /* disable pointer events */
+}
+
+
+.loader h1 {
+    font-size: 3em;
+    color: #333;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+main {
+    display: none;      
+}
+
+
+main.visible {
+    display: block; /* show main content */
+    opacity: 1; /* make main content visible */
+    transition: opacity 1s ease-in-out; /* transition for fade-in */
+}
+
+
+/* header */
+header {
+    background-color: #f8f8f8;
+    padding: 10px 0;
+}
+
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    position: relative; 
+}
+
+
+nav ul li a:hover {
+    text-decoration: none;
+}
+
+
+/* underline effect */
+nav ul li a:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #333;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+}
+
+
+nav ul li a:hover:after {
+    width: 100%;
+}
+
+
+/* banner */
+.banner {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #eee;
+}
+
+
+.banner h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+
+/* product */
+.products {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+
+.product {
+    width: 250px;
+    margin: 20px;
+    text-align: center;
+}
+
+
+.product img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+
+.product h2 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+
+.product p {
+    color: #777;
+}
+
+
+.product button {
+    padding: 8px 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.product button:hover {
+    background-color: #555;
+}
+
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f8f8f8;
+}

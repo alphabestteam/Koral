@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zara</title>
+</head>
+<body>
+  <div class="loader" *ngIf="showLoader">
+    <h1>Zara</h1>
+  </div>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Kids</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main *ngIf="!showLoader" [ngClass]="{'visible': showMainContent}"> 
+    <section class="banner">
+      <h1>Zara</h1>
+      <p>Discover the latest trends</p>
+    </section>
+
+    <section class="products">
+      <!-- Products Display -->
+      <div class="product">
+        <img src="product1.jpg" alt="Product 1">
+        <h2>Product Title</h2>
+        <p>Description and details</p>
+        <button>Add to Cart</button>
+      </div>
+      <!-- More Products... -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Zara. All rights reserved To Koral.</p>
+  </footer>
+
+</body>
+</html>
