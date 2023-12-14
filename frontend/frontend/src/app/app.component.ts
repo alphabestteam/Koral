@@ -10,12 +10,12 @@ export class AppComponent implements OnInit {
   showMainContent: boolean = false;
 
   ngOnInit() {
-    // Simulate loading delay before showing main content
+    // simulate loading delay before showing main content
     setTimeout(() => {
       this.showLoader = false;
       setTimeout(() => {
         this.showMainContent = true; 
       }, );
-    }, 3000); // Show main content after 3 seconds
+    }, 3000); // show main content after 3 seconds
   }
 }
