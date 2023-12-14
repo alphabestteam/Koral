@@ -11,13 +11,14 @@
   </div>
 
   <header>
-    <nav>
-      <ul>
+    <nav class="navbar">
+      <ul class="nav-list">
         <li><a href="#">Women</a></li>
         <li><a href="#">Men</a></li>
         <li><a href="#">Kids</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
+        <li class="basket-icon"><a href="#">Basket</a></li>
       </ul>
     </nav>
   </header>
@@ -30,14 +31,11 @@
 
     <section class="products">
       <!-- Products Display -->
-      <div class="product">
-        <img src="product1.jpg" alt="Product 1">
-        <h2>Product Title</h2>
-        <p>Description and details</p>
-        <button>Add to Cart</button>
-      </div>
-      <!-- More Products... -->
+      <app-product></app-product>
     </section>
+
+    <app-login></app-login>
+    <app-register></app-register>
   </main>
 
   <footer>
