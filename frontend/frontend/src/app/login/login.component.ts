@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthServiceService } from "../auth-service.service";
@@ -14,6 +14,18 @@ export class LoginComponent implements OnInit {
   public submitted = false;
   public error = '';
   public success = '';
+
+  @Output() loginSuccess: EventEmitter<string> = new EventEmitter<string>();
+  //  to handle the login process and set the success message
+  // set this.success to 'Login Successful!' when login is successful
+  
+  onLoginSuccess() {
+    if (this.success === 'Login Successful!') {
+      this.loginSuccess.emit(this.success);
+    }
+  }
+
+
 
   constructor(
     private authService: AuthServiceService,
