@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { AuthServiceService } from "../auth-service.service";
+
 
 @Component({
   selector: 'app-login',
@@ -10,12 +12,18 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
   public submitted = false;
+  public error = '';
+  public success = '';
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ["", [Validators.email, Validators.required]],
+      username: ["", Validators.required],
       password: [
         "",
         [
@@ -30,14 +38,40 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  onLogin(): void {
+  async onSubmit(): Promise<void> {
     this.submitted = true;
+  
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      // Here, you can implement logic to send the login credentials to the server for validation
-      // For now, storing the user data in localStorage and navigating to another route
-      localStorage.setItem("user-Data", JSON.stringify(this.loginForm.value));
-      this.router.navigate(["/"]); // Change the route to the desired path after login
+      const username = this.loginForm.get('username')?.value;
+      const password = this.loginForm.get('password')?.value;
+  
+      const loginData = {
+        username,
+        password
+      };
+  
+      try {
+        const response = await this.authService.login(loginData).toPromise();
+  
+        
+        if (response.message === 'Valid credentials') {
+          this.success = "Login Successful!"
+          setTimeout(() => {
+            this.success = '';
+          }, 2000);
+          this.loginForm.reset();
+        } else if (response.message === 'Password is wrong') {
+          this.error = 'Password is wrong';
+        } else if (response.message === 'User not found') {
+          this.error = 'Username is not found';
+        }
+      } catch (error) {
+        this.error = (error as any).error.message || 'Login failed';
+      }
     }
+  }
+  
+  redirectToRegister(): void {
+    this.router.navigate(['/register']); 
   }
 }

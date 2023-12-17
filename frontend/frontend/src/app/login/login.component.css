@@ -2,15 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh; /* Adjust height as needed */
+  height: 80vh;
 }
 
 .card {
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  max-width: 400px; /* Adjust the width as needed */
+  max-width: 400px; 
   width: 100%;
 }
 
@@ -36,7 +36,7 @@ label {
   color: #333;
 }
 
-input[type='email'],
+input[type='text'],
 input[type='password'] {
   width: 100%;
   padding: 10px;
@@ -48,8 +48,10 @@ input[type='password'] {
 .buttons {
   margin-top: 20px;
 }
+
 .btn-customBlue {
   padding: 10px 20px;
+  margin-left: 5px;
   background-color: #125266;
   color: #fff;
   border: none;
@@ -64,6 +66,12 @@ input[type='password'] {
 
 .text-danger {
   color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.text-success{
+  color: green;
   font-size: 0.9em;
   margin-top: 5px;
 }

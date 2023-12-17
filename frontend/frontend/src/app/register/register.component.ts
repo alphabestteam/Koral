@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthServiceService } from "../auth-service.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -7,17 +8,23 @@ import { Router } from "@angular/router";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
-  public RegisterForm!: FormGroup;
+export class RegisterComponent implements OnInit {
+  public registerForm!: FormGroup;
   public submitted = false;
+  public error = '';
+  public successMessage  = '';
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private authService: AuthServiceService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.RegisterForm = this.formBuilder.group({
-      email: ["", [Validators.email, Validators.required]],
+    this.registerForm = this.formBuilder.group({
+      username: ['', Validators.required],
       password: [
-        "",
+        '',
         [
           Validators.required,
           Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/)
@@ -27,17 +34,43 @@ export class RegisterComponent {
   }
 
   get formControl() {
-    return this.RegisterForm.controls;
+    return this.registerForm.controls;
   }
 
-  onRegister(): void {
+  async onSubmit(): Promise<void> {
     this.submitted = true;
-    if (this.RegisterForm.valid) {
-      console.log(this.RegisterForm.value);
-      // Here, you can implement logic to send the Register credentials to the server for validation
-      // For now, storing the user data in localStorage and navigating to another route
-      localStorage.setItem("user-Data", JSON.stringify(this.RegisterForm.value));
-      this.router.navigate(["/"]); // Change the route to the desired path after Register
+  
+    if (this.registerForm.valid) {
+      const username = this.registerForm.get('username')?.value;
+  
+      try {
+        const usernameExists = await this.authService.checkUsername(username).toPromise();
+  
+        if (usernameExists.exists) {
+          this.error = 'Username already taken';
+        } else {
+          const registerData = {
+            username: this.registerForm.get('username')?.value,
+            password: this.registerForm.get('password')?.value 
+          };
+          this.successMessage = 'Registration successful!';
+  
+          await this.authService.register(registerData).toPromise(); // register the user
+  
+          setTimeout(() => {
+            this.successMessage = '';
+          }, 2000);
+          this.registerForm.reset();
+        }
+      } catch (error) {
+        this.error = (error as any).error.message || 'Registration failed';
+      }
     }
+  }
+  
+  
+
+  redirectToLogin(): void {
+    this.router.navigate(['/login']); 
   }
 }

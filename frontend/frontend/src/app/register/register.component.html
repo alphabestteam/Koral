@@ -1,36 +1,41 @@
 <div class="Register-form">
-    <div class="card">
-      <h2 class="head py-2">Register</h2>
-      <form class="user-Register" [formGroup]="RegisterForm" (ngSubmit)="onRegister()">
-        <div class="row">
-          <div class="col-md-12 roundedTextBox mb-3">
-            <label>Username</label>
-            <input type="email" class="form-control mb-2" id="inputEmail" formControlName="email" placeholder="Enter Email">
-            <div *ngIf="submitted && formControl['email'].errors" class="text-danger">
-              <div *ngIf="formControl['email'].errors['email']">Email must be valid.</div>
-              <div *ngIf="formControl['email'].errors['required']">Email is required.</div>
-            </div>
+  <div class="card">
+    <h2 class="head py-2">Register</h2>
+    <div class="card-body">
+      <form class="user-Register" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <!-- Username field -->
+        <div class="col-md-12 roundedTextBox mb-3">
+          <label>Username</label>
+          <input type="text" class="form-control mb-2" id="inputUsername" formControlName="username" placeholder="Enter Username">
+          <div *ngIf="submitted && formControl['username'].errors && formControl['username'].touched" class="text-danger">
+            <div *ngIf="formControl['username'].errors['required']">Username is required.</div>
           </div>
-          
-          <div class="col-md-12 roundedTextBox mb-3">
-            <label>Password</label>
-            <input type="password" class="form-control mb-2" id="inputPassword" formControlName="password" placeholder="Enter Password">
-            <div *ngIf="submitted && formControl['password'].errors" class="text-danger">
-              <div *ngIf="formControl['password'].errors['required']">Password is required.</div>
-              <div *ngIf="formControl['password'].errors['pattern']">
-                <h3>Password must contain the following:</h3>
-                <ul>
-                  <li>Password should be alphanumeric</li>
-                  <li>Password length must be greater than 7 characters</li>
-                </ul>
-              </div>
+        </div>
+        <!-- Password field -->
+        <div class="col-md-12 roundedTextBox mb-3">
+          <label>Password</label>
+          <input type="password" class="form-control mb-2" id="inputPassword" formControlName="password" placeholder="Enter Password">
+          <div *ngIf="submitted && formControl['password'].errors && formControl['password'].touched" class="text-danger">
+            <div *ngIf="formControl['password'].errors['required']">Password is required.</div>
+            <div *ngIf="formControl['password'].errors['pattern']">
+              <h3>Password must contain the following:</h3>
+              <ul>
+                <li>Password should be alphanumeric</li>
+                <li>Password length must be greater than 7 characters</li>
+              </ul>
             </div>
           </div>
         </div>
         <br>
         <div class="buttons text-center">
           <button class="btn-customBlue mr-2" type="submit">Register</button>
+          <button class="btn-customBlue mr-2" type="button" (click)="redirectToLogin()">Login</button>
         </div>
       </form>
+      <div *ngIf="submitted && !registerForm.invalid">
+        <div *ngIf="error" class="text-danger">{{ error }}</div>
+      </div>
+      <div *ngIf="successMessage" class="text-success">{{ successMessage }}</div>
     </div>
   </div>
+</div>
