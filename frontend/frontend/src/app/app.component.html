@@ -9,38 +9,40 @@
   <div class="loader" *ngIf="showLoader">
     <h1>Zara</h1>
   </div>
+  <router-outlet></router-outlet>
 
-  <header>
-    <nav class="navbar">
-      <ul class="nav-list">
-        <li><a href="#">Women</a></li>
-        <li><a href="#">Men</a></li>
-        <li><a href="#">Kids</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li class="basket-icon"><a href="#">Basket</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main *ngIf="!showLoader" [ngClass]="{'visible': showMainContent}"> 
+  
+  <main *ngIf="showMainContent">
+    <header>
+      <nav class="navbar">
+        <ul class="nav-list">
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Kids</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li class="basket-icon"><a href="#">Basket</a></li>
+        </ul>
+      </nav>
+    </header>
     <section class="banner">
       <h1>Zara</h1>
       <p>Discover the latest trends</p>
     </section>
-
+  
     <section class="products">
       <!-- Products Display -->
       <app-product></app-product>
     </section>
-
-    <app-login></app-login>
-    <app-register></app-register>
   </main>
-
+  
+  <main *ngIf="showLogin">
+    <app-login (loginSuccess)="onLoginSuccess()"></app-login>
+  </main>
+  
   <footer>
     <p>&copy; 2023 Zara. All rights reserved To Koral.</p>
   </footer>
-
 </body>
 </html>

@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthServiceService {
-  private csrfToken: string | undefined;
 
   constructor(private http: HttpClient) {}
 

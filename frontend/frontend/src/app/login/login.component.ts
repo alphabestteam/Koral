@@ -66,18 +66,19 @@ export class LoginComponent implements OnInit {
         const response = await this.authService.login(loginData).toPromise();
   
         
-        if (response.message === 'Valid credentials') {
+        if (response.message === 'Login successful') {
           this.success = "Login Successful!"
           setTimeout(() => {
             this.success = '';
           }, 2000);
+
           this.loginForm.reset();
         } else if (response.message === 'Password is wrong') {
           this.error = 'Password is wrong';
         } else if (response.message === 'User not found') {
           this.error = 'Username is not found';
         }
-      } catch (error) {
+      } catch (error) { /* if the server is disconnected*/ 
         this.error = (error as any).error.message || 'Login failed';
       }
     }
@@ -85,5 +86,6 @@ export class LoginComponent implements OnInit {
   
   redirectToRegister(): void {
     this.router.navigate(['/register']); 
-  }
+  }  
+  
 }
