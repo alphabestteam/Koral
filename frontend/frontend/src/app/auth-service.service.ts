@@ -12,15 +12,11 @@ export class AuthServiceService {
 
 
   login(loginData: any): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/users/api/users/validate_credentials/', loginData);
+    return this.http.post<any>('http://127.0.0.1:8000/users/api/users/login/', loginData);
   }
 
   register(userData: any): Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/users/api/users/', userData);
   }
 
-  checkUsername(username: string): Observable<any> {
-    const url = `${`http://127.0.0.1:8000/users/check-username/${username}`}`;
-    return this.http.get<any>(url);
-  }
 }

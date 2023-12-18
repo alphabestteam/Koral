@@ -42,33 +42,26 @@ export class RegisterComponent implements OnInit {
   
     if (this.registerForm.valid) {
       const username = this.registerForm.get('username')?.value;
-  
+
       try {
-        const usernameExists = await this.authService.checkUsername(username).toPromise();
-  
-        if (usernameExists.exists) {
-          this.error = 'Username already taken';
-        } else {
-          const registerData = {
-            username: this.registerForm.get('username')?.value,
-            password: this.registerForm.get('password')?.value 
-          };
-          this.successMessage = 'Registration successful!';
-  
-          await this.authService.register(registerData).toPromise(); // register the user
-  
-          setTimeout(() => {
-            this.successMessage = '';
-          }, 2000);
-          this.registerForm.reset();
-        }
+        const registerData = {
+          username: this.registerForm.get('username')?.value,
+          password: this.registerForm.get('password')?.value 
+        };
+
+        await this.authService.register(registerData).toPromise(); // register the user
+
+        this.successMessage = 'Registration successful!';
+        setTimeout(() => {
+          this.successMessage = '';
+        }, 2000);
+
+        this.registerForm.reset();
       } catch (error) {
         this.error = (error as any).error.message || 'Registration failed';
       }
     }
   }
-  
-  
 
   redirectToLogin(): void {
     this.router.navigate(['/login']); 
