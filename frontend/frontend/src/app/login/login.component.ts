@@ -19,23 +19,16 @@ export class LoginComponent implements OnInit {
   //  to handle the login process and set the success message
   // set this.success to 'Login Successful!' when login is successful
   
-  onLoginSuccess() {
-    if (this.success === 'Login Successful!') {
-      this.loginSuccess.emit(this.success);
-    }
-  }
-
-
-
+  
   constructor(
     private authService: AuthServiceService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {}
+    ) {}
 
-  ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      username: ["", Validators.required],
+    ngOnInit(): void {
+      this.loginForm = this.formBuilder.group({
+        username: ["", Validators.required],
       password: [
         "",
         [
@@ -45,33 +38,34 @@ export class LoginComponent implements OnInit {
       ]
     });
   }
-
+  
   get formControl() {
     return this.loginForm.controls;
   }
-
+  
   async onSubmit(): Promise<void> {
     this.submitted = true;
   
     if (this.loginForm.valid) {
       const username = this.loginForm.get('username')?.value;
       const password = this.loginForm.get('password')?.value;
-  
+      
       const loginData = {
         username,
         password
       };
-  
+      
       try {
         const response = await this.authService.login(loginData).toPromise();
-  
         
         if (response.message === 'Login successful') {
+          this.router.navigate(['/main']);
           this.success = "Login Successful!"
+
           setTimeout(() => {
             this.success = '';
           }, 2000);
-
+          
           this.loginForm.reset();
         } else if (response.message === 'Password is wrong') {
           this.error = 'Password is wrong';
@@ -79,13 +73,12 @@ export class LoginComponent implements OnInit {
           this.error = 'Username is not found';
         }
       } catch (error) { /* if the server is disconnected*/ 
-        this.error = (error as any).error.message || 'Login failed';
-      }
+      this.error = (error as any).error.message || 'Login failed';
     }
   }
-  
-  redirectToRegister(): void {
-    this.router.navigate(['/register']); 
+} 
+
+redirectToRegister(): void {
+  this.router.navigate(['/register']); 
   }  
-  
 }

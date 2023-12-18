@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -6,20 +7,42 @@ import { ProductService } from '../product.service';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit{
+export class ProductComponent implements OnInit {
   products: any[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.fetchProducts();
+    this.route.params.subscribe(params => {
+      const gender = params['gender'];
+      if (gender) {
+        this.fetchProductsByGender(gender);
+      } else {
+        // Handle scenario when no gender parameter is present
+        // For instance, fetch all products or display a message
+        this.fetchAllProducts();
+      }
+    });
   }
 
-  fetchProducts(): void {
+  fetchProductsByGender(gender: string): void {
+    this.productService.getProductsByGender(gender).subscribe(
+      (data: any[]) => {
+        this.products = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  fetchAllProducts(): void {
     this.productService.getProducts().subscribe(
       (data: any[]) => {
         this.products = data;
-        console.log(data); 
       },
       (error) => {
         console.error(error);

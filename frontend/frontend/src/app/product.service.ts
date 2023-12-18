@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
   private apiUrl = 'http://127.0.0.1:8000/products/api/Product/';
-
+  private apiUrlGender = 'http://127.0.0.1:8000/products/'
+  
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<any[]> {
@@ -26,5 +27,10 @@ export class ProductService {
   deleteProduct(productId: number): Observable<any> {
     const url = `${this.apiUrl}${productId}/`;
     return this.http.delete<any>(url);
+  }
+
+  getProductsByGender(gender: string): Observable<any[]> {
+    const url = `${this.apiUrlGender}${gender}`;
+    return this.http.get<any[]>(url);
   }
 }

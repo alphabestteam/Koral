@@ -52,6 +52,7 @@ export class RegisterComponent implements OnInit {
         await this.authService.register(registerData).toPromise(); // register the user
 
         this.successMessage = 'Registration successful!';
+        this.router.navigate(['/main']);
         setTimeout(() => {
           this.successMessage = '';
         }, 2000);

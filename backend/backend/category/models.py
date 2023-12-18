@@ -10,9 +10,9 @@ TYPE_CHOICES = (
 )
 
 GENDER_CHOICES = (
-    ("FEMALE", "female"),
-    ("MALE", "male"),
-    ("KIDS", "kids")
+    ("female", "female"),
+    ("male", "male"),
+    ("kids", "kids")
 )
 
 SEASON_CHOICES = (
