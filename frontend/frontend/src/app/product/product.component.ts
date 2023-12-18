@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -9,13 +10,16 @@ import { ProductService } from '../product.service';
 })
 export class ProductComponent implements OnInit {
   products: any[] = [];
+  showNavbar = true;
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.checkUrl();
     this.route.params.subscribe(params => {
       const gender = params['gender'];
       if (gender) {
@@ -26,6 +30,10 @@ export class ProductComponent implements OnInit {
         this.fetchAllProducts();
       }
     });
+  }
+  // Method to check the URL and toggle showNavbar
+  checkUrl() {
+    this.showNavbar = this.router.url.includes('products/');
   }
 
   fetchProductsByGender(gender: string): void {
