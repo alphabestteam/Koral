@@ -5,6 +5,8 @@ from user.models import User
 from user.serializers import UserSerializer
 from rest_framework.decorators import action
 import json
+from rest_framework.response import Response
+
 
 
 
@@ -46,16 +48,20 @@ class UserViewSet(viewsets.ModelViewSet):
             return JsonResponse({'message': 'User not found'}, status=404)
         
         
-    @action(detail=False, methods=['POST'])
-    def get_queryset(self):
-        # Get the current authenticated user
+    action(detail=False, methods=['GET'])
+    def get_products_in_basket(self, request):
         user = self.request.user
-
-        # Fetch products associated with the user's basket
-        user_products = Basket.objects.filter(user_id=user.id).values_list('product', flat=True)
-        
-        return user_products
-
+        try:
+            basket = Basket.objects.get(user_id=user.id)
+            user_products = basket.products.all()  # Assuming 'products' is a related field in your Basket model
+            # Process user_products as needed or return it in the response
+            # Assuming 'products' is a list of products associated with the basket
+            product_ids = [product.id for product in user_products]
+            return Response(product_ids)  # Returning IDs for demonstration, adjust as needed
+        except Basket.DoesNotExist:
+            return Response({"error": "Basket does not exist"}, status=404)
+        except Exception as e:
+            return Response({"error": str(e)}, status=500)    
         
         
     @action(detail=False, methods=['POST'])

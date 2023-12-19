@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { AuthServiceService } from '../auth-service.service';
-import { switchMap } from 'rxjs';
+import { switchMap, EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-basket',
@@ -27,24 +27,25 @@ export class BasketComponent implements OnInit {
       return userIdString ? +userIdString : null; // Convert string to number or return null
     }
     
-    get(){
-      return sessionStorage.getItem('username');
-    }
+    get(): string {
+      const username = sessionStorage.getItem('username');
+      return username !== null ? username : 'default'; // Provide a default value or handle null explicitly
+    }    
 
     fetchProductsInBasket(): void {
       this.authService.getUserIDFromUsername(this.get())
         .pipe(
           switchMap(userId => {
             if (userId !== null) {
-              return this.productService.getProductsInBasket(userId);
+              return this.productService.getProductsInBasket();
             } else {
               console.error('User ID not found in session storage or invalid');
-              return EMPTY; // Or any appropriate observable in case of an error
+              return EMPTY; // Use EMPTY from RxJS
             }
           })
         )
         .subscribe(
-          products => {
+          (products: any[]) => { // Specify the type as 'any[]'
             this.productsInBasket = products;
             this.calculateTotalPrice();
           },

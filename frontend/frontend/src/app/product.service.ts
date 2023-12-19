@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,15 +34,16 @@ export class ProductService {
     return this.http.get<any[]>(url);
   }
 
-  getProductsInBasket(userId: number): Observable<any[]> {
-    if (!isNaN(userId) && userId > 0) {
-      const url = `http://127.0.0.1:8000/users/api/users/${userId}/get_queryset/`;
-      return this.http.get<any[]>(url);
-    } else {
-      // Handle invalid userId here
-      console.error('Invalid userId:', userId);
-      return throwError('Invalid userId');
-    }
+
+  getProductsInBasket(): Observable<number[]> { // Assuming product IDs are returned
+    const url = `http://127.0.0.1:8000/users/api/users/get_products_in_basket/`;
+
+    return this.http.get<number[]>(url).pipe(
+      catchError((error) => {
+        console.error('Error fetching products in basket:', error);
+        return throwError('Error fetching products'); // Customize error handling as needed
+      })
+    );
   }
   
   addToBasket(userId: number, productId: number): Observable<any> {
