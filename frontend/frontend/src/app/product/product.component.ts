@@ -57,4 +57,24 @@ export class ProductComponent implements OnInit {
       }
     );
   }
+
+  getUserId(): number | null {
+    const userIdString = sessionStorage.getItem('user_id');
+    return userIdString ? +userIdString : null; // Convert string to number or return null
+  }
+
+  addToBasket(product_name: string, product_id: number): void {
+    alert(`Product: ${product_name} added successfully to the basket!`);
+    const userId = this.getUserId();
+    if (userId !== null) {
+      this.productService.addToBasket(userId, [product_id]) // Wrap the ID in an array
+        .subscribe(response => {
+          console.log('Product added to the basket:', response);
+        }, error => {
+          console.error('Error adding product to the basket:', error);
+        });
+    } else {
+      console.error('User ID not found in session storage or invalid');
+    }
+  }
 }

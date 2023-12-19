@@ -27,3 +27,14 @@ def filter_products_by_gender(request, gender):
     products = Product.objects.filter(category__gender__iexact=matching_category)
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
+
+
+
+@api_view(['POST'])
+def update_product_status(request, product_id):
+    # Retrieve product by ID
+    product = Product.objects.get(id=product_id)
+    # Update product status to "out of stock"
+    product.status = "OUT_OF_STOCK"
+    product.save()
+    return Response({"message": "Product status updated successfully"})

@@ -28,6 +28,11 @@ export class NavBarComponent {
     this.router.navigateByUrl(`/main`);
   }
 
+  navToBasket(): void{
+    this.router.navigateByUrl(`/basket`);
+
+  }
+
   get(){
     return sessionStorage.getItem('username');
   }

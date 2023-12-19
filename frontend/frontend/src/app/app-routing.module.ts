@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProductComponent } from './product/product.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { BasketComponent } from './basket/basket.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'main', component: MainPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'basket', component: BasketComponent },
   {
     path: 'products/:gender', // Dynamic segment for gender
     component: ProductComponent // Component to display products

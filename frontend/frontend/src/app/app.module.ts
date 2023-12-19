@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProductComponent } from './product/product.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { BasketComponent } from './basket/basket.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     RegisterComponent,
     ProductComponent,
     NavBarComponent,
-    MainPageComponent
+    MainPageComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule,

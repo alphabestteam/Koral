@@ -8,6 +8,7 @@ router.register(r'Basket', views.BasketViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    # path('user_basket/<int:user_id>/', views.user_basket),
+    path('add_to_basket/', views.add_to_basket),
+    path('checkout/', views.checkout)
 
 ]
