@@ -30,7 +30,6 @@ export class NavBarComponent {
 
   navToBasket(): void{
     this.router.navigateByUrl(`/basket`);
-
   }
 
   get(){

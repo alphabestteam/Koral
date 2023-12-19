@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
+import { AuthServiceService } from '../auth-service.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-basket',
@@ -10,7 +12,11 @@ export class BasketComponent implements OnInit {
     productsInBasket: any[] = [];
     totalPrice: number = 0;
   
-    constructor(private productService: ProductService) {}
+    constructor(
+      private productService: ProductService,
+      private authService: AuthServiceService
+
+      ) {}
   
     ngOnInit(): void {
       this.fetchProductsInBasket();
@@ -20,25 +26,34 @@ export class BasketComponent implements OnInit {
       const userIdString = sessionStorage.getItem('user_id');
       return userIdString ? +userIdString : null; // Convert string to number or return null
     }
-  
+    
+    get(){
+      return sessionStorage.getItem('username');
+    }
 
     fetchProductsInBasket(): void {
-      const userId = this.getUserId();
-      if (userId !== null) {
-        this.productService.getProductsInBasket(userId)
-          .subscribe(
-            products => {
-              this.productsInBasket = products;
-              this.calculateTotalPrice();
-            },
-            error => {
-              console.error('Error fetching products in the basket:', error);
+      this.authService.getUserIDFromUsername(this.get())
+        .pipe(
+          switchMap(userId => {
+            if (userId !== null) {
+              return this.productService.getProductsInBasket(userId);
+            } else {
+              console.error('User ID not found in session storage or invalid');
+              return EMPTY; // Or any appropriate observable in case of an error
             }
-          );
-      } else {
-        console.error('User ID not found in session storage or invalid');
-      }
+          })
+        )
+        .subscribe(
+          products => {
+            this.productsInBasket = products;
+            this.calculateTotalPrice();
+          },
+          error => {
+            console.error('Error fetching products in the basket:', error);
+          }
+        );
     }
+    
   
     calculateTotalPrice(): void {
       // Calculate the total price from productsInBasket

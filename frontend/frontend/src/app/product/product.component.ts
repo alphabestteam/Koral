@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../product.service';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../auth-service.service';
 
 @Component({
   selector: 'app-product',
@@ -11,11 +12,14 @@ import { Router } from '@angular/router';
 export class ProductComponent implements OnInit {
   products: any[] = [];
   showNavbar = true;
+  userId: number | undefined;
+
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthServiceService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +38,11 @@ export class ProductComponent implements OnInit {
   // Method to check the URL and toggle showNavbar
   checkUrl() {
     this.showNavbar = this.router.url.includes('products/');
+  }
+
+
+  get(){
+    return sessionStorage.getItem('username');
   }
 
   fetchProductsByGender(gender: string): void {
@@ -57,24 +66,28 @@ export class ProductComponent implements OnInit {
       }
     );
   }
-
-  getUserId(): number | null {
-    const userIdString = sessionStorage.getItem('user_id');
-    return userIdString ? +userIdString : null; // Convert string to number or return null
-  }
-
-  addToBasket(product_name: string, product_id: number): void {
-    alert(`Product: ${product_name} added successfully to the basket!`);
-    const userId = this.getUserId();
-    if (userId !== null) {
-      this.productService.addToBasket(userId, [product_id]) // Wrap the ID in an array
-        .subscribe(response => {
+  
+  
+  async addToBasket(product_name: string, product_id: number): Promise<void> {
+    const username = this.get();
+  
+    if (username !== null) {
+      try {
+        const userId = await this.authService.getUserIDFromUsername(username).toPromise();
+  
+        if (userId !== null && typeof userId === 'number') {
+          alert(`Product: ${product_name} added successfully to the basket!`);
+          const response = await this.productService.addToBasket(userId, product_id).toPromise();
           console.log('Product added to the basket:', response);
-        }, error => {
-          console.error('Error adding product to the basket:', error);
-        });
+        } else {
+          console.error('User ID not found or invalid');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     } else {
-      console.error('User ID not found in session storage or invalid');
+      console.error('Username not found in session storage or invalid');
     }
-  }
+  }  
+  
 }

@@ -4,8 +4,8 @@ from basket.models import Basket
 from user.models import User
 from user.serializers import UserSerializer
 from rest_framework.decorators import action
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+import json
+
 
 
 
@@ -56,17 +56,16 @@ class UserViewSet(viewsets.ModelViewSet):
         
         return user_products
 
-
-@receiver(post_save, sender=Basket)
-def update_shopping_history(sender, instance, created, **kwargs):
-    if created:
-        user = instance.user
-        if user and isinstance(user, User):
-            if hasattr(user, 'shopping_history'):
-                user.shopping_history.add(instance)
-            else:
-                # Handle the case where shopping_history doesn't exist
-                print("User has no shopping_history attribute")
-        else:
-            # Handle the case where user is None or not a valid User object
-            print("Invalid user or user is None")
+        
+        
+    @action(detail=False, methods=['POST'])
+    def get_user_id_from_username(self, request):
+        try:
+            data = json.loads(request.body)
+            username = data.get('username')
+            user = User.objects.get(username=username)
+            return JsonResponse({'userId': user.id})
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'User not found'}, status=404)
+        except Exception as e:
+            return JsonResponse({'error': 'Internal Server Error'}, status=500)

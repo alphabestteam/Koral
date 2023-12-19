@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,13 +35,19 @@ export class ProductService {
   }
 
   getProductsInBasket(userId: number): Observable<any[]> {
-    const url = `http://127.0.0.1:8000/users/api/users/${userId}/get_queryset/`;
-    return this.http.get<any[]>(url);
+    if (!isNaN(userId) && userId > 0) {
+      const url = `http://127.0.0.1:8000/users/api/users/${userId}/get_queryset/`;
+      return this.http.get<any[]>(url);
+    } else {
+      // Handle invalid userId here
+      console.error('Invalid userId:', userId);
+      return throwError('Invalid userId');
+    }
   }
-
-  addToBasket(userId: number, productIds: number[]): Observable<any> {
-    const url = 'http://127.0.0.1:8000/basket/add_to_basket/'; 
-    const data = { user_id: userId, product_ids: productIds };
+  
+  addToBasket(userId: number, productId: number): Observable<any> {
+    const url = 'http://127.0.0.1:8000/basket/api/Basket/add_to_basket/'; 
+    const data = { user_id: userId, product_id: productId };
     return this.http.post<any>(url, data);
   }
 
