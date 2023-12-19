@@ -8,14 +8,16 @@ import { switchMap, EMPTY } from 'rxjs';
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.css']
 })
+
+
 export class BasketComponent implements OnInit {
     productsInBasket: any[] = [];
     totalPrice: number = 0;
-  
+    
+
     constructor(
       private productService: ProductService,
       private authService: AuthServiceService
-
       ) {}
   
     ngOnInit(): void {
@@ -37,16 +39,28 @@ export class BasketComponent implements OnInit {
         .pipe(
           switchMap(userId => {
             if (userId !== null) {
-              return this.productService.getProductsInBasket();
+              return this.productService.getProductsInBasket(userId);
             } else {
               console.error('User ID not found in session storage or invalid');
-              return EMPTY; // Use EMPTY from RxJS
+              return EMPTY;
             }
           })
         )
         .subscribe(
-          (products: any[]) => { // Specify the type as 'any[]'
+          (products: any[]) => { 
+            // You can access the properties of the objects within the array directly
+            // For example, assuming products have 'name', 'price', 'picture' properties
+            for (const product of products) {
+              console.log('Product Name:', product.name);
+              console.log('Product Price:', product.price);
+              console.log('Product Picture:', product.picture);
+              // Handle other properties as needed
+            }
+    
+            // You can assign the entire array to a variable if needed
             this.productsInBasket = products;
+    
+            // Perform operations like calculating total price, updating UI, etc.
             this.calculateTotalPrice();
           },
           error => {

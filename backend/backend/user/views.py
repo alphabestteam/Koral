@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from basket.models import Basket
 from user.models import User
@@ -48,22 +49,9 @@ class UserViewSet(viewsets.ModelViewSet):
             return JsonResponse({'message': 'User not found'}, status=404)
         
         
-    action(detail=False, methods=['GET'])
-    def get_products_in_basket(self, request):
-        user = self.request.user
-        try:
-            basket = Basket.objects.get(user_id=user.id)
-            user_products = basket.products.all()  # Assuming 'products' is a related field in your Basket model
-            # Process user_products as needed or return it in the response
-            # Assuming 'products' is a list of products associated with the basket
-            product_ids = [product.id for product in user_products]
-            return Response(product_ids)  # Returning IDs for demonstration, adjust as needed
-        except Basket.DoesNotExist:
-            return Response({"error": "Basket does not exist"}, status=404)
-        except Exception as e:
-            return Response({"error": str(e)}, status=500)    
+        return JsonResponse({"error": str(e)}, status=500)
         
-        
+
     @action(detail=False, methods=['POST'])
     def get_user_id_from_username(self, request):
         try:
@@ -75,3 +63,24 @@ class UserViewSet(viewsets.ModelViewSet):
             return JsonResponse({'error': 'User not found'}, status=404)
         except Exception as e:
             return JsonResponse({'error': 'Internal Server Error'}, status=500)
+        
+
+def get_products_in_basket(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    user_basket = get_object_or_404(Basket, user_id=user)
+    
+    user_products = user_basket.product.all()  # Retrieve products associated with the user's basket
+    
+    products_data = [
+        {
+            'id': product.id,
+            'name': product.name,
+            'price': product.price,
+            'status': product.status,
+            'picture': product.picture.url,
+            # Include other product details
+        }
+        for product in user_products
+    ]
+    
+    return JsonResponse(products_data, safe=False)

@@ -8,6 +8,8 @@ import { Observable, catchError, throwError } from 'rxjs';
 export class ProductService {
   private apiUrl = 'http://127.0.0.1:8000/products/api/products/';
   private apiUrlGender = 'http://127.0.0.1:8000/products/'
+  private baseUrl = 'http://127.0.0.1:8000'; 
+
   
   constructor(private http: HttpClient) {}
 
@@ -35,30 +37,25 @@ export class ProductService {
   }
 
 
-  getProductsInBasket(): Observable<number[]> { // Assuming product IDs are returned
-    const url = `http://127.0.0.1:8000/users/api/users/get_products_in_basket/`;
-
-    return this.http.get<number[]>(url).pipe(
-      catchError((error) => {
-        console.error('Error fetching products in basket:', error);
-        return throwError('Error fetching products'); // Customize error handling as needed
-      })
-    );
+  
+  getProductsInBasket(userId: number): Observable<any[]> {
+    const url = `${this.baseUrl}/users/api/users/${userId}/get_products_in_basket/`;
+    return this.http.get<any[]>(url);
   }
   
   addToBasket(userId: number, productId: number): Observable<any> {
-    const url = 'http://127.0.0.1:8000/basket/api/Basket/add_to_basket/'; 
+    const url = `${this.baseUrl}/basket/api/Basket/add_to_basket/`; 
     const data = { user_id: userId, product_id: productId };
     return this.http.post<any>(url, data);
   }
 
   updateProductStatus(productId: number): Observable<any> {
-    const url = `http://127.0.0.1:8000/products/update_product_status/${productId}/`;
+    const url = `${this.baseUrl}/products/update_product_status/${productId}/`;
     return this.http.post<any>(url, {});
   }
 
   checkout(userId: number): Observable<any> {
-    const checkoutUrl = `http://127.0.0.1:8000/basket/checkout/${userId}`; // Update with your checkout endpoint
+    const checkoutUrl = `${this.baseUrl}/basket/checkout/${userId}`; // Update with your checkout endpoint
 
     // Perform the checkout logic, possibly making an HTTP request
     // Here, an HTTP POST request is made to trigger the checkout

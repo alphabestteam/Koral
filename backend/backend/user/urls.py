@@ -8,5 +8,5 @@ router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
-
+    path('api/users/<int:user_id>/get_products_in_basket/', views.get_products_in_basket, name='get_products_in_basket'),
 ]
