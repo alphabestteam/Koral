@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
         if (response.message === 'Login successful') {
           this.router.navigate(['/main']);
           this.success = "Login Successful!"
+          this.dataSave();
 
           setTimeout(() => {
             this.success = '';
@@ -82,4 +83,9 @@ export class LoginComponent implements OnInit {
 redirectToRegister(): void {
   this.router.navigate(['/register']); 
   }  
+
+  dataSave(){
+    let username = this.loginForm.value.username;
+    sessionStorage.setItem('username', username);
+  }
 }

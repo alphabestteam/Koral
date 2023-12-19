@@ -52,6 +52,7 @@ export class RegisterComponent implements OnInit {
         await this.authService.register(registerData).toPromise(); // register the user
 
         this.successMessage = 'Registration successful!';
+        this.dataSave()
         this.router.navigate(['/main']);
         setTimeout(() => {
           this.successMessage = '';
@@ -67,4 +68,10 @@ export class RegisterComponent implements OnInit {
   redirectToLogin(): void {
     this.router.navigate(['/login']); 
   }
+
+  dataSave(){
+    let username = this.registerForm.value.username;
+    sessionStorage.setItem('username', username);
+  }
+
 }

@@ -15,8 +15,6 @@ export class NavBarComponent {
     private router: Router
   ) {}
 
-
-
   fetchProductsByGender(gender: string): void {
     this.productService.getProductsByGender(gender)
       .subscribe((data: any[]) => {
@@ -24,6 +22,14 @@ export class NavBarComponent {
         // Update the URL based on the selected gender
         this.router.navigateByUrl(`/products/${gender}`);
       });
+  }
+
+  navToMain(): void{
+    this.router.navigateByUrl(`/main`);
+  }
+
+  get(){
+    return sessionStorage.getItem('username');
   }
 
 }
