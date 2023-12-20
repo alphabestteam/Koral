@@ -47,10 +47,7 @@ class UserViewSet(viewsets.ModelViewSet):
                 return JsonResponse({'message': 'Password is wrong'}, status=401)
         else:
             return JsonResponse({'message': 'User not found'}, status=404)
-        
-        
-        return JsonResponse({"error": str(e)}, status=500)
-        
+                
 
     @action(detail=False, methods=['POST'])
     def get_user_id_from_username(self, request):
@@ -78,7 +75,6 @@ def get_products_in_basket(request, user_id):
             'price': product.price,
             'status': product.status,
             'picture': product.picture.url,
-            # Include other product details
         }
         for product in user_products
     ]

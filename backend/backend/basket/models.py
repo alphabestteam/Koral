@@ -10,5 +10,10 @@ class Basket(models.Model):
     basket_id = models.AutoField(primary_key = True)
     number_of_products = models.IntegerField(validators = [MinValueValidator(1)],default=0)
     product = models.ManyToManyField(to = "product.Product", related_name="productsList")
-    total_price = models.IntegerField(validators = [MinValueValidator(0)], default=0)
+    total_price = models.DecimalField(
+        validators=[MinValueValidator(0)], 
+        default=0.00, 
+        max_digits=10, 
+        decimal_places=2  
+          )
 

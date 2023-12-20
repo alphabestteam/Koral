@@ -20,7 +20,3 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return f"{self.name} - {self.price}$"
-    
-# class ProductInBasket(Product):
-#     basket = models.ForeignKey(Basket, on_delete=models.CASCADE)
-#     quantity = models.IntegerField(validators = [MinValueValidator(1)])

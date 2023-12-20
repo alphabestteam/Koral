@@ -1,16 +1,17 @@
 <!-- basket.component.html -->
 <app-nav-bar></app-nav-bar>
-<div *ngIf="productsInBasket.length > 0">
+<div *ngIf="productsInBasket.length > 0" class="products-container">
     <h2>Products in Basket:</h2>
     <div *ngFor="let product of productsInBasket" class="product">
       <img [src]="product.picture" alt="Product Image" class="product-image">
       <h3 class="product-name">{{ product.name }}</h3>
       <p class="product-price">Price: ${{ product.price }}</p>
-      <!-- Add more details you want to display -->
+
     </div>
-    <h2>Total Price: ${{ totalPrice }}</h2>
+    <h2>Number of Products: {{ numberOfProducts }}</h2>
+    <h2>Total Price: ${{ totalPrice | number: '1.2-2'}}</h2>
     <button (click)="checkout()">Checkout</button>
-  </div>
+</div>
   <div *ngIf="productsInBasket.length === 0">
     <p>No products in the basket.</p>
   </div>

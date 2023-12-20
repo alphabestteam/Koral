@@ -58,7 +58,7 @@ export class ProductService {
   }
 
   checkout(userId: number): Observable<any> {
-    const checkoutUrl = `${this.baseUrl}/basket/checkout/${userId}`; // Update with your checkout endpoint
+    const checkoutUrl = `${this.baseUrl}/basket/${userId}/checkout/`; // Update with your checkout endpoint
 
     // Perform the checkout logic, possibly making an HTTP request
     // Here, an HTTP POST request is made to trigger the checkout
