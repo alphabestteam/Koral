@@ -8,7 +8,7 @@ from django.dispatch import receiver
 class Basket(models.Model):
     user_id = models.ForeignKey(to="user.User", null = True, on_delete = models.CASCADE)
     basket_id = models.AutoField(primary_key = True)
-    number_of_products = models.IntegerField(validators = [MinValueValidator(1)])
+    number_of_products = models.IntegerField(validators = [MinValueValidator(1)],default=0)
     product = models.ManyToManyField(to = "product.Product", related_name="productsList")
-    total_price = models.IntegerField(validators = [MinValueValidator(0)], null = True)
+    total_price = models.IntegerField(validators = [MinValueValidator(0)], default=0)
 

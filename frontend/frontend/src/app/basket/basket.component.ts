@@ -34,46 +34,52 @@ export class BasketComponent implements OnInit {
       return username !== null ? username : 'default'; // Provide a default value or handle null explicitly
     }    
 
+    
     fetchProductsInBasket(): void {
-      this.authService.getUserIDFromUsername(this.get())
-        .pipe(
-          switchMap(userId => {
-            if (userId !== null) {
-              return this.productService.getProductsInBasket(userId);
-            } else {
-              console.error('User ID not found in session storage or invalid');
-              return EMPTY;
-            }
-          })
-        )
-        .subscribe(
-          (products: any[]) => { 
-            // You can access the properties of the objects within the array directly
-            // For example, assuming products have 'name', 'price', 'picture' properties
-            for (const product of products) {
-              console.log('Product Name:', product.name);
-              console.log('Product Price:', product.price);
-              console.log('Product Picture:', product.picture);
-              // Handle other properties as needed
-            }
-    
-            // You can assign the entire array to a variable if needed
-            this.productsInBasket = products;
-    
-            // Perform operations like calculating total price, updating UI, etc.
-            this.calculateTotalPrice();
-          },
-          error => {
-            console.error('Error fetching products in the basket:', error);
+      this.authService.getUserIDFromUsername(this.get()).subscribe(
+        userId => {
+          if (userId !== null) {
+            this.productService.getProductsInBasket(userId).subscribe(
+              (products: any[]) => {
+                for (const product of products) {
+                  console.log('Product Name:', product.name);
+                  console.log('Product Price:', product.price);
+                  console.log('Product Picture:', product.picture);
+                }
+                this.productsInBasket = products; // Assign products array to a variable
+        
+                // Fetch the total price
+                this.productService.getTotalPrice(userId).subscribe(
+                  (response: any) => {
+                    let totalPrice = response.total_price; // Extract total_price value
+                    console.log('Total Price:', totalPrice); // Log total price
+                    
+                    // fix the total price showing, console is good but not in front
+                  },
+                  error => {
+                    console.error('Error fetching total price:', error);
+                  }
+                );
+              },
+              error => {
+                console.error('Error fetching products in the basket:', error);
+              }
+            );
+          } else {
+            console.error('User ID not found in session storage or invalid');
           }
-        );
+        },
+        error => {
+          console.error('Error fetching user ID:', error);
+        }
+      );
     }
     
   
-    calculateTotalPrice(): void {
-      // Calculate the total price from productsInBasket
-      this.totalPrice = this.productsInBasket.reduce((total, product) => total + product.price, 0);
-    }
+    // calculateTotalPrice(): void {
+    //   // Calculate the total price from productsInBasket
+    //   this.totalPrice = this.productsInBasket.reduce((total, product) => total + product.price, 0);
+    // }
   
     checkout(): void {
       // Call the service method to update product status and reset the basket

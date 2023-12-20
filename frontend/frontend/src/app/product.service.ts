@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +36,11 @@ export class ProductService {
     return this.http.get<any[]>(url);
   }
 
+  getTotalPrice(userId: number): Observable<number> {
+    const url = `${this.baseUrl}/basket/${userId}/get_total_price/`;
+    return this.http.get<number>(url);
+  }
 
-  
   getProductsInBasket(userId: number): Observable<any[]> {
     const url = `${this.baseUrl}/users/api/users/${userId}/get_products_in_basket/`;
     return this.http.get<any[]>(url);

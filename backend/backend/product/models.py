@@ -1,6 +1,7 @@
 from django.db import models
 from category.models import Category
-
+from django.core.validators import MinValueValidator
+from basket.models import Basket
 STATUS_CHOICES = (
     ("OUT_OF_STOCK", "out of stock"),
     ("NOT_AVAILABLE", "not available"),
@@ -19,3 +20,7 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return f"{self.name} - {self.price}$"
+    
+# class ProductInBasket(Product):
+#     basket = models.ForeignKey(Basket, on_delete=models.CASCADE)
+#     quantity = models.IntegerField(validators = [MinValueValidator(1)])
