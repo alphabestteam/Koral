@@ -8,7 +8,7 @@
       <p class="product-price">Price: ${{ product.price }}</p>
       <!-- Add more details you want to display -->
     </div>
-    <p>Total Price: ${{ totalPrice }}</p>
+    <h2>Total Price: ${{ totalPrice }}</h2>
     <button (click)="checkout()">Checkout</button>
   </div>
   <div *ngIf="productsInBasket.length === 0">

@@ -53,6 +53,7 @@ export class BasketComponent implements OnInit {
                   (response: any) => {
                     let totalPrice = response.total_price; // Extract total_price value
                     console.log('Total Price:', totalPrice); // Log total price
+                    this.totalPrice = totalPrice
                     
                     // fix the total price showing, console is good but not in front
                   },
