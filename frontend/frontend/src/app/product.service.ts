@@ -44,9 +44,14 @@ export class ProductService {
     return this.http.get<number>(url);
   }
 
-  getProductsInBasket(userId: number): Observable<any[]> {
-    const url = `${this.baseUrl}/users/api/users/${userId}/get_products_in_basket/`;
+  getProductsInBasket(basket_id: number): Observable<any[]> {
+    const url = `${this.baseUrl}/users/api/users/${basket_id}/get_products_in_basket/`;
     return this.http.get<any[]>(url);
+  }
+
+  getCurrentBasketId(userId: number): Observable<number> {
+    const url = `${this.baseUrl}/users/api/users/${userId}/get_current_basket_id/`; 
+    return this.http.get<number>(url);
   }
   
   addToBasket(userId: number, productId: number): Observable<any> {

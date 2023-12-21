@@ -59,10 +59,10 @@ class UserViewSet(viewsets.ModelViewSet):
             return JsonResponse({'error': 'Internal Server Error'}, status=500)
         
 @api_view(['GET'])        
-def get_products_in_basket(request, user_id):
-    user_basket = get_object_or_404(Basket, user_id=user_id)
+def get_products_in_basket(request, basket_id):
+    user_basket = get_object_or_404(Basket, basket_id=basket_id)
     
-    user_products = user_basket.product.all()  # Retrieve products associated with the user's basket
+    user_products = user_basket.product.all()    
     products_data = [
         {
             'id': product.id,
@@ -76,3 +76,12 @@ def get_products_in_basket(request, user_id):
     ]
 
     return JsonResponse(products_data, safe=False)
+
+
+@api_view(['GET'])
+def get_current_basket_id(request, user_id):
+    current_basket = Basket.objects.filter(user_id=user_id).first()
+    if current_basket:
+        return JsonResponse({'basket_id': current_basket.basket_id})
+    else:
+        return JsonResponse({'error': 'Basket not found'}, status=404)

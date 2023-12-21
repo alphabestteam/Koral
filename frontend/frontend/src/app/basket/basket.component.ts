@@ -55,46 +55,52 @@ export class BasketComponent implements OnInit {
       return products.reduce((total, product) => total + (product.quantity || 0), 0);
     }
     
-    fetchProductsInBasket(): void {
-      this.authService.getUserIDFromUsername(this.get()).subscribe(
-        userId => {
-          if (userId !== null) {
-            this.productService.getProductsInBasket(userId).subscribe(
-              (products: any[]) => {
-                this.productsInBasket = products;
-                console.log(products)
-                this.numberOfProducts = this.calculateNumberOfProducts(products);
-                console.log(this.numberOfProducts)
+    // Assuming this is in your component file
+  fetchProductsInBasket(): void {
+    
+    this.authService.getUserIDFromUsername(this.get()).subscribe(
+      userId => {
+        if (userId !== null) {
+          this.productService.getCurrentBasketId(userId).subscribe(
+            (basketId: any) => {
+              if (basketId !== null) {
+                this.productService.getProductsInBasket(basketId.basket_id).subscribe(
+                  (products: any[]) => {
+                    this.productsInBasket = products;
+                    this.numberOfProducts = this.calculateNumberOfProducts(products);
 
-                this.productsInBasket = products; // Assign products array to a variable
-        
-                // Fetch the total price
-                this.productService.getTotalPrice(userId).subscribe(
-                  (response: any) => {
-                    console.log(response)
-                    let totalPrice = response.total_price; // Extract total_price value
-                    console.log('Total Price:', totalPrice); // Log total price
-                    this.totalPrice = Number(totalPrice)
-                    
+                    this.productService.getTotalPrice(userId).subscribe(
+                      (response: any) => {
+                        let totalPrice = response.total_price;
+                        this.totalPrice = Number(totalPrice);
+                      },
+                      error => {
+                        console.error('Error fetching total price:', error);
+                      }
+                    );
                   },
                   error => {
-                    console.error('Error fetching total price:', error);
+                    console.error('Error fetching products in the basket:', error);
                   }
                 );
-              },
-              error => {
-                console.error('Error fetching products in the basket:', error);
+              } else {
+                console.error('Basket ID not found for the user');
               }
-            );
-          } else {
-            console.error('User ID not found in session storage or invalid');
-          }
-        },
-        error => {
-          console.error('Error fetching user ID:', error);
+            },
+            error => {
+              console.error('Error fetching basket ID:', error);
+            }
+          );
+        } else {
+          console.error('User ID not found in session storage or invalid');
         }
-      );
-    }
+      },
+      error => {
+        console.error('Error fetching user ID:', error);
+      }
+    );
+  }
+
     
   
     checkout(): void {

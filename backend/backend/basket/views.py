@@ -81,6 +81,7 @@ def get_total_price(request, user_id):
 @api_view(['POST'])
 def checkout(request, user_id):
     print(user_id)
+    user = User.objects.filter(id=user_id).first()
     if user_id is None:
             return Response({"error": "User ID is required"}, status=400)
     
@@ -94,17 +95,16 @@ def checkout(request, user_id):
             product.status = 'OUT_OF_STOCK'  # Update product status to "out of stock"
             product.save()
         print(user_id)
-        user_obj = User.objects.get(id=user_id)
-
+         
 
         # Add current basket to user's shopping history
-        user_obj.shopping_history.add(current_basket)
+        user.shopping_history.add(current_basket)
         print("here")
         # Create a new basket for the user
-        new_basket = Basket.objects.create(user_id=user_obj)
+        new_basket = Basket.objects.create(user_id=user)
         print("here2")
 
         
-        return Response({'message': 'Checkout successful'})
+        return Response({'message': 'Checkout successful'}, status=200)
     else:
         return Response({'error': 'No items in the basket'}, status=400)

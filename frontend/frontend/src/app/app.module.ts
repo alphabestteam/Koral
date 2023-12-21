@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { KoralAuthComponent } from './koral-auth/koral-auth.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatIconModule } from '@angular/material/icon';
     MainPageComponent,
     BasketComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    KoralAuthComponent
   ],
   imports: [
     BrowserModule,

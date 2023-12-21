@@ -10,18 +10,17 @@ h2{
 
 .product-container {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column; /* Change the flex direction to column */
+    align-items: center; /* Align items to the center */
     gap: 20px;
     margin-top: 20px;
-}
-
-
+  }
+  
 .product {
     width: 250px;
-    margin: 20px;
+    margin: 20px auto; /* Center the product horizontally */
     text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     border-radius: 30px;
 }
