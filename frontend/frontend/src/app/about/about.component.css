@@ -1,0 +1,17 @@
+.zara-card {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  .zara-logo {
+    width: 100px;
+    height: 100px;
+    background-image: url('src/assets/download.png');
+    background-size: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  

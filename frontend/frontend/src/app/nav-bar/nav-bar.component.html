@@ -7,9 +7,10 @@
             <li><a (click)="fetchProductsByGender('male')">Male</a></li>
             <li><a (click)="fetchProductsByGender('kids')">Kids</a></li>
             <li><a (click)="navToMain()">Browser</a></li>
-            <li><a>About</a></li>
-            <li><a>Contact</a></li>
+            <li><a (click)="navToAbout()">About</a></li>
+            <li><a (click)="navToContact()" >Contact</a></li>
             <li class="basket-icon"><a (click)="navToBasket()">Basket</a></li>
+            <li><a (click)="dataRemove()">Log Out</a></li>
         </ul>
       </nav>
     </header>

@@ -12,8 +12,6 @@ import { AuthServiceService } from '../auth-service.service';
 export class ProductComponent implements OnInit {
   products: any[] = [];
   showNavbar = true;
-  userId: number | undefined;
-
 
   constructor(
     private productService: ProductService,
@@ -35,6 +33,7 @@ export class ProductComponent implements OnInit {
       }
     });
   }
+
   // Method to check the URL and toggle showNavbar
   checkUrl() {
     this.showNavbar = this.router.url.includes('products/');
@@ -48,18 +47,7 @@ export class ProductComponent implements OnInit {
   fetchProductsByGender(gender: string): void {
     this.productService.getProductsByGender(gender).subscribe(
       (data: any[]) => {
-        this.products = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  fetchAllProducts(): void {
-    this.productService.getProducts().subscribe(
-      (data: any[]) => {
-        this.products = data;
+        this.products = this.adjustPictureUrls(data);
       },
       (error) => {
         console.error(error);
@@ -67,6 +55,34 @@ export class ProductComponent implements OnInit {
     );
   }
   
+  // Helper function to adjust picture URLs
+  adjustPictureUrls(products: any[]): any[] {
+    return products.map(product => ({
+      ...product,
+      picture: this.adjustPictureUrl(product.picture)
+    }));
+  }
+  
+  // Helper function to adjust the picture URL
+  adjustPictureUrl(url: string): string {
+    if (!url.startsWith('http')) {
+      return `http://127.0.0.1:8000${url}`;
+    }
+    return url;
+  }
+  
+
+// Update the fetchAllProducts function
+fetchAllProducts(): void {
+  this.productService.getProducts().subscribe(
+    (data: any[]) => {
+      this.products = data;
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+}
   
   async addToBasket(product_name: string, product_id: number): Promise<void> {
     const username = this.get();
@@ -79,6 +95,14 @@ export class ProductComponent implements OnInit {
           alert(`Product: ${product_name} added successfully to the basket!`);
           const response = await this.productService.addToBasket(userId, product_id).toPromise();
           console.log('Product added to the basket:', response);
+          if (response && response.updatedProduct) {
+            const existingProductIndex = this.products.findIndex(p => p.id === response.updatedProduct.id);
+            if (existingProductIndex !== -1) {
+              this.products[existingProductIndex] = response.updatedProduct;
+            } else {
+              this.products.push(response.updatedProduct);
+            }
+          }
         } else {
           console.error('User ID not found or invalid');
         }

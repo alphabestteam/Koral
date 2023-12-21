@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject} from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ export class ProductService {
 
   
   constructor(private http: HttpClient) {}
+  private productAddedSubject = new Subject<void>();
 
   getProducts(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
@@ -49,8 +52,19 @@ export class ProductService {
   addToBasket(userId: number, productId: number): Observable<any> {
     const url = `${this.baseUrl}/basket/api/Basket/add_to_basket/`; 
     const data = { user_id: userId, product_id: productId };
-    return this.http.post<any>(url, data);
+  
+    return this.http.post<any>(url, data).pipe(
+      tap(() => {
+        // Trigger a refresh of the displayed products after a successful addition
+        this.productAddedSubject.next(); 
+      })
+    );
   }
+
+  // Function to subscribe to product added events
+  onProductAdded(): Observable<void> {
+      return this.productAddedSubject.asObservable();
+    }
 
   updateProductStatus(productId: number): Observable<any> {
     const url = `${this.baseUrl}/products/update_product_status/${productId}/`;
@@ -58,10 +72,8 @@ export class ProductService {
   }
 
   checkout(userId: number): Observable<any> {
-    const checkoutUrl = `${this.baseUrl}/basket/${userId}/checkout/`; // Update with your checkout endpoint
-
-    // Perform the checkout logic, possibly making an HTTP request
-    // Here, an HTTP POST request is made to trigger the checkout
+    const checkoutUrl = `${this.baseUrl}/basket/${userId}/checkout/`;
     return this.http.post(checkoutUrl, null);
   }
+
 }

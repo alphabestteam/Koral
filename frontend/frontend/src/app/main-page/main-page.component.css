@@ -1,6 +1,6 @@
-@font-face { /* zara font */
-    font-family: 'ZaraFont';
-    src: url('src/assets/fonts/Zara-Font/zara-font.otf') format('opentype');
+@font-face  {/* zara font */
+    font-family: 'ZaraFont' !important; 
+    src: url('src/assets/fonts/Zara-Font/zara-font.otf') format('opentype') !important;
 }
 
 

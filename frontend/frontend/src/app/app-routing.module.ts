@@ -5,17 +5,23 @@ import { RegisterComponent } from './register/register.component';
 import { ProductComponent } from './product/product.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { BasketComponent } from './basket/basket.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'main', component: MainPageComponent },
+  { path: 'main', component: MainPageComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'basket', component: BasketComponent },
+  { path: 'contact', component: ContactComponent, canActivate: [AuthGuard]  },
+  { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+  { path: 'basket', component: BasketComponent, canActivate: [AuthGuard] },
   {
     path: 'products/:gender', // Dynamic segment for gender
-    component: ProductComponent // Component to display products
+    component: ProductComponent, // Component to display products
+    canActivate: [AuthGuard]
   }
 ];
 

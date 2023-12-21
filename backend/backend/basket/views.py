@@ -35,10 +35,10 @@ class BasketViewSet(viewsets.ModelViewSet):
             product_in_basket = basket.product.filter(id=product_id).first()
 
             if product_in_basket:
-                # If the product already exists in the basket, update the quantity and total price
+                product_in_basket.quantity += 1
                 product_in_basket.save()
-
                 basket.number_of_products += 1
+                print(basket.number_of_products)
                 basket.total_price += Decimal(str(product.price))
                 basket.save()
                 print("here")
@@ -80,6 +80,7 @@ def get_total_price(request, user_id):
 
 @api_view(['POST'])
 def checkout(request, user_id):
+    print(user_id)
     if user_id is None:
             return Response({"error": "User ID is required"}, status=400)
     
@@ -92,14 +93,17 @@ def checkout(request, user_id):
         for product in products_in_basket:
             product.status = 'OUT_OF_STOCK'  # Update product status to "out of stock"
             product.save()
-        user = User.objects.get(id=user_id)
+        print(user_id)
+        user_obj = User.objects.get(id=user_id)
 
 
         # Add current basket to user's shopping history
-        user.shopping_history.add(current_basket)
+        user_obj.shopping_history.add(current_basket)
         print("here")
         # Create a new basket for the user
-        new_basket = Basket.objects.create(user_id=user_id)
+        new_basket = Basket.objects.create(user_id=user_obj)
+        print("here2")
+
         
         return Response({'message': 'Checkout successful'})
     else:

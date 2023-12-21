@@ -3,15 +3,14 @@
 </ng-container>
 
 <h2>Products:</h2>
-<div *ngIf="products.length > 0" class="product-container">
-  <div *ngFor="let product of products" class="product">
-    <img [src]="product.picture" alt="Product Image" class="product-image">
+<mat-card-content *ngIf="products.length > 0" class="product-container">
+  <mat-card *ngFor="let product of products" class="product">
+    <img mat-card-image [src]="product.picture" alt="Product Image" class="product-image">
     <h3 class="product-name">{{ product.name }}</h3>
-    <p class="product-description">{{ product.description }}</p>
     <p class="product-price">Price: ${{ product.price }}</p>
-    <button (click)="addToBasket(product.name, product.id)" class="add-to-cart-button">Add to Cart</button>
-  </div>
-</div>
+    <button mat-button (click)="addToBasket(product.name, product.id)" class="add-to-cart-button">Add to Cart</button>
+  </mat-card>
+</mat-card-content>
 <div *ngIf="products.length === 0">
   <p>No products available.</p>
 </div>

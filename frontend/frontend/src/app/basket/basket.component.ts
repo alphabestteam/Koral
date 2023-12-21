@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { ProductService } from '../product.service';
 import { AuthServiceService } from '../auth-service.service';
-import { switchMap, EMPTY } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-basket',
@@ -14,6 +14,8 @@ export class BasketComponent implements OnInit {
     productsInBasket: any[] = [];
     totalPrice: number = 0;
     numberOfProducts: number = 0;
+    productAddedSubscription: Subscription | undefined;
+
 
     constructor(
       private productService: ProductService,
@@ -21,7 +23,20 @@ export class BasketComponent implements OnInit {
       ) {}
   
     ngOnInit(): void {
-      this.fetchProductsInBasket();
+        // Fetch initial products in the basket
+        this.fetchProductsInBasket();
+    
+        // Subscribe to product added events to update the product list when a product is added
+        this.productAddedSubscription = this.productService.onProductAdded().subscribe(() => {
+          this.fetchProductsInBasket();
+        });
+    }
+
+    ngOnDestroy(): void {
+      // Unsubscribe to avoid memory leaks
+      if (this.productAddedSubscription) {
+        this.productAddedSubscription.unsubscribe();
+      }
     }
 
     getUserId(): number | null {
@@ -35,6 +50,11 @@ export class BasketComponent implements OnInit {
     }    
 
     
+
+    calculateNumberOfProducts(products: any[]): number {
+      return products.reduce((total, product) => total + (product.quantity || 0), 0);
+    }
+    
     fetchProductsInBasket(): void {
       this.authService.getUserIDFromUsername(this.get()).subscribe(
         userId => {
@@ -42,7 +62,10 @@ export class BasketComponent implements OnInit {
             this.productService.getProductsInBasket(userId).subscribe(
               (products: any[]) => {
                 this.productsInBasket = products;
-                this.numberOfProducts = this.productsInBasket.length; // Update number of products
+                console.log(products)
+                this.numberOfProducts = this.calculateNumberOfProducts(products);
+                console.log(this.numberOfProducts)
+
                 this.productsInBasket = products; // Assign products array to a variable
         
                 // Fetch the total price
@@ -53,7 +76,6 @@ export class BasketComponent implements OnInit {
                     console.log('Total Price:', totalPrice); // Log total price
                     this.totalPrice = Number(totalPrice)
                     
-                    // fix the total price showing, console is good but not in front
                   },
                   error => {
                     console.error('Error fetching total price:', error);

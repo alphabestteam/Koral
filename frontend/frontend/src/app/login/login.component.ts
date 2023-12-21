@@ -14,10 +14,6 @@ export class LoginComponent implements OnInit {
   public submitted = false;
   public error = '';
   public success = '';
-
-  @Output() loginSuccess: EventEmitter<string> = new EventEmitter<string>();
-  //  to handle the login process and set the success message
-  // set this.success to 'Login Successful!' when login is successful
   
   
   constructor(
@@ -87,7 +83,6 @@ redirectToRegister(): void {
   dataSave(){
     let username = this.loginForm.value.username;
     sessionStorage.setItem('username', username);
-    let user_id = this.loginForm.value.userId
-    sessionStorage.setItem('user_id', user_id);
+
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../auth-service.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,7 +13,8 @@ export class NavBarComponent {
 
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private authService: AuthServiceService
   ) {}
 
   fetchProductsByGender(gender: string): void {
@@ -32,9 +34,22 @@ export class NavBarComponent {
     this.router.navigateByUrl(`/basket`);
   }
 
+  navToAbout(): void{
+    this.router.navigateByUrl(`/about`); 
+  }
+
+  navToContact(): void{
+    this.router.navigateByUrl(`/contact`); 
+  }
+
   get(){
     return sessionStorage.getItem('username');
   }
 
+  dataRemove(){
+    sessionStorage.removeItem('username');
+    this.router.navigateByUrl(`/login`);
+    this.authService.logout()
+  }
 }
 

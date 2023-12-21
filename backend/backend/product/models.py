@@ -16,6 +16,7 @@ class Product(models.Model):
     status = models.CharField(choices = STATUS_CHOICES, default = "IN_STOCK", max_length=80)
     picture = models.ImageField()
     category = models.ManyToManyField(Category, related_name="category")
+    quantity = models.IntegerField(default=1)
 
 
     def __str__(self) -> str:

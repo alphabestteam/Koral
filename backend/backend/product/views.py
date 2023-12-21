@@ -4,6 +4,7 @@ from product.models import Product
 from product.serializers import ProductSerializer
 from rest_framework.decorators import api_view
 from category.models import Category
+from django.http import FileResponse
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -38,3 +39,4 @@ def update_product_status(request, product_id):
     product.status = "OUT_OF_STOCK"
     product.save()
     return Response({"message": "Product status updated successfully"})
+

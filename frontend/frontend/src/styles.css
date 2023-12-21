@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; }
+@font-face  {/* zara font */
+    font-family: 'ZaraFont' !important; 
+    src: url('src/assets/fonts/Zara-Font/zara-font.otf') format('opentype') !important;
+}

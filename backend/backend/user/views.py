@@ -6,10 +6,7 @@ from user.models import User
 from user.serializers import UserSerializer
 from rest_framework.decorators import action
 import json
-from rest_framework.response import Response
-
-
-
+from rest_framework.decorators import api_view
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -61,13 +58,11 @@ class UserViewSet(viewsets.ModelViewSet):
         except Exception as e:
             return JsonResponse({'error': 'Internal Server Error'}, status=500)
         
-
+@api_view(['GET'])        
 def get_products_in_basket(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-    user_basket = get_object_or_404(Basket, user_id=user)
+    user_basket = get_object_or_404(Basket, user_id=user_id)
     
     user_products = user_basket.product.all()  # Retrieve products associated with the user's basket
-    
     products_data = [
         {
             'id': product.id,
@@ -75,8 +70,9 @@ def get_products_in_basket(request, user_id):
             'price': product.price,
             'status': product.status,
             'picture': product.picture.url,
+            'quantity': product.quantity
         }
         for product in user_products
     ]
-    
+
     return JsonResponse(products_data, safe=False)

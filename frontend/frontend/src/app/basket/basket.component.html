@@ -1,18 +1,20 @@
-<!-- basket.component.html -->
 <app-nav-bar></app-nav-bar>
-<div *ngIf="productsInBasket.length > 0" class="products-container">
-    <h2>Products in Basket:</h2>
-    <div *ngFor="let product of productsInBasket" class="product">
-      <img [src]="product.picture" alt="Product Image" class="product-image">
-      <h3 class="product-name">{{ product.name }}</h3>
-      <p class="product-price">Price: ${{ product.price }}</p>
 
+<div *ngIf="productsInBasket.length > 0" class="products-container">
+  <h2>Products in Basket:</h2>
+  <div *ngFor="let product of productsInBasket" class="product">
+    <img mat-card-image [src]="'http://127.0.0.1:8000' + product.picture" alt="Product Image" class="product-image">
+    <div class="product-details">
+      <h3 class="product-name">{{ product.name }}</h3>
+      <p class="product-quantity">Quantity: {{ product.quantity }}</p>
+      <p class="product-price">Price: ${{ product.price }}</p>
     </div>
-    <h2>Number of Products: {{ numberOfProducts }}</h2>
-    <h2>Total Price: ${{ totalPrice | number: '1.2-2'}}</h2>
-    <button (click)="checkout()">Checkout</button>
-</div>
-  <div *ngIf="productsInBasket.length === 0">
-    <p>No products in the basket.</p>
   </div>
-  
+  <h2>Number of Products: {{ numberOfProducts }}</h2>
+  <h2>Total Price: ${{ totalPrice | number: '1.2-2'}}</h2>
+  <button (click)="checkout()">Checkout</button>
+</div>
+
+<div *ngIf="productsInBasket.length === 0" class="no-products">
+  <p>No products in the basket.</p>
+</div>
