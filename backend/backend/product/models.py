@@ -10,11 +10,11 @@ STATUS_CHOICES = (
 
 
 class Product(models.Model):
-    id = models.AutoField(primary_key = True)
-    name = models.CharField(max_length = 50)
-    price = models.DecimalField(decimal_places = 2,max_digits = 1000)
+    id = models.AutoField(primary_key = True )
+    name = models.CharField(max_length = 100, blank=False)
+    price = models.DecimalField(decimal_places = 2,max_digits = 1000, blank=False)
     status = models.CharField(choices = STATUS_CHOICES, default = "IN_STOCK", max_length=80)
-    picture = models.ImageField()
+    picture = models.ImageField(blank=False)
     category = models.ManyToManyField(Category, related_name="category")
     quantity = models.IntegerField(default=1, editable=False)
 
