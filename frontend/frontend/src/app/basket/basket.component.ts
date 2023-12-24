@@ -144,6 +144,37 @@ export class BasketComponent implements OnInit {
           });
       });
     }
+
+    deleteProduct(productId: number): void {
+      const confirmDelete = confirm('Are you sure you want to delete this product?');
+      if (confirmDelete) {
+        this.deleteProductFromBasket(productId);
+      }
+    }
+    
+    deleteProductFromBasket(productId: number): void {
+      this.authService.getUserIDFromUsername(this.get()).subscribe(
+        (userId: number | null) => {
+          if (userId !== null) {
+            this.productService.deleteProductFromBasket(userId, productId).subscribe(
+              (response: any) => {
+                console.log('Product deleted from basket:', response);
+                this.fetchProductsInBasket(); // Fetch updated products after deletion
+              },
+              (error) => {
+                console.error('Error deleting product from basket:', error);
+                // Handle error cases or display error messages
+              }
+            );
+          } else {
+            console.error('User ID not found in session storage or invalid');
+          }
+        },
+        (error) => {
+          console.error('Error fetching user ID:', error);
+        }
+      );
+    }
     
 }
 

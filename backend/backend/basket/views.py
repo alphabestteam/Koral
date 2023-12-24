@@ -10,6 +10,8 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.decorators import action
 
+
+
 class BasketViewSet(viewsets.ModelViewSet):
     queryset = Basket.objects.all()
     serializer_class = BasketSerializer
@@ -57,7 +59,46 @@ class BasketViewSet(viewsets.ModelViewSet):
             new_basket.total_price = Decimal(str(product.price))
             product.save()
             new_basket.save()            
-        return JsonResponse({"message": "Product added to the basket successfully"})
+        return JsonResponse(
+            {"message": "Product added to the basket successfully"})
+    
+
+    @action(detail=False, methods=['DELETE'])
+    def delete_from_basket(self, request):
+        user_id = request.data.get('user_id')
+        product_id = request.data.get('product_id')
+
+        if not user_id or not product_id:
+            return JsonResponse({"error": "Invalid data provided"}, status=400)
+        product = Product.objects.filter(id=product_id).first()
+
+        if product is None:
+            return JsonResponse({"error": "Product not found"}, status=404)
+
+        user = User.objects.get(id=user_id)
+        basket = Basket.objects.filter(user_id=user).first()
+        if basket:
+            # Check if the product is in the basket
+            product_in_basket = basket.product.filter(id=product_id).first()
+
+            if product_in_basket:
+                # Reduce the quantity of the product and update basket information
+                if product_in_basket.quantity <= 1:
+                    basket.product.remove(product)
+                else:
+                    product_in_basket.quantity -= 1
+
+                product_in_basket.save()
+
+                basket.number_of_products -= 1
+                basket.total_price -= Decimal(str(product.price))
+                basket.save()
+                
+                return JsonResponse({"message": "Product removed from the basket successfully"}, status=200)
+            else:
+                return JsonResponse({"error": "Product not found in the basket"}, status=404)
+        else:
+            return JsonResponse({"error": "Basket not found"}, status=404)
         
 
 @api_view(['GET'])        
@@ -80,7 +121,6 @@ def get_total_price(request, user_id):
 
 @api_view(['POST'])
 def checkout(request, user_id):
-    print(user_id)
     user = User.objects.filter(id=user_id).first()
     if user_id is None:
             return Response({"error": "User ID is required"}, status=400)
@@ -93,17 +133,14 @@ def checkout(request, user_id):
         products_in_basket = current_basket.product.all()
         for product in products_in_basket:
             product.status = 'OUT_OF_STOCK'  # Update product status to "out of stock"
-            product.save()
-        print(user_id)
-         
+            product.quantity = 1
+            product.save()         
 
         # Add current basket to user's shopping history
         user.shopping_history.add(current_basket)
-        print("here")
-        # Create a new basket for the user
-        new_basket = Basket.objects.create(user_id=user)
-        print("here2")
-
+        current_basket.total_price = 0
+        current_basket.product.clear()
+        current_basket.save()
         
         return Response({'message': 'Checkout successful'}, status=200)
     else:

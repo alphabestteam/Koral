@@ -72,7 +72,6 @@ export class ProductComponent implements OnInit {
   }
   
 
-// Update the fetchAllProducts function
 fetchAllProducts(): void {
   this.productService.getProducts().subscribe(
     (data: any[]) => {

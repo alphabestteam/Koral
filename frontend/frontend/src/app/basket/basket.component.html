@@ -8,6 +8,7 @@
       <h3 class="product-name">{{ product.name }}</h3>
       <p class="product-quantity">Quantity: {{ product.quantity }}</p>
       <p class="product-price">Price: ${{ product.price }}</p>
+      <button (click)="deleteProduct(product.id)">Delete From Basket</button>
     </div>
   </div>
   <h2>Number of Products: {{ numberOfProducts }}</h2>

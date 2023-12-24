@@ -1,15 +1,21 @@
+from product.models import Product
+from category.models import Category
+
 from rest_framework import viewsets
 from rest_framework.response import Response
-from product.models import Product
+from django.http import JsonResponse
 from product.serializers import ProductSerializer
 from rest_framework.decorators import api_view
-from category.models import Category
-from django.http import FileResponse
+from rest_framework.decorators import action
+
 
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        return Product.objects.filter(status='IN_STOCK')
 
 @api_view(['GET'])
 def filter_products_by_gender(request, gender):
@@ -25,7 +31,7 @@ def filter_products_by_gender(request, gender):
     if not matching_category:
         return Response({'error': 'Category not found'}, status=404)
 
-    products = Product.objects.filter(category__gender__iexact=matching_category)
+    products = Product.objects.filter(category__gender__iexact=matching_category, status='IN_STOCK')
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 

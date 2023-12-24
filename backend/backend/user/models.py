@@ -8,5 +8,5 @@ class User(models.Model):
     shopping_history = models.ManyToManyField(Basket, related_name='shoppers', editable=False)
 
 
-    def __str__(self) -> str:
-        return self.username
+    # def __str__(self) -> str:
+    #     return self.username
