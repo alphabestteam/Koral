@@ -10,6 +10,7 @@ import { ContactComponent } from './contact/contact.component';
 import { KoralAuthComponent } from './koral-auth/koral-auth.component';
 import { KoralAuthGuard } from './koral-auth.guard';
 import { AuthGuard } from './auth.guard';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard]},
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'basket', component: BasketComponent, canActivate: [AuthGuard] },
-
+  { path: 'userSettings', component: UserSettingsComponent, canActivate: [AuthGuard] },
+  
   { path: 'basket', component: BasketComponent, canActivate: [AuthGuard] },
   {
     path: 'products/:gender', // Dynamic segment for gender

@@ -39,6 +39,8 @@ nav ul li a {
     text-decoration: none;
     color: #333;
     position: relative; 
+    cursor: pointer;
+
 }
 
 
@@ -65,6 +67,17 @@ nav ul li a:hover:after {
     width: 100%;
 }
 
+#user_image{
+    position: relative;
+    width: 50px;
+    float: left;
+}
+
+#shopping_cart{
+    position: relative;
+    width: 50px;
+    float: right;
+}
 
 /* banner */
 .banner {

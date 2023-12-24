@@ -1,0 +1,54 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="settings-page">
+  <div class="settings-header">
+    <h1>User Settings</h1>
+    <button mat-raised-button class="logout-button" (click)="dataRemove()">Logout</button>
+  </div>
+  <div class="settings-content">
+    <!-- Initial username and password section -->
+    <mat-card class="initial-settings-card">
+      <h2>Initial Settings:</h2>
+      <div class="initial-settings-form">
+        <h3>Username:</h3>
+        <p id="username">{{ getUserName() }}</p>
+
+        <h3>Password:</h3>
+        <p id="password">{{ getPassword() }}</p>
+      </div>
+    </mat-card>
+
+    <!-- Change password section -->
+<mat-card class="change-password-card">
+    <mat-card-header>
+        <mat-card-title>Change Password</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="changePasswordForm" (ngSubmit)="onChangePassword()">
+            <mat-form-field appearance="fill">
+                <mat-label>Current Password</mat-label>
+                <input matInput type="password" formControlName="current_password" placeholder="Current password">
+                <mat-error *ngIf="submitted && changePasswordForm.controls['current_password'].hasError('invalidPassword')">
+                    Incorrect password. Please try again.
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill">
+                <mat-label>New Password</mat-label>
+                <input matInput type="password" formControlName="new_password" placeholder="New password">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Confirm New Password</mat-label>
+                <input matInput type="password" formControlName="confirm_new_password" placeholder="Confirm new password">
+                <mat-error *ngIf="submitted && changePasswordForm.controls['confirm_new_password'].hasError('unmatchedPassword')">
+                  Passwords do not match.
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit">Change Password</button>
+        </form>
+    </mat-card-content>
+</mat-card>
+  </div>
+</div>

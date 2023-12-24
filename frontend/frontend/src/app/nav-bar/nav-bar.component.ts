@@ -13,8 +13,7 @@ export class NavBarComponent {
 
   constructor(
     private productService: ProductService,
-    private router: Router,
-    private authService: AuthServiceService
+    private router: Router
   ) {}
 
   fetchProductsByGender(gender: string): void {
@@ -42,14 +41,12 @@ export class NavBarComponent {
     this.router.navigateByUrl(`/contact`); 
   }
 
-  get(){
-    return sessionStorage.getItem('username');
+  navToUserSettings(): void{
+    this.router.navigateByUrl('/userSettings')
   }
 
-  dataRemove(){
-    sessionStorage.removeItem('username');
-    this.router.navigateByUrl(`/login`);
-    this.authService.logout()
+  get(){
+    return sessionStorage.getItem('username');
   }
 }
 

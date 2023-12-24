@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { KoralAuthComponent } from './koral-auth/koral-auth.component';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { KoralAuthComponent } from './koral-auth/koral-auth.component';
     BasketComponent,
     AboutComponent,
     ContactComponent,
-    KoralAuthComponent
+    KoralAuthComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,

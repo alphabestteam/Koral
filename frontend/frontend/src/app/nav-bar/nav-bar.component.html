@@ -3,14 +3,14 @@
       <nav class="navbar">
         <ul class="nav-list">
             <h2 id="welcome">Welcome {{get()}} !</h2>
+            <li><a (click)="navToUserSettings()"><img id="user_image" src="assets/user.png"></a></li>
             <li><a (click)="fetchProductsByGender('female')">Female</a></li>
             <li><a (click)="fetchProductsByGender('male')">Male</a></li>
             <li><a (click)="fetchProductsByGender('kids')">Kids</a></li>
             <li><a (click)="navToMain()">Browser</a></li>
             <li><a (click)="navToAbout()">About</a></li>
             <li><a (click)="navToContact()" >Contact</a></li>
-            <li class="basket-icon"><a (click)="navToBasket()">Basket</a></li>
-            <li><a (click)="dataRemove()">Log Out</a></li>
+            <li><a (click)="navToBasket()"><img id="shopping_cart" src="assets/shoppingCart.png" ></a></li>
         </ul>
       </nav>
     </header>

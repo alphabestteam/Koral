@@ -1,0 +1,99 @@
+.settings-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+
+  }
+  
+  .initial-settings-card,
+  .change-password-card {
+    width: 400px;
+    margin-bottom: 20px;
+  }
+  
+  .logout-button {
+    margin-right: 20px;
+  }
+  
+  
+h1 {
+    margin: 0;
+  }
+  
+  .logout-button {
+    background-color: #1976d2;
+    color: white;
+  }
+  
+  .settings-content {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-top: 20px;
+  }
+  
+  .initial-settings-card,
+  .change-password-card {
+    width: 45%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .initial-settings-card {
+    margin-right: 20px;
+  }
+  
+  .initial-settings-form,
+  .change-password-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  h2,
+  h3 {
+    margin-top: 0;
+  }
+  
+  mat-form-field {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  button[type="submit"] {
+    width: 50%;
+    margin: 20px auto 0;
+    display: block;
+  }
+
+  
+.settings-content h3 {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .settings-content h3::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #333;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+}
+  
+  .settings-content h3:hover::after {
+    width: 50%;
+  }
+  

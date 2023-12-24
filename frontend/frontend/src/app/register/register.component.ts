@@ -72,6 +72,8 @@ export class RegisterComponent implements OnInit {
   dataSave(){
     let username = this.registerForm.value.username;
     sessionStorage.setItem('username', username);
+    let password = this.registerForm.value.password
+    sessionStorage.setItem('password', password);
   }
 
 }

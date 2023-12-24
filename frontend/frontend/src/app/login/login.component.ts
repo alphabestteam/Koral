@@ -83,6 +83,7 @@ redirectToRegister(): void {
   dataSave(){
     let username = this.loginForm.value.username;
     sessionStorage.setItem('username', username);
-
+    let password = this.loginForm.value.password
+    sessionStorage.setItem('password', password);
   }
 }

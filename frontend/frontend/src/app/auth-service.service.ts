@@ -10,7 +10,8 @@ import { catchError } from 'rxjs/operators';
 })
 export class AuthServiceService {
   private isAuthenticated: boolean = false;
-  
+  private apiUrl = 'http://127.0.0.1:8000/users/api/users/';
+
   constructor(private http: HttpClient) {this.isAuthenticated = this.checkStoredSession();}
     
 
@@ -82,4 +83,10 @@ export class AuthServiceService {
       }
       return this.isAuthenticated;
     }
+
+    changeUserPassword(userID: any, newPassword: any): Observable<any> {
+      const url = `${this.apiUrl}${userID}/change_password/`;
+      return this.http.put<any>(url, { new_password: newPassword });
+    }
+  
 }

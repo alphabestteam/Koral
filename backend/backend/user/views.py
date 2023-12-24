@@ -7,6 +7,7 @@ from user.serializers import UserSerializer
 from rest_framework.decorators import action
 import json
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -58,6 +59,20 @@ class UserViewSet(viewsets.ModelViewSet):
         except Exception as e:
             return JsonResponse({'error': 'Internal Server Error'}, status=500)
         
+    
+    @action(detail=True, methods=['put'])
+    def change_password(self, request, pk=None):
+        user = self.get_object()
+        new_password = request.data.get('new_password')
+        
+        if new_password:
+            user.set_password(new_password)
+            user.save()
+            return Response({'message': 'Password updated successfully'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'New password not provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+
 @api_view(['GET'])        
 def get_products_in_basket(request, basket_id):
     user_basket = get_object_or_404(Basket, basket_id=basket_id)
