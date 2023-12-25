@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { KoralAuthComponent } from './koral-auth/koral-auth.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -47,7 +48,9 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    BrowserModule ,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

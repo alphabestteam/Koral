@@ -39,7 +39,6 @@ export class UserSettingsComponent implements OnInit {
     this.authService.logout()
   }
 
-
   ngOnInit(): void {
     this.changePasswordForm = this.formBuilder.group({
       current_password: ["", Validators.required],
@@ -48,37 +47,70 @@ export class UserSettingsComponent implements OnInit {
     });
   }
 
+
   onChangePassword(): void {
     this.submitted = true;
-
+  
     if (this.changePasswordForm.valid) {
       const currentPassword = this.changePasswordForm.get('current_password')?.value;
       const newPassword = this.changePasswordForm.get('new_password')?.value;
       const confirmNewPassword = this.changePasswordForm.get('confirm_new_password')?.value;
-
+  
       if (newPassword !== confirmNewPassword) {
         this.changePasswordForm.get('confirm_new_password')?.setErrors({ unmatchedPassword: true });
         return;
       } else {
-        // Call the service method to change the password
-        this.authService.changeUserPassword(this.getUserName(), newPassword).subscribe(
-          response => {
-            // Show a success snackbar
-            this.snackBar.open('Password changed successfully!', 'Close', {
-              duration: 3000, // Duration the snackbar is shown (in milliseconds)
-              horizontalPosition: 'center', // Position of the snackbar
-              verticalPosition: 'bottom',
-              panelClass: ['success-snackbar'] // CSS class for styling the snackbar
-            });
-            // Additional code, if needed
-          },
-          error => {
-            // Handle error, e.g., display an error message
-            console.error('Error changing password:', error);
-            // Show an error message or handle appropriately
-          }
-        );
+        const storedPassword = this.getPassword(); // Retrieve the stored password
+        console.log(storedPassword)
+        console.log(newPassword)
+        if (currentPassword !== storedPassword) {
+          this.changePasswordForm.get('current_password')?.setErrors({ invalidPassword: true });
+          return;
+        } else {
+          const storedPassword = this.getPassword(); // Retrieve the stored password
+  
+        const username = this.getUserName();
+  
+        if (username) {
+          // Proceed with changing the password
+          this.authService.getUserIDFromUsername(username).subscribe(
+            userID => {
+              if (userID !== null) {
+                // Call the service method to change the password with retrieved userID
+                this.authService.changeUserPassword(userID, newPassword).subscribe(
+                  response => {
+                    // Show a success snackbar
+                    this.router.navigateByUrl('/login')
+                    this.snackBar.open('Password changed successfully!', 'Close', {
+                      duration: 3000,
+                      horizontalPosition: 'center',
+                      verticalPosition: 'bottom',
+                      panelClass: ['success-snackbar']
+                    });
+                    // Additional code, if needed
+                  },
+                  error => {
+                    console.error('Error changing password:', error);
+                    // Show an error message or handle appropriately
+                  }
+                );
+              } else {
+                console.error('User ID not found for the provided username');
+                // Handle the case where the user ID is not found
+              }
+            },
+            error => {
+              console.error('Error fetching user ID:', error);
+              // Show an error message or handle appropriately
+            }
+          );
+        } else {
+          console.error('Username not available');
+          // Handle the case where the username is not available
+        }
       }
     }
   }
+}
+  
 }

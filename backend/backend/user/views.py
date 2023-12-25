@@ -66,11 +66,11 @@ class UserViewSet(viewsets.ModelViewSet):
         new_password = request.data.get('new_password')
         
         if new_password:
-            user.set_password(new_password)
+            user.password = new_password
             user.save()
-            return Response({'message': 'Password updated successfully'}, status=status.HTTP_200_OK)
+            return Response({'message': 'Password updated successfully'}, status=200)
         else:
-            return Response({'error': 'New password not provided'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'New password not provided'}, status=400)
 
 
 @api_view(['GET'])        
