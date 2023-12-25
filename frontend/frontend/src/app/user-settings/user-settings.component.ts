@@ -72,7 +72,6 @@ export class UserSettingsComponent implements OnInit {
         const username = this.getUserName();
   
         if (username) {
-          // Proceed with changing the password
           this.authService.getUserIDFromUsername(username).subscribe(
             userID => {
               if (userID !== null) {
@@ -87,7 +86,6 @@ export class UserSettingsComponent implements OnInit {
                       verticalPosition: 'bottom',
                       panelClass: ['success-snackbar']
                     });
-                    // Additional code, if needed
                   },
                   error => {
                     console.error('Error changing password:', error);

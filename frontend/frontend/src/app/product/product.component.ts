@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../product.service';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../auth-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product',
@@ -17,7 +18,8 @@ export class ProductComponent implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -81,8 +83,7 @@ fetchAllProducts(): void {
       console.error(error);
     }
   );
-}
-  
+  }
   async addToBasket(product_name: string, product_id: number): Promise<void> {
     const username = this.get();
   
@@ -91,16 +92,22 @@ fetchAllProducts(): void {
         const userId = await this.authService.getUserIDFromUsername(username).toPromise();
   
         if (userId !== null && typeof userId === 'number') {
-          alert(`Product: ${product_name} added successfully to the basket!`);
           const response = await this.productService.addToBasket(userId, product_id).toPromise();
           console.log('Product added to the basket:', response);
-          if (response && response.updatedProduct) {
-            const existingProductIndex = this.products.findIndex(p => p.id === response.updatedProduct.id);
-            if (existingProductIndex !== -1) {
-              this.products[existingProductIndex] = response.updatedProduct;
-            } else {
-              this.products.push(response.updatedProduct);
-            }
+  
+          // Check the modified response from the service
+          if (response) {
+            // Display Snackbar upon successful addition
+            this.snackBar.open(`Product ${product_name} added successfully to the basket!`, 'Close', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom',
+              panelClass: ['success-snackbar']
+            });
+  
+            // Other logic after successful addition, if needed
+          } else {
+            console.error('Failed to add product to the basket');
           }
         } else {
           console.error('User ID not found or invalid');
@@ -111,6 +118,7 @@ fetchAllProducts(): void {
     } else {
       console.error('Username not found in session storage or invalid');
     }
-  }  
+  }
+  
   
 }

@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { ProductService } from '../product.service';
 import { AuthServiceService } from '../auth-service.service';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-basket',
@@ -19,7 +21,8 @@ export class BasketComponent implements OnInit {
 
     constructor(
       private productService: ProductService,
-      private authService: AuthServiceService
+      private authService: AuthServiceService,
+      private snackBar: MatSnackBar
       ) {}
   
     ngOnInit(): void {
@@ -100,36 +103,49 @@ export class BasketComponent implements OnInit {
       }
     );
   }
-
-    
   
-    checkout(): void {
-      this.authService.getUserIDFromUsername(this.get()).subscribe(
-        userId => {
-          if (userId !== null) {
-          alert(`${this.get()} Checkout-out Successfully!`);
-            this.productService.checkout(userId).subscribe(
-              response => {
-                console.log('Checkout successful:', response);
-                // Reset basket data and UI if needed
-                this.updateProductStatusForCheckout(); // Update product status
-                this.productsInBasket = [];
-                this.totalPrice = 0;
-              },
-              error => {
-                console.error('Error during checkout:', error);
-                // Handle error or display error message
-              }
-            );
-          } else {
-            console.error('User ID not found in session storage or invalid');
-          }
-        },
-        error => {
-          console.error('Error fetching user ID:', error);
+  checkout(): void {
+    this.authService.getUserIDFromUsername(this.get()).subscribe(
+      userId => {
+        if (userId !== null) {
+          this.productService.checkout(userId).subscribe(
+            response => {
+              console.log('Checkout successful:', response);
+              
+              // Show a success snackbar upon successful checkout
+              this.snackBar.open(`${this.get()} Checked Out Successful!`, 'Close', {
+                duration: 3000,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+                panelClass: ['success-snackbar']
+              });
+              
+              // Reset basket data and UI if needed
+              this.updateProductStatusForCheckout(); // Update product status
+              this.productsInBasket = [];
+              this.totalPrice = 0;
+            },
+            error => {
+              console.error('Error during checkout:', error);
+              // Handle error or display error message using Snackbar if needed
+              this.snackBar.open('Checkout Failed', 'Close', {
+                duration: 3000,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+                panelClass: ['error-snackbar']
+              });
+            }
+          );
+        } else {
+          console.error('User ID not found in session storage or invalid');
         }
-      );
-    }
+      },
+      error => {
+        console.error('Error fetching user ID:', error);
+      }
+    );
+  }
+  
     
     updateProductStatusForCheckout(): void {
       // Loop through products in the basket and update their status
