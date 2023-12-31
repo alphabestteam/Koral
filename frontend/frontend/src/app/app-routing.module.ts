@@ -14,11 +14,10 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'cant-come-inside', component: KoralAuthComponent, canActivate: [AuthGuard, KoralAuthGuard] },
-  { path: 'main', component: MainPageComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'cant-come-inside', component: KoralAuthComponent, canActivate: [AuthGuard, KoralAuthGuard] },
+  { path: 'main', component: MainPageComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard]},
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'basket', component: BasketComponent, canActivate: [AuthGuard] },
@@ -29,7 +28,8 @@ const routes: Routes = [
     path: 'products/:gender', // Dynamic segment for gender
     component: ProductComponent, // Component to display products
     canActivate: [AuthGuard]
-  }
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({

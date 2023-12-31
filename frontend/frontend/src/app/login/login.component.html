@@ -34,8 +34,8 @@
         </div>
       </form>
       <div *ngIf="submitted && !loginForm.invalid">
-        <div *ngIf="error" class="text-danger">{{ error }}</div>
+        <div *ngIf="submitted && error" class="text-danger">{{ error }}</div>
       </div>
-      <div *ngIf="success" class="text-success">{{ success }}</div>
+      <div *ngIf="success && submitted" class="text-success">{{ success }}</div>
     </div>
   </div>

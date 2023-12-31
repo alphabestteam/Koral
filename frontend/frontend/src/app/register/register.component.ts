@@ -59,8 +59,13 @@ export class RegisterComponent implements OnInit {
         }, 2000);
 
         this.registerForm.reset();
-      } catch (error) {
-        this.error = (error as any).error.message || 'Registration failed';
+      } catch (error:any) {
+        if (error.status == 400){
+        this.error = 'Username is already taken';
+        }
+        else{
+          this.error = 'Registration failed';
+        }
       }
     }
   }

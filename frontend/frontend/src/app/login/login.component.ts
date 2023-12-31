@@ -59,19 +59,22 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/main']);
           this.success = "Login Successful!"
           this.dataSave();
-
+          
           setTimeout(() => {
             this.success = '';
           }, 2000);
           
           this.loginForm.reset();
-        } else if (response.message === 'Password is wrong') {
-          this.error = 'Password is wrong';
-        } else if (response.message === 'User not found') {
-          this.error = 'Username is not found';
         }
-      } catch (error) { /* if the server is disconnected*/ 
-      this.error = (error as any).error.message || 'Login failed';
+      } catch (error:any) { 
+          if (error.status === 401){
+            this.error = 'Password is wrong';
+          } else if(error.status === 404){
+            this.error = 'Username is not found';
+          }else{
+
+            this.error = 'Login failed';
+          }  
     }
   }
 } 
