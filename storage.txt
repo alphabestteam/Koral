@@ -1,0 +1,10 @@
+1. 
+the difference between localStorage and sessionStorage is that the data in the localStorage doesn't expire and gets saved, and in sessionStorage, the data is cleared when the page session ends, which means for example if i close the tab, the data that saved in sessionStorage will be cleared, and the data that is saved in localStorage, will be saved.
+
+
+2. 
+local storage is used when data that you want to quickly access, without having to make an API request to a backend server. for example, personalization settings for a user like color scheme or other settings that you do not want to always reach out to the server for
+
+
+3.
+session storage is used when we want to destroy the data whenever that specific tab gets closed or the season is closed by the user. most cases we will use sessionStorage for user authentication, so when the user is logged out / closes the tab, the session will be cleared
