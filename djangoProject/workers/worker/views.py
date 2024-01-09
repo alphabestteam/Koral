@@ -14,6 +14,5 @@ class WorkerViewSet(viewsets.ModelViewSet):
       to  update / delete a specific user : 
         http://127.0.0.1:8000/workers/api/<users_id>/
 
-
     """
 
