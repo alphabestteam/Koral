@@ -1,12 +1,9 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from django.urls import path
 from . import views
 
-
-router = DefaultRouter()
-router.register(r'', views.WorkerViewSet)
-
-
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('get_workers/', views.get_workers),
+    path('add_worker/', views.add_worker),
+    path('update_worker/<int:worker_id>/', views.update_worker),
+    path('delete_worker/<int:worker_id>/', views.delete_worker),
 ]

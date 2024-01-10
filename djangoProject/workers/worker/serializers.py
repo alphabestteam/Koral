@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from worker.models import Worker
+from worker.models import ConcreteWorker
 
 
 class WorkerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Worker
+        model = ConcreteWorker
         fields = "__all__"

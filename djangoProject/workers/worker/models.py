@@ -13,3 +13,10 @@ class Worker(models.Model):
     salary = models.IntegerField()
     gender = models.CharField(max_length = 60, choices = GENDER_CHOICES, default = GENDER_CHOICES[0])
 
+    class Meta:
+        abstract = True
+
+
+class ConcreteWorker(Worker):
+    class Meta:
+        db_table = 'Worker'  
