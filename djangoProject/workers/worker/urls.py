@@ -7,3 +7,6 @@ urlpatterns = [
     path('update_worker/<int:worker_id>/', views.update_worker),
     path('delete_worker/<int:worker_id>/', views.delete_worker),
 ]
+
+
+
